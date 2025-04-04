@@ -1,1 +1,1 @@
-# alfresco-ansible-collection
+# alfresco-ansible-collections
