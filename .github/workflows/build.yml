@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  pre-commit:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,3 +26,8 @@ jobs:
       - uses: Alfresco/alfresco-build-tools/.github/actions/pre-commit@v8.18.1
         with:
           skip_checkout: true
+
+      - name: galaxy build
+        working-directory: alfresco/platform
+        run: |
+          uv run ansible-galaxy collection build
