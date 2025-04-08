@@ -60,7 +60,7 @@ jobs:
       - name: Perform sanity testing
         # See the documentation for the following GitHub action on
         # https://github.com/ansible-community/ansible-test-gh-action/blob/main/README.md
-        uses: ansible-community/ansible-test-gh-action@release/v1
+        uses: ansible-community/ansible-test-gh-action@b416b6ecf7ddb0ea3b0a51c1d198d715eba52c9d # v1.16.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: sanity
