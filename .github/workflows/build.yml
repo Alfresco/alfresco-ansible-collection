@@ -10,10 +10,13 @@ on:
     tags:
       - 'v*.*.*'
 
-
 concurrency:
   group: ${{ github.ref_name }}
   cancel-in-progress: true
+
+env:
+  PY_COLORS: 1
+  PYTHONUNBUFFERED: 1
 
 jobs:
   build:
