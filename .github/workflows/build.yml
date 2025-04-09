@@ -21,7 +21,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build
+    name: Galaxy build
     needs:
       - pre-commit
       - sanity
@@ -90,7 +90,7 @@ jobs:
 
   molecule:
     runs-on: ubuntu-latest
-    name: molecule against ${{ matrix.roles.role_name }} role
+    name: Molecule against ${{ matrix.roles.role_name }} role
     strategy:
       matrix:
         roles:
