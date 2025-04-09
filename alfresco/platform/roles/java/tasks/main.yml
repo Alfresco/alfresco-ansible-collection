@@ -1,0 +1,22 @@
+---
+- name: Download openjdk archive for version {{ java_version }}
+  ansible.builtin.get_url:
+    url: "{{ java_url }}"
+    dest: "{{ java_download_location }}/{{ java_tar_file }}"
+    checksum: "{{ java_checksum }}"
+    timeout: 570
+    mode: "0644"
+
+- name: Install OpenJDK
+  become: true
+  block:
+    - name: Extract OpenJDK archive {{ java_tar_file }}
+      ansible.builtin.unarchive:
+        src: "{{ java_download_location }}/{{ java_tar_file }}"
+        dest: "{{ java_home | dirname }}"
+        remote_src: true
+        creates: "{{ java_home }}"
+        owner: root
+        group: root
+        extra_opts:
+          - --xform=s,[^/]*,{{ java_home | basename }},
