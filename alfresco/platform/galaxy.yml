@@ -1,0 +1,37 @@
+namespace: alfresco
+name: platform
+version: 0.1.0-alpha.0
+
+readme: README.md
+
+authors:
+  - Giovanni Toraldo <Giovanni.Toraldo@hyland.com>
+
+description: a collection of Ansible roles and modules for Alfresco Platform
+
+license:
+  - Apache-2.0
+
+# A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
+# requirements as 'namespace' and 'name'
+tags: ["application"]
+
+# Collections that this collection requires to be installed for it to be usable. The key of the dict is the
+# collection label 'namespace.name'. The value is a version range
+# L(specifiers,https://python-semanticversion.readthedocs.io/en/latest/#requirement-specification). Multiple version
+# range specifiers can be set and are separated by ','
+dependencies: {}
+
+# The URL of the originating SCM repository
+repository: https://github.com/Alfresco/alfresco-ansible-collections
+
+# The URL to any online docs
+documentation: https://github.com/Alfresco/alfresco-ansible-collections
+
+# The URL to the homepage of the collection/project
+homepage: https://github.com/Alfresco/alfresco-ansible-collections
+
+# The URL to the collection issue tracker
+issues: https://github.com/Alfresco/alfresco-ansible-collections/issues
+
+build_ignore: []

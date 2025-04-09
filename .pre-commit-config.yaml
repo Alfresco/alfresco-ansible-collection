@@ -1,0 +1,38 @@
+---
+default_language_version:
+  python: python3.11
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/Riverside-Healthcare/djLint
+    rev: v1.36.4
+    hooks:
+      - id: djlint-jinja
+
+  - repo: https://github.com/jackdewinter/pymarkdown
+    rev: v0.9.27
+    hooks:
+      - id: pymarkdown
+        files: (README\.md$|docs/.*\.md)
+        args:
+          - --config=.pymarkdown.json
+          - scan
+
+  - repo: local
+    hooks:
+      - id: ansible-lint
+        name: ansible-lint
+        language: system
+        pass_filenames: false
+        entry: uv run ansible-lint
