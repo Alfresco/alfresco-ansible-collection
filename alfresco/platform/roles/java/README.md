@@ -1,6 +1,10 @@
 # java
 
-This role installs the java JDK (OpenJDK)
+This role installs the java JDK (OpenJDK) and optionally imports certificates
+into the java keystore and generates security keys.
+
+It will set the `java_needs_restart` fact to `true` when using the `keystores`
+entrypoint (see example playbook below).
 
 ## Requirements
 
@@ -14,12 +18,12 @@ This role relies on the `community.general` collection to manage java keystores.
 
 ## Example Playbook
 
-Installing OpenJDK in a basic:
+Installing OpenJDK into the default location:
 
 ```yaml
 - hosts: all
   roles:
-    - role: alfresco.platform.java
+    - alfresco.platform.java
 ```
 
 Installing OpenJDK and importing a server certificate in the java keystore:
@@ -27,7 +31,12 @@ Installing OpenJDK and importing a server certificate in the java keystore:
 ```yaml
 - hosts: all
   roles:
-      - role: alfresco.platform.java
+    - alfresco.platform.java
+  tasks:
+    - ansible.builtin.include_role:
+        name: alfresco.platform.java
+        tasks_from: keystores.yml
+      vars:
         cert_containers:
           - path: snakeoil.p12
             pass: dummy
@@ -39,7 +48,12 @@ Installing OpenJDK, importing certificates and generating a security key:
 ```yaml
 - hosts: all
   roles:
-      - role: alfresco.platform.java
+    - alfresco.platform.java
+  tasks:
+    - ansible.builtin.include_role:
+        name: alfresco.platform.java
+        tasks_from: keystores.yml
+      vars:
         cert_containers:
           - path: server-snakeoil.p12
             pass: dummy
