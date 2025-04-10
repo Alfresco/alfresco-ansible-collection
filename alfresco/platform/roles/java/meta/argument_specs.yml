@@ -116,3 +116,13 @@ argument_specs:
         description: |
           Password to unlock the java truststore
         default: changeit
+      java_default_username:
+        type: str
+        required: true
+        description: |
+          Default username to use for the java keystore
+      java_default_group:
+        type: str
+        required: true
+        description: |
+          Default group to use for the java keystore
