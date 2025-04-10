@@ -112,7 +112,7 @@ jobs:
         run: |
           uv run molecule test
 
-  build-docs:
+  docs-build:
     permissions:
       contents: read
     name: Build Ansible Docs
@@ -129,3 +129,18 @@ jobs:
       init-html-short-title: Alfresco.Platform Collection Docs
       init-extra-html-theme-options: |
         documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
+
+  docs-publish:
+    if: github.repository == 'alfresco/alfresco-ansible-collections'
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    needs: docs-build
+    name: Publish Ansible Docs
+    uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-publish-gh-pages.yml@719619eaa6e76971b9eb3702c1d3cc3ac625c76b
+    with:
+      artifact-name: ${{ needs.docs-build.outputs.artifact-name }}
+      publish-gh-pages-branch: true
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
