@@ -111,3 +111,21 @@ jobs:
         working-directory: alfresco/platform/roles/${{ matrix.roles.role_name }}
         run: |
           uv run molecule test
+
+  build-docs:
+    permissions:
+      contents: read
+    name: Build Ansible Docs
+    uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-push.yml@719619eaa6e76971b9eb3702c1d3cc3ac625c76b
+    with:
+      collection-name: alfresco.platform
+      collection-path: alfresco/platform
+      init-lenient: false
+      init-fail-on-error: true
+      squash-hierarchy: true
+      init-project: Alfresco.Platform Collection
+      init-copyright: Alfresco.Platform Contributors
+      init-title: Alfresco.Platform Collection Documentation
+      init-html-short-title: Alfresco.Platform Collection Docs
+      init-extra-html-theme-options: |
+        documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
