@@ -23,3 +23,21 @@ Use the `uv run` prefix to run any command in the virtual environment, e.g.:
 ```bash
 uv run ansible-galaxy install
 ```
+
+## Releases
+
+For every change, a changelog yml fragment need to be drop inside the
+`changelogs/fragments` folder, using one or more [fragment
+categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/#changelog-fragment-categories).
+
+Before proceeding with the release, merge the fragments into the changelog with:
+
+```bash
+antsibull-changelog release --version 0.1.0-alpha.0
+```
+
+Then, draft the release with:
+
+```bash
+gh release create
+```

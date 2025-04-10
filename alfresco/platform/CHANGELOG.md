@@ -3,6 +3,12 @@
 **Topics**
 
 - <a href="#v0-1-0-alpha-0">v0\.1\.0\-alpha\.0</a>
+    - <a href="#major-changes">Major Changes</a>
 
 <a id="v0-1-0-alpha-0"></a>
 ## v0\.1\.0\-alpha\.0
+
+<a id="major-changes"></a>
+### Major Changes
+
+* add java role
