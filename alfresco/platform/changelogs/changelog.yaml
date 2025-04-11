@@ -1,4 +1,9 @@
 ancestor: null
 releases:
   0.1.0-alpha.0:
-    release_date: '2025-04-04'
+    changes:
+      major_changes:
+        - add java role
+    fragments:
+      - java_initial_release.yml
+    release_date: "2025-04-10"

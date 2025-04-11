@@ -35,4 +35,4 @@ repos:
         name: ansible-lint
         language: system
         pass_filenames: false
-        entry: uv run ansible-lint
+        entry: uv run ansible-lint --profile production
