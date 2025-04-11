@@ -119,7 +119,6 @@ jobs:
     uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-push.yml@719619eaa6e76971b9eb3702c1d3cc3ac625c76b
     with:
       collection-name: alfresco.platform
-      collection-path: alfresco/platform
       init-lenient: false
       init-fail-on-error: true
       squash-hierarchy: true
