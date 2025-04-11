@@ -115,7 +115,7 @@ wheels = [
 ]
 
 [[package]]
-name = "alfresco-ansible-collections"
+name = "alfresco-ansible-collection"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

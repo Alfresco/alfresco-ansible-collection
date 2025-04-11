@@ -31,7 +31,7 @@ jobs:
         documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
 
   docs-publish:
-    if: github.repository == 'alfresco/alfresco-ansible-collections'
+    if: github.repository == 'alfresco/alfresco-ansible-collection'
     permissions:
       contents: write
       pages: write

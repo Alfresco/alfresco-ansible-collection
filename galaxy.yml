@@ -5,7 +5,7 @@ version: 0.1.0-alpha.0
 readme: README.md
 
 authors:
-  - Giovanni Toraldo <Giovanni.Toraldo@hyland.com>
+  - Hyland Alfresco Ops Readiness
 
 description: a collection of Ansible roles and modules for Alfresco Platform
 
@@ -24,15 +24,15 @@ dependencies:
   community.general: ">=10.3.0,<11.0.0"
 
 # The URL of the originating SCM repository
-repository: https://github.com/Alfresco/alfresco-ansible-collections
+repository: https://github.com/Alfresco/alfresco-ansible-collection
 
 # The URL to any online docs
-documentation: https://github.com/Alfresco/alfresco-ansible-collections
+documentation: https://github.com/Alfresco/alfresco-ansible-collection
 
 # The URL to the homepage of the collection/project
-homepage: https://github.com/Alfresco/alfresco-ansible-collections
+homepage: https://github.com/Alfresco/alfresco-ansible-collection
 
 # The URL to the collection issue tracker
-issues: https://github.com/Alfresco/alfresco-ansible-collections/issues
+issues: https://github.com/Alfresco/alfresco-ansible-collection/issues
 
 build_ignore: []

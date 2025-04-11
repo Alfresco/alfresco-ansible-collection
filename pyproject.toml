@@ -1,7 +1,7 @@
 [project]
-name = "alfresco-ansible-collections"
+name = "alfresco-ansible-collection"
 version = "0.1.0"
-description = "Add your description here"
+description = "alfresco.platform ansible collection"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
