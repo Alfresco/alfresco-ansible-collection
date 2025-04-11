@@ -11,7 +11,7 @@ on:
       - 'v*.*.*'
 
 concurrency:
-  group: ${{ github.ref_name }}
+  group: ${{ github.workflow}}-${{ github.ref_name }}
   cancel-in-progress: true
 
 env:
@@ -39,15 +39,15 @@ jobs:
           python-version-file: ".python-version"
 
       - name: galaxy build
-        working-directory: alfresco/platform
         run: |
           uv run ansible-galaxy collection build
 
       - name: galaxy publish
         if: startsWith(github.ref, 'refs/tags/v')
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          uv run ansible-galaxy collection publish alfresco/platform/alfresco-platform-${VERSION}.tar.gz --token "${{ secrets.ANSIBLE_GALAXY_API_KEY }}"
+        run: >-
+          uv run ansible-galaxy collection publish
+          alfresco-platform-${GITHUB_REF#refs/tags/v}.tar.gz
+          --token "${{ secrets.ANSIBLE_GALAXY_API_KEY }}"
 
   pre-commit:
     runs-on: ubuntu-latest
@@ -85,7 +85,6 @@ jobs:
         with:
           ansible-core-version: ${{ matrix.ansible }}
           testing-type: sanity
-          collection-root: alfresco/platform
           coverage: never # codecov integration required
 
   molecule:
@@ -108,38 +107,6 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Run molecule
-        working-directory: alfresco/platform/roles/${{ matrix.roles.role_name }}
+        working-directory: roles/${{ matrix.roles.role_name }}
         run: |
           uv run molecule test
-
-  docs-build:
-    permissions:
-      contents: read
-    name: Build Ansible Docs
-    uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-push.yml@719619eaa6e76971b9eb3702c1d3cc3ac625c76b
-    with:
-      collection-name: alfresco.platform
-      init-lenient: false
-      init-fail-on-error: true
-      squash-hierarchy: true
-      init-project: Alfresco.Platform Collection
-      init-copyright: Alfresco.Platform Contributors
-      init-title: Alfresco.Platform Collection Documentation
-      init-html-short-title: Alfresco.Platform Collection Docs
-      init-extra-html-theme-options: |
-        documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
-
-  docs-publish:
-    if: github.repository == 'alfresco/alfresco-ansible-collections'
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    needs: docs-build
-    name: Publish Ansible Docs
-    uses: ansible-community/github-docs-build/.github/workflows/_shared-docs-build-publish-gh-pages.yml@719619eaa6e76971b9eb3702c1d3cc3ac625c76b
-    with:
-      artifact-name: ${{ needs.docs-build.outputs.artifact-name }}
-      publish-gh-pages-branch: true
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
