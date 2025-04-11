@@ -27,7 +27,7 @@ dependencies:
 repository: https://github.com/Alfresco/alfresco-ansible-collection
 
 # The URL to any online docs
-documentation: https://github.com/Alfresco/alfresco-ansible-collection
+documentation: https://alfresco.github.io/alfresco-ansible-collection/
 
 # The URL to the homepage of the collection/project
 homepage: https://github.com/Alfresco/alfresco-ansible-collection
