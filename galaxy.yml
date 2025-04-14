@@ -35,4 +35,12 @@ homepage: https://github.com/Alfresco/alfresco-ansible-collection
 # The URL to the collection issue tracker
 issues: https://github.com/Alfresco/alfresco-ansible-collection/issues
 
-build_ignore: []
+build_ignore:
+  - .venv
+  - .github
+  - .ansible
+  - tests
+  - pyproject.toml
+  - uv.lock
+  - pre-commit-config.yaml
+  - '**/molecule'
