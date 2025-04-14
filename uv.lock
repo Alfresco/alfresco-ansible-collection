@@ -134,7 +134,7 @@ requires-dist = [
     { name = "ansible-lint", specifier = "==25.2.1" },
     { name = "antsibull-changelog", specifier = "==0.33.0" },
     { name = "antsibull-docs", specifier = "==2.16.3" },
-    { name = "molecule", specifier = "==24.12.0" },
+    { name = "molecule", specifier = "==25.4.0" },
     { name = "molecule-plugins", extras = ["docker"], specifier = "==23.6.0" },
     { name = "sphinx-ansible-theme", specifier = "==0.10.3" },
 ]
@@ -816,7 +816,7 @@ wheels = [
 
 [[package]]
 name = "molecule"
-version = "24.12.0"
+version = "25.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-compat" },
@@ -832,9 +832,9 @@ dependencies = [
     { name = "rich" },
     { name = "wcmatch" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/57/bc/a6dcfca6e4cae04fdb4fc385bda0bc637a338b6d72dea79ba93eaa68e1d3/molecule-24.12.0.tar.gz", hash = "sha256:7243ff58e0b8159aa2cf465ba9605d657f1d614617264307bef5b32518467afe", size = 4412418 }
+sdist = { url = "https://files.pythonhosted.org/packages/13/48/fd6d948ab1ab6aa60ea26fec77366a732a19d7db4bb0efe130b647024ad9/molecule-25.4.0.tar.gz", hash = "sha256:c531e2a1051f827f3878dcd7d40d6d6868da066d461ef28b5e8fedea5e93f0f9", size = 4415584 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c3/67/aa1efd2fdb2cfee7bbd5338d028f49fc4eccf6c35b868243dbbe3b945880/molecule-24.12.0-py3-none-any.whl", hash = "sha256:c650d92295860ce17d79048b1dabb787f674718870668d99b52ecdc0e88af541", size = 130435 },
+    { url = "https://files.pythonhosted.org/packages/18/6c/2003db6f8853459a90231892a307a2b061a475d2e40a242b8db5380acbae/molecule-25.4.0-py3-none-any.whl", hash = "sha256:09506acc2af7fa66acab8bb032508dbb282869f372ed034620883f26801e08e3", size = 132886 },
 ]
 
 [[package]]
