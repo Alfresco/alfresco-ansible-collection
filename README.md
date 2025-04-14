@@ -1,4 +1,8 @@
-# alfresco-ansible-collections
+# Ansible Collection - alfresco.platform
+
+This Ansible collection provides a set of roles and modules to manage
+Alfresco Platform installations. It is designed to be used with Ansible
+and can be easily integrated into your existing Ansible playbooks.
 
 ## Development
 
