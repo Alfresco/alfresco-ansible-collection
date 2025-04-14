@@ -43,5 +43,5 @@ antsibull-changelog release --version 0.1.0-alpha.0
 Then, draft the release with:
 
 ```bash
-gh release create
+gh release create v0.1.0
 ```
