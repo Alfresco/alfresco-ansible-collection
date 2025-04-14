@@ -5,7 +5,7 @@
   tasks:
     - name: Include role
       ansible.builtin.include_role:
-        name: systemd_service
+        name: alfresco.platform.systemd_service
       vars:
         systemd_service_unit_name: my-test-service
         systemd_service_unit_description: My very cool service
