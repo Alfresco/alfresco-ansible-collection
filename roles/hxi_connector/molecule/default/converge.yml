@@ -1,9 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  vars:
-    java_version: 17.0.14+7
-    java_version_path: "{{ java_version | split('+') }}"
   tasks:
     - name: Include java role
       ansible.builtin.include_role:
@@ -13,7 +10,7 @@
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
       vars:
-        hxi_connector_java_bin_path: "/opt/openjdk-{{ java_version_path[0] }}/bin/java"
+        hxi_connector_java_bin_path: "/opt/openjdk-17.0.14/bin/java"
         hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
