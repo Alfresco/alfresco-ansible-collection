@@ -1,12 +1,17 @@
 galaxy_info:
   author: Alfresco Ops Readiness
   namespace: alfresco
-  description: Install Java runtime as required by Alfresco
+  description: Install and configure systemd services
   company: Hyland Software
 
   license: Apache-2.0
 
   min_ansible_version: "2.16"
+
+  galaxy_tags:
+    - systemd
+    - service
+    - configuration
 
   platforms:
     - name: Ubuntu
@@ -18,5 +23,3 @@ galaxy_info:
       versions:
         - "8"
         - "9"
-
-  galaxy_tags: []
