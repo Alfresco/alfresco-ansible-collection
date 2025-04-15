@@ -1,0 +1,33 @@
+- name: Fetch Bulk Ingester artifact for version {{ hxi_connector_bulk_ingester_artifact_version }}
+  become: true
+  become_user: "{{  hxi_connector_service_user }}"
+  ansible.builtin.get_url:
+    url: "{{ hxi_connector_bulk_ingester_artifact_url }}"
+    dest: "{{ hxi_connector_bulk_ingester_artifact_path }}"
+    url_username: "{{ hxi_connector_artifact_username }}"
+    url_password: "{{ hxi_connector_artifact_password }}"
+    mode: "0600"
+
+- name: Set environments specific for Bulk Ingester
+  ansible.builtin.set_fact:
+    hxi_connector_bulk_ingester_environment:
+      SPRING_DATASOURCE_URL: "{{ hxi_connector_alfresco_db_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ hxi_connector_alfresco_db_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ hxi_connector_alfresco_db_password }}"
+      SERVER_PORT: "{{ hxi_connector_bulk_ingester_port }}"
+      APPLICATION_SOURCEID: "{{ hxi_connector_application_sourceid }}"
+
+- name: Install Bulk Ingester
+  ansible.builtin.include_role:
+    name: alfresco.platform.systemd_service
+    apply:
+      become: true
+  vars:
+    systemd_service_unit_name: "alfresco-hxinsight-connector-bulk-ingester"
+    systemd_service_unit_description: "Alfresco HXInsight Connector Bulk Ingester"
+    systemd_service_exec_start: "{{ hxi_connector_java_bin_path }} -jar {{ hxi_connector_bulk_ingester_artifact_path }}"
+    systemd_service_user: "{{ hxi_connector_service_user }}"
+    systemd_service_environment: "{{ hxi_connector_base_environment | combine(hxi_connector_bulk_ingester_environment) }}"
+    systemd_service_type: oneshot
+    systemd_service_state: stopped
+    systemd_service_enabled: false

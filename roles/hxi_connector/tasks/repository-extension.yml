@@ -1,0 +1,11 @@
+- name: Fetch Repository extension artifact for version {{ hxi_connector_repository_extension_artifact_version }}
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ hxi_connector_repository_extension_artifact_url }}"
+    dest: "{{ hxi_connector_repository_extension_artifact_path }}"
+    url_username: "{{ hxi_connector_artifact_username }}"
+    url_password: "{{ hxi_connector_artifact_password }}"
+    mode: "0640"
+    owner: alfresco
+    group: alfresco
+  notify: Restart Alfresco

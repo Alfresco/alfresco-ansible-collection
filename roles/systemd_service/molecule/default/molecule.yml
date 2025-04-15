@@ -1,10 +1,8 @@
 ---
-dependency:
-  name: galaxy
 driver:
   name: docker
 platforms:
-  - name: java-instance
+  - name: systemd-instance
     image: ${MOLECULE_ROLE_IMAGE:-rockylinux:9}
     dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
     command: "/lib/systemd/systemd"
@@ -20,3 +18,7 @@ provisioner:
   config_options:
     defaults:
       pipelining: true
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: ansible

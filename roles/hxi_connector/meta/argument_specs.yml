@@ -1,0 +1,130 @@
+---
+argument_specs:
+  main:
+    short_description: Install a Hx Insight Connector
+    description: |
+      This role installs a Hx Insight Connector and starts it.
+    options:
+      hxi_connector_artifact_default_version:
+        type: str
+        description: Default version for all Hx Insight Connector artifacts unless specified otherwise
+      hxi_connector_live_ingester_artifact_version:
+        type: str
+        description: Version of the Hx Insight Connector Live Ingester artifact
+      hxi_connector_prediction_applier_artifact_version:
+        type: str
+        description: Version of the Hx Insight Connector Prediction Applier artifact
+      hxi_connector_remote_base_url:
+        type: str
+        description: Base URL of the remote Hx Insight service
+        required: true
+      hxi_connector_remote_token_url:
+        type: str
+        description: URL of the token API for the remote Hx Insight service
+        required: true
+      hxi_connector_remote_prediction_url:
+        type: str
+        description: URL of the prediction API for the remote Hx Insight service
+        required: true
+      hxi_connector_remote_client_id:
+        type: str
+        description: Client ID for the remote Hx Insight service
+        required: true
+      hxi_connector_remote_client_secret:
+        type: str
+        description: Client secret for the remote Hx Insight service
+        required: true
+      hxi_connector_remote_environment_key:
+        type: str
+        description: Environment key for the remote Hx Insight service
+        required: true
+      hxi_connector_remote_grant_type:
+        type: str
+        description: Grant type for the remote Hx Insight service
+        default: urn:hyland:params:oauth:grant-type:api-credentials
+      hxi_connector_alfresco_base_url:
+        type: str
+        description: Base URL of the Alfresco server
+        required: true
+      hxi_connector_alfresco_username:
+        type: str
+        description: Username for the Alfresco server
+        required: true
+      hxi_connector_alfresco_password:
+        type: str
+        description: Password for the Alfresco server
+        required: true
+      hxi_connector_alfresco_sfs_url:
+        type: str
+        description: URL of the Shared File Store for the Alfresco server
+        required: true
+      hxi_connector_alfresco_activemq_url:
+        type: str
+        description: URL of the ActiveMQ server
+        required: true
+      hxi_connector_alfresco_activemq_username:
+        type: str
+        description: Username for the ActiveMQ server
+        default: None
+      hxi_connector_alfresco_activemq_password:
+        type: str
+        description: Password for the ActiveMQ server
+        default: None
+      hxi_connector_alfresco_db_url:
+        type: str
+        description: URL of the database for the Alfresco server - required for the Bulk Ingester
+        default: None
+      hxi_connector_alfresco_db_username:
+        type: str
+        description: Username for the database for the Alfresco server - required for the Bulk Ingester
+        default: None
+      hxi_connector_alfresco_db_password:
+        type: str
+        description: Password for the database for the Alfresco server - required for the Bulk Ingester
+        default: None
+      hxi_connector_alfresco_service_name:
+        type: str
+        description: Name of the Alfresco service to be restarted after extension installation
+        default: alfresco-content-monitored-startup
+      hxi_connector_java_home_path:
+        type: str
+        description: Path to the Java home directory
+        default: /opt/java
+      hxi_connector_java_bin_path:
+        type: str
+        description: Path to the Java binary
+        default: /opt/java/bin/java
+      hxi_connector_service_user:
+        type: str
+        description: User to run the Hx Insight Connector services
+        required: true
+      hxi_connector_application_sourceid:
+        type: str
+        description: ID of the source Application as defined in the Hx Insight service
+        required: true
+      hxi_connector_live_ingester_port:
+        type: int
+        description: Port for the Hx Insight Connector Live Ingester service
+        default: 8080
+      hxi_connector_prediction_applier_port:
+        type: int
+        description: Port for the Hx Insight Connector Prediction Applier service
+        default: 8081
+      hxi_connector_alfresco_version_override:
+        type: str
+        description: Version override for the Alfresco repository
+  repository-extension:
+    short_description: Install a Hx Insight Connector Repository Extension
+    description: |
+      This role installs a Hx Insight Connector Repository Extension in an Alfresco install.
+    options:
+      hxi_connector_repository_extension_artifact_version:
+        type: str
+        description: Version of the Hx Insight Connector Repository Extension artifact
+      hxi_connector_repository_extension_acs_version:
+        type: str
+        description: Version of the Alfresco Content Services repository where to install the extension
+      hxi_connector_repository_extension_lib_path:
+        type: str
+        description: Path to the platform modules directory of the Alfresco server
+        default: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules/acs-platform"

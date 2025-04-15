@@ -1,0 +1,59 @@
+# hxi_connector
+
+Install and configure Hx Insights Connector
+
+## Requirements
+
+None.
+
+## Dependencies
+
+This role requires an openjdk installation to be present on the target system
+and provided as `hxi_connector_java_bin_path` variable.
+
+The role `alfresco.platform.java` is recommended to install the openjdk.
+
+## Example Playbook
+
+```yaml
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Include java role
+      ansible.builtin.include_role:
+        name: alfresco.platform.java
+      vars:
+        java_version: 17.0.14+7
+
+    - name: Include main role
+      ansible.builtin.include_role:
+        name: alfresco.platform.hxi_connector
+      vars:
+        hxi_connector_java_bin_path: "/opt/openjdk-17.0.14/bin/java"
+        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_client_id: "client-id"
+        hxi_connector_remote_client_secret: "client-secret"
+        hxi_connector_remote_environment_key: "environment-key"
+        hxi_connector_alfresco_base_url: "http://localhost:8080"
+        hxi_connector_alfresco_username: "admin" # pragma: allowlist secret
+        hxi_connector_alfresco_password: "admin" # pragma: allowlist secret
+        hxi_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
+        hxi_connector_alfresco_activemq_url: "nio://activemq.alfresco.com:61616"
+        hxi_connector_service_user: "alfresco"
+        hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
+        hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
+        hxi_connector_application_sourceid: "some-uuid-1234ab"
+
+    - name: Include repository-extension
+      ansible.builtin.include_role:
+        name: alfresco.platform.hxi_connector
+        tasks_from: repository-extension.yml
+```
+
+## License
+
+Apache-2.0
+
+## Author
+
+Alfresco Ops Readiness
