@@ -1,0 +1,23 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Check live-ingester service is running
+      ansible.builtin.systemd:
+        name: alfresco-hxinsight-connector-live-ingester
+        state: started
+      register: live_ingester_svc
+
+    - name: Check prediction-applier service is running
+      ansible.builtin.systemd:
+        name: alfresco-hxinsight-connector-prediction-applier
+        state: started
+
+    - name: Check side effect triggered proper service restart
+      become: true
+      changed_when: false
+      ansible.builtin.command:
+        cmd: >-
+          grep -q 'SPRING_ACTIVEMQ_BROKERURL=ssl://activemq.alfresco.com:61617'
+          /proc/{{ live_ingester_svc.status.ExecMainPID }}/environ

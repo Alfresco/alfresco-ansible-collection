@@ -1,0 +1,18 @@
+---
+# vars file for hxi_connector
+hxi_connector_base_environment:
+  JAVA_HOME: "{{ hxi_connector_java_home_path }}"
+  SPRING_ACTIVEMQ_BROKERURL: "{{ hxi_connector_alfresco_activemq_url }}"
+  SPRING_ACTIVEMQ_USER: "{{ hxi_connector_alfresco_activemq_username }}"
+  SPRING_ACTIVEMQ_PASSWORD: "{{ hxi_connector_alfresco_activemq_password }}"
+
+hxi_connector_remote_client_environment:
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_CLIENTID: "{{ hxi_connector_remote_client_id }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_CLIENTSECRET: "{{ hxi_connector_remote_client_secret }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_ENVIRONMENTKEY: "{{ hxi_connector_remote_environment_key }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_TOKENURI: "{{ hxi_connector_remote_token_url }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_GRANTTYPE: "{{ hxi_connector_remote_grant_type }}"
+  ALFRESCO_REPOSITORY_DISCOVERYENDPOINT: "{{ hxi_connector_alfresco_base_url }}/api/discovery"
+  AUTH_PROVIDERS_ALFRESCO_USERNAME: "{{ hxi_connector_alfresco_username }}"
+  AUTH_PROVIDERS_ALFRESCO_PASSWORD: "{{ hxi_connector_alfresco_password }}"
+  ALFRESCO_REPOSITORY_BASEURL: "{{ hxi_connector_alfresco_base_url }}"

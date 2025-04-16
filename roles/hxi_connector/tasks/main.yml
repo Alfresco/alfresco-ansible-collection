@@ -1,0 +1,31 @@
+---
+# tasks file for hxi_connector
+- name: Test java bin path
+  ansible.builtin.stat:
+    path: "{{ hxi_connector_java_bin_path }}"
+  register: stat_result
+
+- name: Assert java bin is in the expected path
+  ansible.builtin.assert:
+    that:
+      - "stat_result.stat.exists"
+    fail_msg: "Java command not found in the expected path: {{ hxi_connector_java_bin_path }}"
+    quiet: true
+
+- name: Create base directory
+  become: true
+  ansible.builtin.file:
+    name: "{{ hxi_connector_artifact_base_path }}"
+    state: directory
+    owner: "{{ hxi_connector_service_user }}"
+    mode: "0700"
+
+- name: Install Live Ingester
+  ansible.builtin.include_tasks: live-ingester.yml
+
+- name: Install Prediction Applier
+  ansible.builtin.include_tasks: prediction-applier.yml
+
+- name: Install Bulk Ingester
+  ansible.builtin.include_tasks: bulk-ingester.yml
+  when: hxi_connector_alfresco_db_url | length > 0

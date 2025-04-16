@@ -1,0 +1,27 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Add an application user
+      become: true
+      ansible.builtin.user:
+        name: alfresco
+        system: true
+
+    - name: Create directory for hxi extension
+      become: true
+      ansible.builtin.file:
+        name: /opt/alfresco/content-services-23.4.0/modules/acs-platform
+        state: directory
+        owner: alfresco
+        mode: "0755"
+
+    - name: Mock the alfresco-content service
+      ansible.builtin.include_role:
+        name: alfresco.platform.systemd_service
+        apply:
+          become: true
+      vars:
+        systemd_service_unit_name: alfresco-content-monitored-startup
+        systemd_service_unit_description: Just a mocked alfresco-content service to let the tests pass
+        systemd_service_exec_start: /bin/sleep infinity

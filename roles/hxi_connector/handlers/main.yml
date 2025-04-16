@@ -1,0 +1,7 @@
+---
+# handlers file for hxi_connector
+- name: Restart Alfresco
+  become: true
+  ansible.builtin.systemd:
+    name: "{{ hxi_connector_alfresco_service_name }}"
+    state: restarted
