@@ -29,7 +29,10 @@
     hxi_connector_extension_properties is defined
   ansible.builtin.copy:
     dest: "{{ hxi_connector_repository_extension_properties_snippet_path }}"
-    content: "{{ hxi_connector_extension_properties | dict2items | map('join', '=') | join('\n') }}"
+    content: |
+      {% for key, value in hxi_connector_extension_properties.items() -%}
+      {{ key }}={{ value }}
+      {% endfor %}
     mode: "0640"
     owner: "{{ hxi_connector_repository_extension_default_owner }}"
     group: "{{ hxi_connector_repository_extension_default_group }}"
