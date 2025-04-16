@@ -1,5 +1,5 @@
 ---
-# defaults file for hxi_connector
+# required variables
 hxi_connector_artifact_username: ''
 hxi_connector_artifact_password: ''
 
@@ -51,6 +51,9 @@ hxi_connector_repository_extension_acs_version: "{{ hxi_connector_alfresco_versi
 hxi_connector_repository_extension_lib_path: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules/acs-platform"
 hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_extension_lib_path }}/\
   {{ hxi_connector_repository_extension_artifact_name }}.jar"
+hxi_connector_repository_extension_properties_snippet_path: "{{ hxi_connector_artifact_base_path }}/repository-extension.properties"
+hxi_connector_repository_extension_default_owner: alfresco
+hxi_connector_repository_extension_default_group: alfresco
 
 ## Alfresco section
 hxi_connector_alfresco_activemq_username: ''
@@ -59,6 +62,18 @@ hxi_connector_alfresco_db_url: ''
 hxi_connector_alfresco_db_username: ''
 hxi_connector_alfresco_db_password: ''
 hxi_connector_alfresco_service_name: alfresco-content-monitored-startup
+hxi_connector_alfresco_base_url: ''
+hxi_connector_alfresco_username: ''
+hxi_connector_alfresco_password: ''
+hxi_connector_alfresco_sfs_url: ''
+hxi_connector_alfresco_activemq_url: ''
+hxi_connector_application_sourceid: ''
 
 ## Remote section
+hxi_connector_remote_base_url: ''
+hxi_connector_remote_token_url: ''
+hxi_connector_remote_prediction_url: ''
+hxi_connector_remote_client_id: ''
+hxi_connector_remote_client_secret: ''
+hxi_connector_remote_environment_key: ''
 hxi_connector_remote_grant_type: "urn:hyland:params:oauth:grant-type:api-credentials"
