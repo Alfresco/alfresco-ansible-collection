@@ -31,7 +31,7 @@ jobs:
       init-title: Alfresco.Platform Collection Documentation
       init-html-short-title: Alfresco.Platform Collection Docs
       init-extra-html-theme-options: |
-        documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
+        documentation_home_url=${{ env.GHP_BASE_URL }}/branch/main/
 
   publish:
     if: github.repository == 'alfresco/alfresco-ansible-collection'
