@@ -12,9 +12,6 @@ concurrency:
   group: ${{ github.workflow}}-${{ github.ref_name }}
   cancel-in-progress: true
 
-env:
-  GHP_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
-
 jobs:
   build:
     permissions:
@@ -31,7 +28,7 @@ jobs:
       init-title: Alfresco.Platform Collection Documentation
       init-html-short-title: Alfresco.Platform Collection Docs
       init-extra-html-theme-options: |
-        documentation_home_url=${{ env.GHP_BASE_URL }}/branch/main/
+        documentation_home_url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/branch/main/
 
   publish:
     if: github.repository == 'alfresco/alfresco-ansible-collection'
@@ -77,3 +74,5 @@ jobs:
 
             You can compare to the docs for the `main` branch here:
             ${{ env.GHP_BASE_URL }}/branch/main
+        env:
+          GHP_BASE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
