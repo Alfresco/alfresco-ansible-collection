@@ -24,7 +24,9 @@
       "hxi.connector.source-id": "{{ hxi_connector_application_sourceid }}"
 
 - name: Persist alfresco repository extension properties as file
-  when: hxi_connector_repository_extension_properties_snippet_path != ""
+  when: |
+    hxi_connector_repository_extension_properties_snippet_path != "" and
+    hxi_connector_extension_properties is defined
   ansible.builtin.copy:
     dest: "{{ hxi_connector_repository_extension_properties_snippet_path }}"
     content: "{{ hxi_connector_extension_properties | dict2items | map('join', '=') | join('\n') }}"
