@@ -53,11 +53,24 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         tasks_from: repository-extension.yml
       vars:
         hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
+        hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
         hxi_connector_alfresco_service_name: "alfresco-content-monitored-startup" # set to empty string to disable automatic restart
+        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_client_id: "client-id"
+        hxi_connector_remote_client_secret: "client-secret"
+        hxi_connector_remote_environment_key: "environment-key"
+        hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
+        hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
+        hxi_connector_application_sourceid: "some-uuid-1234ab"
 ```
 
-The Alfresco repository extension requires additional configuration
-to be added to the `alfresco-global.properties` file:
+Please note that the extension configuration leverages the new
+`acs-platform-config` folder recently introduced in the upstream Alfresco
+Ansible Playbooks. The extension can still be configured manually using the the
+main `alfresco-global.properties` file, after setting
+`hxi_connector_repository_extension_properties_snippet_path` to empty string.
+
+The following properties are required in the `alfresco-global.properties` file:
 
 ```properties
 hxi.discovery.base-url=https://example.com
@@ -69,33 +82,6 @@ hxi.auth.providers.hyland-experience.grant-type=client_credentials
 hxi.knowledge-retrieval.url=https://example.com
 hxi.connector.source-id=
 ```
-
-This snippet can be automatically generated with the following playbook:
-
-```yaml
-- name: Converge Alfresco Repository hosts
-  hosts: repository
-  tasks:
-    - name: Include repository-extension
-      ansible.builtin.include_role:
-        name: alfresco.platform.hxi_connector
-        tasks_from: repository-extension.yml
-      vars:
-        hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
-        hxi_connector_alfresco_service_name: "alfresco-content-monitored-startup"
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
-        hxi_connector_remote_client_id: "client-id"
-        hxi_connector_remote_client_secret: "client-secret"
-        hxi_connector_remote_environment_key: "environment-key"
-        hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
-        hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
-        hxi_connector_application_sourceid: "some-uuid-1234ab"
-        hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.properties"
-```
-
-note that the contents of the
-`hxi_connector_repository_extension_properties_snippet_path` file need to be
-added to the `alfresco-global.properties` file manually.
 
 ## License
 
