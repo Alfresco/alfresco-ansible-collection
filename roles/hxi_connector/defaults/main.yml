@@ -53,8 +53,8 @@ hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_e
   {{ hxi_connector_repository_extension_artifact_name }}.jar"
 hxi_connector_repository_extension_properties_snippet_path: "{{ hxi_connector_repository_extension_lib_path }}/acs-modules-config/\
   alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
-hxi_connector_repository_extension_default_owner: alfresco
-hxi_connector_repository_extension_default_group: alfresco
+hxi_connector_repository_extension_owner: alfresco
+hxi_connector_repository_extension_group: alfresco
 
 ## Alfresco section
 hxi_connector_alfresco_activemq_username: ''

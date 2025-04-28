@@ -6,8 +6,8 @@
     url_username: "{{ hxi_connector_artifact_username }}"
     url_password: "{{ hxi_connector_artifact_password }}"
     mode: "0644"
-    owner: "{{ hxi_connector_repository_extension_default_owner }}"
-    group: "{{ hxi_connector_repository_extension_default_group }}"
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"
   notify: Restart Alfresco
 
 - name: Set alfresco repository extension properties as facts
@@ -34,5 +34,5 @@
       {{ key }}={{ value }}
       {% endfor %}
     mode: "0640"
-    owner: "{{ hxi_connector_repository_extension_default_owner }}"
-    group: "{{ hxi_connector_repository_extension_default_group }}"
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"

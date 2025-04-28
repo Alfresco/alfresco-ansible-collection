@@ -139,11 +139,11 @@ argument_specs:
       hxi_connector_artifact_password:
         type: str
         description: Password for the artifact repository
-      hxi_connector_repository_extension_default_owner:
+      hxi_connector_repository_extension_owner:
         type: str
         description: Owner of the Hx Insight Connector Repository Extension artifact and its properties file
         default: alfresco
-      hxi_connector_repository_extension_default_group:
+      hxi_connector_repository_extension_group:
         type: str
         description: Group of the Hx Insight Connector Repository Extension artifact and its properties file
         default: alfresco
