@@ -23,6 +23,18 @@
       "hxi.knowledge-retrieval.url": "{{ hxi_connector_remote_prediction_url }}"
       "hxi.connector.source-id": "{{ hxi_connector_application_sourceid }}"
 
+- name: Create directory for hxi extension
+  become: true
+  when: |
+    hxi_connector_repository_extension_properties_snippet_path != "" and
+    hxi_connector_extension_properties is defined
+  ansible.builtin.file:
+    name: "{{ hxi_connector_repository_extension_properties_snippet_path | dirname }}"
+    state: directory
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"
+    mode: "0755"
+
 - name: Persist alfresco repository extension properties as file
   when: |
     hxi_connector_repository_extension_properties_snippet_path != "" and
