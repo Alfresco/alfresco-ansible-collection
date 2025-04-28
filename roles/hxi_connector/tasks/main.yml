@@ -12,12 +12,11 @@
     fail_msg: "Java command not found in the expected path: {{ hxi_connector_java_bin_path }}"
     quiet: true
 
-- name: Create base directory for extension
+- name: Create base directory
   become: true
   ansible.builtin.file:
     name: "{{ hxi_connector_artifact_base_path }}"
     state: directory
-    recurse: true
     owner: "{{ hxi_connector_service_user }}"
     mode: "0700"
 

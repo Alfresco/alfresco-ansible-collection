@@ -31,6 +31,7 @@
   ansible.builtin.file:
     name: "{{ hxi_connector_repository_extension_properties_snippet_path | dirname }}"
     state: directory
+    recurse: true
     owner: "{{ hxi_connector_repository_extension_owner }}"
     group: "{{ hxi_connector_repository_extension_group }}"
     mode: "0755"
