@@ -49,9 +49,9 @@ hxi_connector_repository_extension_artifact_url: "{{ hxi_connector_artifact_repo
   {{ hxi_connector_repository_extension_artifact_name }}-{{ hxi_connector_repository_extension_artifact_version }}.jar"
 hxi_connector_repository_extension_acs_version: "{{ hxi_connector_alfresco_version_override }}"
 hxi_connector_repository_extension_modules_path: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules"
-hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_extension_lib_path }}/acs-modules/\
+hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_extension_modules_path }}/acs-modules/\
   {{ hxi_connector_repository_extension_artifact_name }}.jar"
-hxi_connector_repository_extension_properties_snippet_path: "{{ hxi_connector_repository_extension_lib_path }}/acs-modules-config/\
+hxi_connector_repository_extension_properties_snippet_path: "{{ hxi_connector_repository_extension_modules_path }}/acs-modules-config/\
   alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
 hxi_connector_repository_extension_owner: alfresco
 hxi_connector_repository_extension_group: alfresco

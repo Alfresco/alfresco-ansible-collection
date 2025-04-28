@@ -178,7 +178,7 @@ argument_specs:
       hxi_connector_repository_extension_acs_version:
         type: str
         description: Version of the Alfresco Content Services repository where to install the extension
-      hxi_connector_repository_extension_lib_path:
+      hxi_connector_repository_extension_modules_path:
         type: str
         description: Path to the platform modules directory of the Alfresco server
-        default: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules/acs-platform"
+        default: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules"
