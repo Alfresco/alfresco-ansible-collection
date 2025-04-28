@@ -3,7 +3,7 @@
 hxi_connector_artifact_username: ''
 hxi_connector_artifact_password: ''
 
-hxi_connector_java_home_path: /opt/java
+hxi_connector_java_home_path: /opt/openjdk-17.0.15
 hxi_connector_java_bin_path: "{{ hxi_connector_java_home_path }}/bin/java"
 
 hxi_connector_artifact_base_path: /opt/alfresco/hxi-connector
