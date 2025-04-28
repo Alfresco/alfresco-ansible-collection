@@ -24,7 +24,8 @@
 
     - name: Check repository extension properties file is present
       ansible.builtin.slurp:
-        src: /opt/alfresco/hxi-connector/repository-extension.properties
+        src: >-
+          /opt/alfresco/content-services-23.4.0/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties
       register: repository_extension_properties
       changed_when: false
 
