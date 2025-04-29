@@ -1,2 +1,8 @@
+# ansible-galaxy package
 *.tar.gz
+
+# ansible-lint cache
 .ansible
+
+# https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/
+changelogs/.plugin-cache.yaml

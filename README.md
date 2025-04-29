@@ -37,10 +37,16 @@ categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelo
 Before proceeding with the release, merge the fragments into the changelog with:
 
 ```bash
-antsibull-changelog release --version 0.1.0-alpha.0
+antsibull-changelog release --version 0.1.0
 ```
 
-Then, draft the release with:
+Then, update the version in `galaxy.yml`.
+
+```yaml
+version: 0.1.0
+```
+
+Finally, draft the github release with:
 
 ```bash
 gh release create v0.1.0

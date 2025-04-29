@@ -8,7 +8,7 @@ hxi_connector_java_bin_path: "{{ hxi_connector_java_home_path }}/bin/java"
 
 hxi_connector_artifact_base_path: /opt/alfresco/hxi-connector
 hxi_connector_artifact_repository_url: https://nexus.alfresco.com/nexus/repository/releases/
-hxi_connector_artifact_default_version: 1.0.1
+hxi_connector_artifact_default_version: 2.0.2
 
 ## bulk ingester section
 hxi_connector_bulk_ingester_artifact_name: alfresco-hxinsight-connector-bulk-ingester
