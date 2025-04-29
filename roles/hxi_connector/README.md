@@ -30,7 +30,7 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         name: alfresco.platform.hxi_connector
       vars:
         hxi_connector_java_bin_path: "/opt/openjdk-17.0.14/bin/java"
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_ingestion_url: "https://hxinsight.alfresco.com/ingestion"
         hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
         hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
         hxi_connector_remote_client_id: "client-id"
@@ -55,7 +55,7 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
         hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
         hxi_connector_alfresco_service_name: "alfresco-content-monitored-startup" # set to empty string to disable automatic restart
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_discovery_url: "https://hxinsight.alfresco.com/discovery"
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
         hxi_connector_remote_environment_key: "environment-key"

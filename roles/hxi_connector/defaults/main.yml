@@ -71,7 +71,8 @@ hxi_connector_alfresco_activemq_url: ''
 hxi_connector_application_sourceid: ''
 
 ## Remote section
-hxi_connector_remote_base_url: ''
+hxi_connector_remote_discovery_url: ''
+hxi_connector_remote_ingestion_url: ''
 hxi_connector_remote_token_url: ''
 hxi_connector_remote_prediction_url: ''
 hxi_connector_remote_client_id: ''

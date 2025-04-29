@@ -11,10 +11,10 @@
   notify: Restart Alfresco
 
 - name: Set alfresco repository extension properties as facts
-  when: hxi_connector_remote_base_url != ""
+  when: hxi_connector_remote_discovery_url != ""
   ansible.builtin.set_fact:
     hxi_connector_extension_properties:
-      "hxi.discovery.base-url": "{{ hxi_connector_remote_base_url }}"
+      "hxi.discovery.base-url": "{{ hxi_connector_remote_discovery_url }}"
       "hxi.auth.providers.hyland-experience.token-uri": "{{ hxi_connector_remote_token_url }}"
       "hxi.auth.providers.hyland-experience.environment-key": "{{ hxi_connector_remote_environment_key }}"
       "hxi.auth.providers.hyland-experience.client-id": "{{ hxi_connector_remote_client_id }}"

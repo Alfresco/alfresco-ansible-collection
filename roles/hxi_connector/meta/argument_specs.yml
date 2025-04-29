@@ -20,17 +20,17 @@ argument_specs:
       hxi_connector_artifact_password:
         type: str
         description: Password for the artifact repository
-      hxi_connector_remote_base_url:
+      hxi_connector_remote_ingestion_url:
         type: str
-        description: Base URL of the remote Hx Insight service
+        description: Base URL of the remote Hx Insight Ingestion service
         required: true
       hxi_connector_remote_token_url:
         type: str
-        description: URL of the token API for the remote Hx Insight service
+        description: URL of the token API for the remote Hx Insight Token service
         required: true
       hxi_connector_remote_prediction_url:
         type: str
-        description: URL of the prediction API for the remote Hx Insight service
+        description: URL of the prediction API for the remote Hx Insight Prediction service
         required: true
       hxi_connector_remote_client_id:
         type: str
@@ -147,15 +147,15 @@ argument_specs:
         type: str
         description: Group of the Hx Insight Connector Repository Extension artifact and its properties file
         default: alfresco
-      hxi_connector_remote_base_url:
+      hxi_connector_remote_discovery_url:
         type: str
-        description: Base URL of the remote Hx Insight service
+        description: Base URL of the remote Hx Insight Discovery service
       hxi_connector_remote_token_url:
         type: str
-        description: URL of the token API for the remote Hx Insight service
+        description: URL of the token API for the remote Hx Insight Token service
       hxi_connector_remote_prediction_url:
         type: str
-        description: URL of the prediction API for the remote Hx Insight service
+        description: URL of the prediction API for the remote Hx Insight Prediction service
       hxi_connector_remote_client_id:
         type: str
         description: Client ID for the remote Hx Insight service

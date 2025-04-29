@@ -6,7 +6,7 @@
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
       vars:
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_ingestion_url: "https://hxinsight.alfresco.com/ingestion"
         hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
         hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
         hxi_connector_remote_client_id: "client-id"
@@ -25,7 +25,7 @@
         name: alfresco.platform.hxi_connector
         tasks_from: repository-extension.yml
       vars:
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_discovery_url: "https://hxinsight.alfresco.com/discovery"
         hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
         hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
         hxi_connector_remote_client_id: "client-id"

@@ -10,7 +10,7 @@
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
       vars:
-        hxi_connector_remote_base_url: "https://hxinsight.alfresco.com"
+        hxi_connector_remote_ingestion_url: "https://hxinsight.alfresco.com"
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
         hxi_connector_remote_environment_key: "environment-key"
