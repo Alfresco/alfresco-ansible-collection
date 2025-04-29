@@ -14,17 +14,23 @@ argument_specs:
       hxi_connector_prediction_applier_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Prediction Applier artifact
-      hxi_connector_remote_base_url:
+      hxi_connector_artifact_username:
         type: str
-        description: Base URL of the remote Hx Insight service
+        description: Username for the artifact repository
+      hxi_connector_artifact_password:
+        type: str
+        description: Password for the artifact repository
+      hxi_connector_remote_ingestion_url:
+        type: str
+        description: Base URL of the remote Hx Insight Ingestion service
         required: true
       hxi_connector_remote_token_url:
         type: str
-        description: URL of the token API for the remote Hx Insight service
+        description: URL of the token API for the remote Hx Insight Token service
         required: true
       hxi_connector_remote_prediction_url:
         type: str
-        description: URL of the prediction API for the remote Hx Insight service
+        description: URL of the prediction API for the remote Hx Insight Prediction service
         required: true
       hxi_connector_remote_client_id:
         type: str
@@ -82,10 +88,6 @@ argument_specs:
         type: str
         description: Password for the database for the Alfresco server - required for the Bulk Ingester
         default: None
-      hxi_connector_alfresco_service_name:
-        type: str
-        description: Name of the Alfresco service to be restarted after extension installation
-        default: alfresco-content-monitored-startup
       hxi_connector_java_home_path:
         type: str
         description: Path to the Java home directory
@@ -121,10 +123,62 @@ argument_specs:
       hxi_connector_repository_extension_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Repository Extension artifact
+      hxi_connector_alfresco_service_name:
+        type: str
+        description: Name of the Alfresco service to be restarted after extension installation
+        default: alfresco-content-monitored-startup
+      hxi_connector_repository_extension_artifact_url:
+        type: str
+        description: URL of the Hx Insight Connector Repository Extension artifact
+      hxi_connector_repository_extension_artifact_path:
+        type: str
+        description: Path where the Hx Insight Connector Repository Extension artifact will be downloaded
+      hxi_connector_artifact_username:
+        type: str
+        description: Username for the artifact repository
+      hxi_connector_artifact_password:
+        type: str
+        description: Password for the artifact repository
+      hxi_connector_repository_extension_owner:
+        type: str
+        description: Owner of the Hx Insight Connector Repository Extension artifact and its properties file
+        default: alfresco
+      hxi_connector_repository_extension_group:
+        type: str
+        description: Group of the Hx Insight Connector Repository Extension artifact and its properties file
+        default: alfresco
+      hxi_connector_remote_discovery_url:
+        type: str
+        description: Base URL of the remote Hx Insight Discovery service
+      hxi_connector_remote_token_url:
+        type: str
+        description: URL of the token API for the remote Hx Insight Token service
+      hxi_connector_remote_prediction_url:
+        type: str
+        description: URL of the prediction API for the remote Hx Insight Prediction service
+      hxi_connector_remote_client_id:
+        type: str
+        description: Client ID for the remote Hx Insight service
+      hxi_connector_remote_client_secret:
+        type: str
+        description: Client secret for the remote Hx Insight service
+      hxi_connector_remote_environment_key:
+        type: str
+        description: Environment key for the remote Hx Insight service
+      hxi_connector_remote_grant_type:
+        type: str
+        description: Grant type for the remote Hx Insight service
+        default: urn:hyland:params:oauth:grant-type:api-credentials
+      hxi_connector_application_sourceid:
+        type: str
+        description: ID of the source Application as defined in the Hx Insight service
+      hxi_connector_repository_extension_properties_snippet_path:
+        type: str
+        description: Path to the properties file for the Hx Insight Connector Repository Extension
       hxi_connector_repository_extension_acs_version:
         type: str
         description: Version of the Alfresco Content Services repository where to install the extension
-      hxi_connector_repository_extension_lib_path:
+      hxi_connector_repository_extension_modules_path:
         type: str
         description: Path to the platform modules directory of the Alfresco server
-        default: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules/acs-platform"
+        default: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules"

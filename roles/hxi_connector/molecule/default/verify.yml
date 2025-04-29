@@ -21,3 +21,19 @@
         cmd: >-
           grep -q 'SPRING_ACTIVEMQ_BROKERURL=ssl://activemq.alfresco.com:61617'
           /proc/{{ live_ingester_svc.status.ExecMainPID }}/environ
+
+    - name: Check repository extension properties file is present
+      ansible.builtin.slurp:
+        src: >-
+          /opt/alfresco/content-services-23.4.0/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties
+      register: repository_extension_properties
+      changed_when: false
+
+    - name: Check repository extension properties file content is present
+      vars:
+        props: "{{ repository_extension_properties['content'] | b64decode }}"
+      ansible.builtin.assert:
+        that:
+          - "'hxi.discovery.base-url=https://hxinsight.alfresco.com' in props"
+          - "'hxi.connector.source-id=some-uuid-1234ab' in props"
+        quiet: true

@@ -1,9 +1,9 @@
 ---
-# defaults file for hxi_connector
+# required variables
 hxi_connector_artifact_username: ''
 hxi_connector_artifact_password: ''
 
-hxi_connector_java_home_path: /opt/java
+hxi_connector_java_home_path: /opt/openjdk-17.0.15
 hxi_connector_java_bin_path: "{{ hxi_connector_java_home_path }}/bin/java"
 
 hxi_connector_artifact_base_path: /opt/alfresco/hxi-connector
@@ -48,9 +48,13 @@ hxi_connector_repository_extension_artifact_url: "{{ hxi_connector_artifact_repo
   {{ hxi_connector_repository_extension_artifact_name }}/{{ hxi_connector_repository_extension_artifact_version }}/\
   {{ hxi_connector_repository_extension_artifact_name }}-{{ hxi_connector_repository_extension_artifact_version }}.jar"
 hxi_connector_repository_extension_acs_version: "{{ hxi_connector_alfresco_version_override }}"
-hxi_connector_repository_extension_lib_path: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules/acs-platform"
-hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_extension_lib_path }}/\
+hxi_connector_repository_extension_modules_path: "/opt/alfresco/content-services-{{ hxi_connector_repository_extension_acs_version }}/modules"
+hxi_connector_repository_extension_artifact_path: "{{ hxi_connector_repository_extension_modules_path }}/acs-platform/\
   {{ hxi_connector_repository_extension_artifact_name }}.jar"
+hxi_connector_repository_extension_properties_snippet_path: "{{ hxi_connector_repository_extension_modules_path }}/acs-platform-config/\
+  alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
+hxi_connector_repository_extension_owner: alfresco
+hxi_connector_repository_extension_group: alfresco
 
 ## Alfresco section
 hxi_connector_alfresco_activemq_username: ''
@@ -59,6 +63,19 @@ hxi_connector_alfresco_db_url: ''
 hxi_connector_alfresco_db_username: ''
 hxi_connector_alfresco_db_password: ''
 hxi_connector_alfresco_service_name: alfresco-content-monitored-startup
+hxi_connector_alfresco_base_url: ''
+hxi_connector_alfresco_username: ''
+hxi_connector_alfresco_password: ''
+hxi_connector_alfresco_sfs_url: ''
+hxi_connector_alfresco_activemq_url: ''
+hxi_connector_application_sourceid: ''
 
 ## Remote section
+hxi_connector_remote_discovery_url: ''
+hxi_connector_remote_ingestion_url: ''
+hxi_connector_remote_token_url: ''
+hxi_connector_remote_prediction_url: ''
+hxi_connector_remote_client_id: ''
+hxi_connector_remote_client_secret: ''
+hxi_connector_remote_environment_key: ''
 hxi_connector_remote_grant_type: "urn:hyland:params:oauth:grant-type:api-credentials"

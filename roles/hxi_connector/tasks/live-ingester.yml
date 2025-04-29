@@ -11,7 +11,7 @@
 - name: Set environments specific for Live Ingester
   ansible.builtin.set_fact:
     hxi_connector_live_ingester_environment:
-      HYLANDEXPERIENCE_INSIGHT_INGESTION_BASEURL: "{{ hxi_connector_remote_base_url }}"
+      HYLANDEXPERIENCE_INSIGHT_INGESTION_BASEURL: "{{ hxi_connector_remote_ingestion_url }}"
       ALFRESCO_TRANSFORM_SHAREDFILESTORE_BASEURL: "{{ hxi_connector_alfresco_sfs_url }}"
       SERVER_PORT: "{{ hxi_connector_live_ingester_port }}"
       APPLICATION_SOURCEID: "{{ hxi_connector_application_sourceid }}"

@@ -5,7 +5,49 @@
     dest: "{{ hxi_connector_repository_extension_artifact_path }}"
     url_username: "{{ hxi_connector_artifact_username }}"
     url_password: "{{ hxi_connector_artifact_password }}"
-    mode: "0640"
-    owner: alfresco
-    group: alfresco
+    mode: "0644"
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"
+  notify: Restart Alfresco
+
+- name: Set alfresco repository extension properties as facts
+  when: hxi_connector_remote_discovery_url != ""
+  ansible.builtin.set_fact:
+    hxi_connector_extension_properties:
+      "hxi.discovery.base-url": "{{ hxi_connector_remote_discovery_url }}"
+      "hxi.auth.providers.hyland-experience.token-uri": "{{ hxi_connector_remote_token_url }}"
+      "hxi.auth.providers.hyland-experience.environment-key": "{{ hxi_connector_remote_environment_key }}"
+      "hxi.auth.providers.hyland-experience.client-id": "{{ hxi_connector_remote_client_id }}"
+      "hxi.auth.providers.hyland-experience.client-secret": "{{ hxi_connector_remote_client_secret }}"
+      "hxi.auth.providers.hyland-experience.grant-type": "{{ hxi_connector_remote_grant_type }}"
+      "hxi.knowledge-retrieval.url": "{{ hxi_connector_remote_prediction_url }}"
+      "hxi.connector.source-id": "{{ hxi_connector_application_sourceid }}"
+
+- name: Create directory for hxi extension
+  become: true
+  when: |
+    hxi_connector_repository_extension_properties_snippet_path != "" and
+    hxi_connector_extension_properties is defined
+  ansible.builtin.file:
+    name: "{{ hxi_connector_repository_extension_properties_snippet_path | dirname }}"
+    state: directory
+    recurse: true
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"
+    mode: "0755"
+
+- name: Persist alfresco repository extension properties as file
+  become: true
+  when: |
+    hxi_connector_repository_extension_properties_snippet_path != "" and
+    hxi_connector_extension_properties is defined
+  ansible.builtin.copy:
+    dest: "{{ hxi_connector_repository_extension_properties_snippet_path }}"
+    content: |
+      {% for key, value in hxi_connector_extension_properties.items() -%}
+      {{ key }}={{ value }}
+      {% endfor %}
+    mode: "0644"
+    owner: "{{ hxi_connector_repository_extension_owner }}"
+    group: "{{ hxi_connector_repository_extension_group }}"
   notify: Restart Alfresco
