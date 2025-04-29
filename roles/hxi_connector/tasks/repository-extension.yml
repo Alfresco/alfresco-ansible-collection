@@ -50,3 +50,4 @@
     mode: "0644"
     owner: "{{ hxi_connector_repository_extension_owner }}"
     group: "{{ hxi_connector_repository_extension_group }}"
+  notify: Restart Alfresco
