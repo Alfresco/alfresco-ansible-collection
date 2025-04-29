@@ -37,6 +37,7 @@
     mode: "0755"
 
 - name: Persist alfresco repository extension properties as file
+  become: true
   when: |
     hxi_connector_repository_extension_properties_snippet_path != "" and
     hxi_connector_extension_properties is defined
@@ -46,6 +47,6 @@
       {% for key, value in hxi_connector_extension_properties.items() -%}
       {{ key }}={{ value }}
       {% endfor %}
-    mode: "0640"
+    mode: "0644"
     owner: "{{ hxi_connector_repository_extension_owner }}"
     group: "{{ hxi_connector_repository_extension_group }}"
