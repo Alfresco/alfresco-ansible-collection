@@ -1,5 +1,17 @@
 objects:
-  role: {}
+  role:
+    hxi_connector:
+      description: Install a Hx Insight Connector
+      name: hxi_connector
+      version_added: null
+    java:
+      description: Main entrypoint for the java role
+      name: java
+      version_added: null
+    systemd_service:
+      description: Install a systemd service unit
+      name: systemd_service
+      version_added: null
 plugins:
   become: {}
   cache: {}
@@ -16,4 +28,4 @@ plugins:
   strategy: {}
   test: {}
   vars: {}
-version: 0.1.0-alpha.0
+version: 0.1.0

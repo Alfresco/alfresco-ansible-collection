@@ -1,5 +1,15 @@
 ancestor: null
 releases:
+  0.1.0:
+    changes:
+      major_changes:
+        - add hxi_connector service role
+        - add repository-extension task list to configure alfresco extension
+        - add systemd service role
+    fragments:
+      - hxi_connector-role.yaml
+      - systemd_service.yaml
+    release_date: "2025-04-29"
   0.1.0-alpha.0:
     changes:
       major_changes:
