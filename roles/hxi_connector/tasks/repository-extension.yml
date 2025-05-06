@@ -8,7 +8,7 @@
     mode: "0644"
     owner: "{{ hxi_connector_repository_extension_owner }}"
     group: "{{ hxi_connector_repository_extension_group }}"
-  notify: "{{ hxi_connector_alfresco_service_existing_handler_name | default('Restart Alfresco') }}"
+  notify: "{{ hxi_connector_alfresco_service_existing_handler_name || 'Restart Alfresco' }}"
 
 - name: Set alfresco repository extension properties as facts
   when: hxi_connector_remote_discovery_url != ""
@@ -50,4 +50,4 @@
     mode: "0644"
     owner: "{{ hxi_connector_repository_extension_owner }}"
     group: "{{ hxi_connector_repository_extension_group }}"
-  notify: "{{ hxi_connector_alfresco_service_existing_handler_name | default('Restart Alfresco') }}"
+  notify: "{{ hxi_connector_alfresco_service_existing_handler_name || 'Restart Alfresco' }}"
