@@ -62,6 +62,7 @@ hxi_connector_alfresco_activemq_password: ''
 hxi_connector_alfresco_db_url: ''
 hxi_connector_alfresco_db_username: ''
 hxi_connector_alfresco_db_password: ''
+hxi_connector_alfresco_service_existing_handler_name: ''
 hxi_connector_alfresco_service_name: alfresco-content-monitored-startup
 hxi_connector_alfresco_base_url: ''
 hxi_connector_alfresco_username: ''
