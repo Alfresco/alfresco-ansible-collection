@@ -150,21 +150,27 @@ argument_specs:
       hxi_connector_remote_discovery_url:
         type: str
         description: Base URL of the remote Hx Insight Discovery service
+        required: true
       hxi_connector_remote_token_url:
         type: str
         description: URL of the token API for the remote Hx Insight Token service
+        required: true
       hxi_connector_remote_prediction_url:
         type: str
         description: URL of the prediction API for the remote Hx Insight Prediction service
+        required: true
       hxi_connector_remote_client_id:
         type: str
         description: Client ID for the remote Hx Insight service
+        required: true
       hxi_connector_remote_client_secret:
         type: str
         description: Client secret for the remote Hx Insight service
+        required: true
       hxi_connector_remote_environment_key:
         type: str
         description: Environment key for the remote Hx Insight service
+        required: true
       hxi_connector_remote_grant_type:
         type: str
         description: Grant type for the remote Hx Insight service
@@ -172,6 +178,7 @@ argument_specs:
       hxi_connector_application_sourceid:
         type: str
         description: ID of the source Application as defined in the Hx Insight service
+        required: true
       hxi_connector_repository_extension_properties_snippet_path:
         type: str
         description: Path to the properties file for the Hx Insight Connector Repository Extension

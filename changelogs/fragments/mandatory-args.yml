@@ -1,0 +1,2 @@
+bugfixes:
+  - Make remote arguments mandatory for the HxI Connector role
