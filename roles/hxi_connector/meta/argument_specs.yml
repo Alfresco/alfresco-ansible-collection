@@ -50,16 +50,16 @@ argument_specs:
         default: urn:hyland:params:oauth:grant-type:api-credentials
       hxi_connector_alfresco_base_url:
         type: str
-        description: Base URL of the Alfresco server
-        required: true
+        description: Base URL of the Alfresco server used for Service Discovery
       hxi_connector_alfresco_username:
         type: str
-        description: Username for the Alfresco server
-        required: true
+        description: Username for the Alfresco server used for Service Discovery
       hxi_connector_alfresco_password:
         type: str
-        description: Password for the Alfresco server
-        required: true
+        description: Password for the Alfresco server used for Service Discovery
+      hxi_connector_alfresco_version_override:
+        type: str
+        description: Alfresco server version to override Service Discovery
       hxi_connector_alfresco_sfs_url:
         type: str
         description: URL of the Shared File Store for the Alfresco server
@@ -112,9 +112,6 @@ argument_specs:
         type: int
         description: Port for the Hx Insight Connector Prediction Applier service
         default: 8081
-      hxi_connector_alfresco_version_override:
-        type: str
-        description: Version override for the Alfresco repository
   repository-extension:
     short_description: Install a Hx Insight Connector Repository Extension
     description: |
