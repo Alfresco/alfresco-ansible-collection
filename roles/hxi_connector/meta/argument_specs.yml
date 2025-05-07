@@ -159,10 +159,6 @@ argument_specs:
         type: str
         description: URL of the token API for the remote Hx Insight Token service
         required: true
-      hxi_connector_remote_prediction_url:
-        type: str
-        description: URL of the prediction API for the remote Hx Insight Prediction service
-        required: true
       hxi_connector_remote_client_id:
         type: str
         description: Client ID for the remote Hx Insight service

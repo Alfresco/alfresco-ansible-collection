@@ -11,7 +11,6 @@
   notify: "{{ hxi_connector_alfresco_service_existing_handler_name or 'Restart Alfresco' }}"
 
 - name: Set alfresco repository extension properties as facts
-  when: hxi_connector_remote_discovery_url != ""
   ansible.builtin.set_fact:
     hxi_connector_extension_properties:
       "hxi.discovery.base-url": "{{ hxi_connector_remote_discovery_url }}"
