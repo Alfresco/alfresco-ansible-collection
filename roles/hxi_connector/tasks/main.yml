@@ -25,6 +25,7 @@
 
 - name: Install Prediction Applier
   ansible.builtin.include_tasks: prediction-applier.yml
+  when: hxi_connector_alfresco_base_url | length > 0
 
 - name: Install Bulk Ingester
   ansible.builtin.include_tasks: bulk-ingester.yml

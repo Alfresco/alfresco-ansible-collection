@@ -36,9 +36,6 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
         hxi_connector_remote_environment_key: "environment-key"
-        hxi_connector_alfresco_base_url: "http://localhost:8080"
-        hxi_connector_alfresco_username: "admin" # pragma: allowlist secret
-        hxi_connector_alfresco_password: "admin" # pragma: allowlist secret
         hxi_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
         hxi_connector_alfresco_activemq_url: "nio://activemq.alfresco.com:61616"
         hxi_connector_service_user: "alfresco"
