@@ -50,7 +50,7 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
     - name: Include repository-extension
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
-        tasks_from: repository-extension.yml
+        tasks_from: repository-extension
       vars:
         hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
         hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
