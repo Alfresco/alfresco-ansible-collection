@@ -1,2 +1,3 @@
 bugfixes:
-  - Make remote arguments mandatory for the HxI Connector role
+  - Make remote arguments mandatory for hxi repository extension
+  - Remove unnecessary requirements for hxi repository extension
