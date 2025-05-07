@@ -23,7 +23,7 @@
     - name: Include repository-extension
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
-        tasks_from: repository-extension.yml
+        tasks_from: repository-extension
       vars:
         hxi_connector_remote_discovery_url: "https://hxinsight.alfresco.com/discovery"
         hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
