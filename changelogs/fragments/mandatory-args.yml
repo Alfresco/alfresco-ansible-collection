@@ -1,2 +1,3 @@
 bugfixes:
   - Remove unnecessary mandatory args for hxi connector
+  - Fix idempotency issue in hxi extension entrypoint
