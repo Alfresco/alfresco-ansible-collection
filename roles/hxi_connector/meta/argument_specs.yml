@@ -123,6 +123,10 @@ argument_specs:
       hxi_connector_repository_extension_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Repository Extension artifact
+      hxi_connector_alfresco_service_existing_handler_name:
+        type: str
+        description: Name of an existing handler for the Alfresco service to be restarted after extension installation
+        default: None
       hxi_connector_alfresco_service_name:
         type: str
         description: Name of the Alfresco service to be restarted after extension installation

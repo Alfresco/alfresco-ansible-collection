@@ -55,6 +55,8 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
         hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
         hxi_connector_alfresco_service_name: "alfresco-content-monitored-startup" # set to empty string to disable automatic restart
+        # Uncomment to use an existing custom handler
+        # hxi_connector_alfresco_service_existing_handler_name: "Restart alfresco-content"
         hxi_connector_remote_discovery_url: "https://hxinsight.alfresco.com/discovery"
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
