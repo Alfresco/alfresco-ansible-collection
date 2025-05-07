@@ -12,7 +12,7 @@
 
 - name: Set alfresco repository extension properties as facts
   when: |
-    hxi_connector_repository_extension_properties_snippet_path != ""
+    hxi_connector_remote_discovery_url != ""
   ansible.builtin.set_fact:
     hxi_connector_extension_properties:
       "hxi.discovery.base-url": "{{ hxi_connector_remote_discovery_url }}"
