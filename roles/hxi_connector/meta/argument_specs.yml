@@ -50,16 +50,19 @@ argument_specs:
         default: urn:hyland:params:oauth:grant-type:api-credentials
       hxi_connector_alfresco_base_url:
         type: str
-        description: Base URL of the Alfresco server used for Service Discovery
+        description: Base URL of the Alfresco server (required for Prediction Applier)
       hxi_connector_alfresco_username:
         type: str
-        description: Username for the Alfresco server used for Service Discovery
+        description: Username for the Alfresco server (required for Prediction Applier)
       hxi_connector_alfresco_password:
         type: str
-        description: Password for the Alfresco server used for Service Discovery
+        description: Password for the Alfresco server (required for Prediction Applier)
       hxi_connector_alfresco_version_override:
         type: str
-        description: Alfresco server version to override Service Discovery
+        description: >-
+          Alfresco server version to override Service Discovery (otherwise
+          `hxi_connector_alfresco_base_url`, `hxi_connector_alfresco_username`,
+          `hxi_connector_alfresco_password` need to be set)
       hxi_connector_alfresco_sfs_url:
         type: str
         description: URL of the Shared File Store for the Alfresco server
@@ -78,15 +81,15 @@ argument_specs:
         default: None
       hxi_connector_alfresco_db_url:
         type: str
-        description: URL of the database for the Alfresco server - required for the Bulk Ingester
+        description: URL of the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_alfresco_db_username:
         type: str
-        description: Username for the database for the Alfresco server - required for the Bulk Ingester
+        description: Username for the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_alfresco_db_password:
         type: str
-        description: Password for the database for the Alfresco server - required for the Bulk Ingester
+        description: Password for the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_java_home_path:
         type: str
