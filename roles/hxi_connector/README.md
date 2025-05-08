@@ -82,7 +82,8 @@ hxi.knowledge-retrieval.url=https://example.com
 hxi.connector.source-id=
 ```
 
-More information can be found in the official [Alfresco Connector for Content Intelligence](https://support.hyland.com/r/Content-Innovation-Cloud/Alfresco-Connector-for-Content-Intelligence/1.0/Alfresco-Connector-for-Content-Intelligence/Documentation-Notice) docs.
+More information can be found in the official [Alfresco Connector for Content
+Intelligence](https://support.hyland.com/p/contentintel) docs.
 
 ## License
 
