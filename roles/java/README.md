@@ -35,7 +35,7 @@ Installing OpenJDK and importing a server certificate in the java keystore:
   tasks:
     - ansible.builtin.include_role:
         name: alfresco.platform.java
-        tasks_from: keystores.yml
+        tasks_from: keystores
       vars:
         cert_containers:
           - path: snakeoil.p12
@@ -52,7 +52,7 @@ Installing OpenJDK, importing certificates and generating a security key:
   tasks:
     - ansible.builtin.include_role:
         name: alfresco.platform.java
-        tasks_from: keystores.yml
+        tasks_from: keystores
       vars:
         cert_containers:
           - path: server-snakeoil.p12

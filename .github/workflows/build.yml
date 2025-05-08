@@ -109,6 +109,8 @@ jobs:
           python-version-file: ".python-version"
 
       - name: Run molecule
+        env:
+          ANSIBLE_DIFF_ALWAYS: "true"
         working-directory: roles/${{ matrix.roles.role_name }}
         run: |
           uv run molecule test
