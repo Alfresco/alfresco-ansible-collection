@@ -11,6 +11,10 @@ argument_specs:
       hxi_connector_live_ingester_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Live Ingester artifact
+      hxi_connector_prediction_applier_enabled:
+        type: bool
+        description: Enable the Hx Insight Connector Prediction Applier service
+        default: false
       hxi_connector_prediction_applier_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Prediction Applier artifact

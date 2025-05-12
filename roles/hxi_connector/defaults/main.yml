@@ -32,6 +32,7 @@ hxi_connector_live_ingester_port: 8080
 hxi_connector_alfresco_version_override: 23.4.0
 
 ## prediction applier section
+hxi_connector_prediction_applier_enabled: false
 hxi_connector_prediction_applier_artifact_name: alfresco-hxinsight-connector-prediction-applier
 hxi_connector_prediction_applier_artifact_version: "{{ hxi_connector_artifact_default_version }}"
 hxi_connector_prediction_applier_artifact_url: "{{ hxi_connector_artifact_repository_url }}/org/alfresco/\
