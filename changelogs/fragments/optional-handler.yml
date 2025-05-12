@@ -1,2 +1,0 @@
-minor_changes:
-  - Allow using an existing handler to trigger the restart of the Alfresco service after installing the repository extension to prevent unwanted restarts.
