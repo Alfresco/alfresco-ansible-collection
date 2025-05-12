@@ -3,16 +3,22 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Check live-ingester service is running
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check expected services are present
+      ansible.builtin.assert:
+        that:
+          - "'alfresco-hxinsight-connector-live-ingester.service' in ansible_facts.services"
+          - ansible_facts.services['alfresco-hxinsight-connector-live-ingester.service'].state == 'running'
+          - "'alfresco-hxinsight-connector-prediction-applier.service' not in ansible_facts.services" # disabled by default
+          - "'alfresco-hxinsight-connector-bulk-ingester.service' not in ansible_facts.services" # requires a postgres db
+
+    - name: Ensure live-ingester service is running
       ansible.builtin.systemd:
         name: alfresco-hxinsight-connector-live-ingester
         state: started
       register: live_ingester_svc
-
-    - name: Check prediction-applier service is running
-      ansible.builtin.systemd:
-        name: alfresco-hxinsight-connector-prediction-applier
-        state: started
 
     - name: Check side effect triggered proper service restart
       become: true

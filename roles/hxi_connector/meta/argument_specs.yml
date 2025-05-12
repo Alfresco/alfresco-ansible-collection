@@ -11,6 +11,10 @@ argument_specs:
       hxi_connector_live_ingester_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Live Ingester artifact
+      hxi_connector_prediction_applier_enabled:
+        type: bool
+        description: Enable the Hx Insight Connector Prediction Applier service
+        default: false
       hxi_connector_prediction_applier_artifact_version:
         type: str
         description: Version of the Hx Insight Connector Prediction Applier artifact
@@ -50,16 +54,19 @@ argument_specs:
         default: urn:hyland:params:oauth:grant-type:api-credentials
       hxi_connector_alfresco_base_url:
         type: str
-        description: Base URL of the Alfresco server
-        required: true
+        description: Base URL of the Alfresco server (required for Prediction Applier)
       hxi_connector_alfresco_username:
         type: str
-        description: Username for the Alfresco server
-        required: true
+        description: Username for the Alfresco server (required for Prediction Applier)
       hxi_connector_alfresco_password:
         type: str
-        description: Password for the Alfresco server
-        required: true
+        description: Password for the Alfresco server (required for Prediction Applier)
+      hxi_connector_alfresco_version_override:
+        type: str
+        description: >-
+          Alfresco server version to override Service Discovery (otherwise
+          `hxi_connector_alfresco_base_url`, `hxi_connector_alfresco_username`,
+          `hxi_connector_alfresco_password` need to be set)
       hxi_connector_alfresco_sfs_url:
         type: str
         description: URL of the Shared File Store for the Alfresco server
@@ -78,15 +85,15 @@ argument_specs:
         default: None
       hxi_connector_alfresco_db_url:
         type: str
-        description: URL of the database for the Alfresco server - required for the Bulk Ingester
+        description: URL of the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_alfresco_db_username:
         type: str
-        description: Username for the database for the Alfresco server - required for the Bulk Ingester
+        description: Username for the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_alfresco_db_password:
         type: str
-        description: Password for the database for the Alfresco server - required for the Bulk Ingester
+        description: Password for the database for the Alfresco server (required for the Bulk Ingester)
         default: None
       hxi_connector_java_home_path:
         type: str
@@ -112,9 +119,6 @@ argument_specs:
         type: int
         description: Port for the Hx Insight Connector Prediction Applier service
         default: 8081
-      hxi_connector_alfresco_version_override:
-        type: str
-        description: Version override for the Alfresco repository
   repository-extension:
     short_description: Install a Hx Insight Connector Repository Extension
     description: |
@@ -154,27 +158,18 @@ argument_specs:
       hxi_connector_remote_discovery_url:
         type: str
         description: Base URL of the remote Hx Insight Discovery service
-        required: true
       hxi_connector_remote_token_url:
         type: str
         description: URL of the token API for the remote Hx Insight Token service
-        required: true
-      hxi_connector_remote_prediction_url:
-        type: str
-        description: URL of the prediction API for the remote Hx Insight Prediction service
-        required: true
       hxi_connector_remote_client_id:
         type: str
         description: Client ID for the remote Hx Insight service
-        required: true
       hxi_connector_remote_client_secret:
         type: str
         description: Client secret for the remote Hx Insight service
-        required: true
       hxi_connector_remote_environment_key:
         type: str
         description: Environment key for the remote Hx Insight service
-        required: true
       hxi_connector_remote_grant_type:
         type: str
         description: Grant type for the remote Hx Insight service
@@ -182,7 +177,6 @@ argument_specs:
       hxi_connector_application_sourceid:
         type: str
         description: ID of the source Application as defined in the Hx Insight service
-        required: true
       hxi_connector_repository_extension_properties_snippet_path:
         type: str
         description: Path to the properties file for the Hx Insight Connector Repository Extension

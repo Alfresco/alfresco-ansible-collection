@@ -27,4 +27,4 @@
     - name: Include repository-extension
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
-        tasks_from: repository-extension.yml
+        tasks_from: repository-extension

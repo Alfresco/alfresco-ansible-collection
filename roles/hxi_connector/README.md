@@ -36,9 +36,6 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
         hxi_connector_remote_environment_key: "environment-key"
-        hxi_connector_alfresco_base_url: "http://localhost:8080"
-        hxi_connector_alfresco_username: "admin" # pragma: allowlist secret
-        hxi_connector_alfresco_password: "admin" # pragma: allowlist secret
         hxi_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
         hxi_connector_alfresco_activemq_url: "nio://activemq.alfresco.com:61616"
         hxi_connector_service_user: "alfresco"
@@ -50,7 +47,7 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
     - name: Include repository-extension
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
-        tasks_from: repository-extension.yml
+        tasks_from: repository-extension
       vars:
         hxi_connector_repository_extension_artifact_path: "/opt/alfresco/content-services-25.1/modules/acs-platform/hxi-repository-extension.jar"
         hxi_connector_repository_extension_properties_snippet_path: "/opt/alfresco/content-services-25.1/modules/acs-platform-config/alfresco/module/alfresco-hxinsight-connector-hxinsight-extension/alfresco-global.properties"
@@ -84,6 +81,9 @@ hxi.auth.providers.hyland-experience.grant-type=client_credentials
 hxi.knowledge-retrieval.url=https://example.com
 hxi.connector.source-id=
 ```
+
+More information can be found in the official [Alfresco Connector for Content
+Intelligence](https://support.hyland.com/p/contentintel) docs.
 
 ## License
 
