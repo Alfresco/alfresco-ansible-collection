@@ -17,3 +17,15 @@ releases:
     fragments:
       - java_initial_release.yml
     release_date: "2025-04-10"
+  0.1.1:
+    changes:
+      bugfixes:
+        - Fix idempotency issue in hxi extension entrypoint
+        - Remove unnecessary mandatory args for hxi connector
+      minor_changes:
+        - Allow using an existing handler to trigger the restart of the Alfresco service
+          after installing the repository extension to prevent unwanted restarts.
+    fragments:
+      - mandatory-args.yml
+      - optional-handler.yml
+    release_date: "2025-05-12"
