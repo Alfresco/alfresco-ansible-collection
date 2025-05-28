@@ -35,7 +35,7 @@ platforms:
       - name: molecule_default
         aliases:
           - elasticsearch
-    
+
   - name: activemq-instance
     image: quay.io/alfresco/alfresco-activemq:5.18-jre17-rockylinux8
     pre_build_image: true
