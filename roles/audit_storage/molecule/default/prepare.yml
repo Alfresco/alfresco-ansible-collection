@@ -1,0 +1,21 @@
+---
+- name: Prepare
+  hosts: instance
+  become: true
+  vars:
+    utils:
+      - unzip
+  tasks:
+    - name: Install required packages
+      ansible.builtin.package:
+        name: "{{ utils }}"
+        state: present
+    - name: Add an application group
+      ansible.builtin.group:
+        name: alfresco
+        system: true
+    - name: Add an application user
+      ansible.builtin.user:
+        name: alfresco
+        system: true
+        group: alfresco

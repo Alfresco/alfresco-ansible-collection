@@ -1,0 +1,58 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: ${MOLECULE_ROLE_IMAGE:-rockylinux:9}
+    dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
+    command: "/lib/systemd/systemd"
+    privileged: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    groups:
+      - audit_storage
+    networks:
+      - name: molecule_default
+        aliases:
+          - instance
+
+  - name: elasticsearch-instance
+    image: elasticsearch:8.17.3
+    pre_build_image: true
+    environment:
+      xpack.security.enabled: "false"
+      discovery.type: "single-node"
+      network.host: "0.0.0.0"
+    cap_add:
+      - IPC_LOCK
+    exposed_ports:
+      - 9200
+    networks:
+      - name: molecule_default
+        aliases:
+          - elasticsearch
+    
+  - name: activemq-instance
+    image: quay.io/alfresco/alfresco-activemq:5.18-jre17-rockylinux8
+    pre_build_image: true
+    mem_limit: "1g"
+    exposed_ports:
+      - 61616
+    networks:
+      - name: molecule_default
+        aliases:
+          - activemq
+
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      pipelining: true
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: ansible

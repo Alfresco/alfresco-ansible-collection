@@ -1,0 +1,18 @@
+---
+# - name: Create download location for audit storage artifact
+#   become: true
+#   ansible.builtin.file:
+#     path: "{{ audit_storage_download_location }}"
+#     state: directory
+#     owner: "{{ audit_storage_username }}"
+#     group: "{{ audit_storage_group_name }}"
+#     mode: "0755"
+
+- name: Download audit storage distribution {{ audit_storage_version }}
+  ansible.builtin.get_url:
+    url: "{{ audit_storage_zip_url }}"
+    dest: "{{ audit_storage_download_location }}/{{ audit_storage_download_artifact_name }}-{{ audit_storage_version }}.zip"
+    checksum: "{{ audit_storage_zip_checksum }}"
+    mode: "0644"
+    url_username: "{{ audit_storage_nexus_username }}"
+    url_password: "{{ audit_storage_nexus_password }}"
