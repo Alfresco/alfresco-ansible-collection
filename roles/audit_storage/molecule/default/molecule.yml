@@ -20,7 +20,7 @@ platforms:
           - elasticsearch
 
   - name: activemq-instance
-    image: quay.io/alfresco/alfresco-activemq:5.18-jre17-rockylinux8
+    image: alfresco/alfresco-activemq:5.18-jre17-rockylinux8
     pre_build_image: true
     mem_limit: "1g"
     command: "./init.sh /opt/activemq"
