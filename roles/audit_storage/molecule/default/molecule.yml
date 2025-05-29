@@ -8,7 +8,6 @@ platforms:
     env:
       xpack.security.enabled: "false"
       discovery.type: "single-node"
-      network.host: "0.0.0.0"
     command: "/bin/tini -- /usr/local/bin/docker-entrypoint.sh"
     cap_add:
       - IPC_LOCK
@@ -16,8 +15,6 @@ platforms:
       - 9200
     networks:
       - name: molecule_default
-        aliases:
-          - elasticsearch
 
   - name: activemq-instance
     image: alfresco/alfresco-activemq:5.18-jre17-rockylinux8
@@ -28,8 +25,6 @@ platforms:
       - 61616
     networks:
       - name: molecule_default
-        aliases:
-          - activemq
 
   - name: instance
     image: ${MOLECULE_ROLE_IMAGE:-rockylinux:9}
@@ -46,8 +41,6 @@ platforms:
       - audit_storage
     networks:
       - name: molecule_default
-        aliases:
-          - instance
         links:
           - elasticsearch-instance
           - activemq-instance

@@ -12,4 +12,4 @@
         audit_storage_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
         audit_storage_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         audit_storage_broker_url: failover:(tcp://activemq-instance:61616)
-        audit_storage_elasticsearch_url: http://elasticsearch-instance:9200
+        audit_storage_opensearch_url: http://elasticsearch-instance:9200
