@@ -1,6 +1,6 @@
 - name: Fetch Live Ingester artifact for version {{ hxi_connector_live_ingester_artifact_version }}
   become: true
-  become_user: "{{  hxi_connector_service_user }}"
+  become_user: "{{ hxi_connector_service_user }}"
   ansible.builtin.get_url:
     url: "{{ hxi_connector_live_ingester_artifact_url }}"
     dest: "{{ hxi_connector_live_ingester_artifact_path }}"
