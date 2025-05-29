@@ -6,3 +6,6 @@
 
 # https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/
 changelogs/.plugin-cache.yaml
+
+.envrc
+.env.credentials
