@@ -1,0 +1,105 @@
+argument_specs:
+  main:
+    short_description: Install a Alfresco Audit Storage
+    description: |
+      This role installs Alfresco Audit Storage and starts it.
+    options:
+      audit_storage_version:
+        type: str
+        description: Version of the Audit Storage to install
+      audit_storage_zip_url:
+        type: str
+        description: URL to download the Audit Storage distribution zip file
+      audit_storage_zip_checksum:
+        type: str
+        description: Checksum for the Audit Storage distribution zip file
+      audit_storage_download_location:
+        type: str
+        description: Location to download the Audit Storage distribution zip file
+      audit_storage_download_artifact_name:
+        type: str
+        description: Name of the Audit Storage artifact to download
+      audit_storage_nexus_username:
+        type: str
+        description: Username for the Nexus repository to download the Audit Storage artifact
+      audit_storage_nexus_password:
+        type: str
+        description: Password for the Nexus repository to download the Audit Storage artifact
+      audit_storage_username:
+        type: str
+        description: Username for the Audit Storage service
+      audit_storage_group_name:
+        type: str
+        description: Group name for the Audit Storage service
+      audit_storage_server_port:
+        type: int
+        description: Port for the Audit Storage service
+      audit_storage_broker_url:
+        type: str
+        description: URL for the message broker used by Audit Storage
+      audit_storage_broker_username:
+        type: str
+        description: Username for the message broker used by Audit Storage
+      audit_storage_broker_password:
+        type: str
+        description: Password for the message broker used by Audit Storage
+      audit_storage_opensearch_url:
+        type: str
+        description: URL for the OpenSearch instance used by Audit Storage
+      audit_storage_opensearch_username:
+        type: str
+        description: Username for the OpenSearch instance used by Audit Storage
+      audit_storage_opensearch_password:
+        type: str
+        description: Password for the OpenSearch instance used by Audit Storage
+      audit_storage_default_environment:
+        type: dict
+        description: Default environment variables for the Audit Storage service
+      audit_storage_environment:
+        type: dict
+        description: Additional environment variables for the Audit Storage service
+      audit_storage_java_home_path:
+        type: str
+        description: Path to the Java home directory for the Audit Storage service
+      audit_storage_java_bin_path:
+        type: str
+        description: Path to the Java binary for the Audit Storage service
+      audit_storage_binaries_dir:
+        type: str
+        description: Directory where the Audit Storage binaries will be installed
+      audit_storage_config_dir:
+        type: str
+        description: Directory where the Audit Storage configuration files will be stored
+      audit_storage_systemd_service_unit_name:
+        type: str
+        description: Name of the systemd service unit for Audit Storage
+      audit_storage_systemd_service_unit_description:
+        type: str
+        description: Description of the systemd service unit for Audit Storage
+      audit_storage_systemd_service_exec_start:
+        type: str
+        description: Command to start the Audit Storage service
+      audit_storage_systemd_service_user:
+        type: str
+        description: User under which the Audit Storage service will run
+      audit_storage_systemd_service_unit_after:
+        type: str
+        description: Systemd service dependencies for the Audit Storage service
+      audit_storage_systemd_service_type:
+        type: str
+        description: Type of the systemd service for Audit Storage (e.g., simple, forking)
+      audit_storage_systemd_service_exec_stop:
+        type: str
+        description: Command to stop the Audit Storage service
+      audit_storage_systemd_service_working_directory:
+        type: str
+        description: Working directory for the Audit Storage service
+      audit_storage_systemd_service_additional_options:
+        type: dict
+        description: Additional options for the systemd service unit for Audit Storage
+      audit_storage_systemd_service_state:
+        type: str
+        description: Desired state of the Audit Storage systemd service (e.g., started, stopped)
+      audit_storage_systemd_service_enabled:
+        type: bool
+        description: Whether the Audit Storage systemd service should be enabled to start at boot
