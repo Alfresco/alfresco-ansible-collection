@@ -8,7 +8,7 @@ platforms:
     env:
       xpack.security.enabled: "false"
       discovery.type: "single-node"
-    command: "/bin/tini -- /usr/local/bin/docker-entrypoint.sh"
+    command: "eswrapper"
     cap_add:
       - IPC_LOCK
     exposed_ports:
