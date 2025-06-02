@@ -6,7 +6,6 @@ Install and configure Alfresco Audit Storage
 
 For this role to function as intended, the following prerequisites must be met:
 
-* An **Alfresco Content Services (ACS) instance** should be operational.
 * An **ActiveMQ instance** must be running and accessible by the target host
   where the audit storage service will be deployed.
 * An **Elasticsearch (or OpenSearch) instance** must be running and accessible
@@ -32,12 +31,6 @@ You also need user and group created on host
     username: alfresco
     group_name: alfresco
   tasks:
-    - name: Install required packages
-      become: true
-      ansible.builtin.package:
-        name: unzip
-        state: present
-
     - name: Add an application group
       become: true
       ansible.builtin.group:
@@ -61,7 +54,7 @@ You also need user and group created on host
       ansible.builtin.include_role:
         name: alfresco.platform.audit_storage
       vars:
-        audit_storage_java_bin_path: "/opt/openjdk-17.0.14/bin/java"
+        audit_storage_java_home_path: "/opt/openjdk-17.0.14"
         audit_storage_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
         audit_storage_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         audit_storage_username: "{{ username }}"
@@ -74,6 +67,11 @@ You also need user and group created on host
         audit_storage_opensearch_password: admin
 
 ```
+
+> **Note:** While this component can run independently, an operational
+> **Alfresco Content Services (ACS) instance** is required for it to function
+> meaningfully. Without ACS, no audit events will be produced, and therefore
+> nothing will be indexed into the Elasticsearch instance.
 
 ## License
 

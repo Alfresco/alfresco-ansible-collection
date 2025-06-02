@@ -59,9 +59,6 @@ argument_specs:
       audit_storage_opensearch_password:
         type: str
         description: Password for the OpenSearch instance used by Audit Storage
-      audit_storage_default_environment:
-        type: dict
-        description: Default environment variables for the Audit Storage service
       audit_storage_environment:
         type: dict
         description: Additional environment variables for the Audit Storage service

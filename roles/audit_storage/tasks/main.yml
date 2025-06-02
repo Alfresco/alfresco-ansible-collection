@@ -15,6 +15,12 @@
 - name: Download Audit Storage
   ansible.builtin.include_tasks: download.yml
 
+- name: Install required packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ audit_storage_packages }}"
+    state: present
+
 - name: Install Audit Storage
   become: true
   block:
