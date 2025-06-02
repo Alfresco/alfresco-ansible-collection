@@ -10,15 +10,14 @@ For this role to function as intended, the following prerequisites must be met:
 * An **ActiveMQ instance** must be running and accessible by the target host
   where the audit storage service will be deployed.
 * An **Elasticsearch (or OpenSearch) instance** must be running and accessible
-  by the target host.
-* Network access to a **Nexus repository** (or other artifact repository) that
-  hosts the Alfresco Audit Storage application artifacts is required for
-  downloading the necessary files.
+  by the target host for both read & **write** index operations.
+* Access to [Alfresco's artifacts repository](https://nexus.alfresco.com/nexus)
+  (or other artifact repository) to pull Alfresco Audit Storage application artifacts from.
 
 ## Dependencies
 
 This role requires an openjdk installation to be present on the target system
-and provided as `audit_storage_java_bin_path` variable.
+and provided as `audit_storage_java_home_path` variable.
 
 The role `alfresco.platform.java` is recommended to install the openjdk.
 
