@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.17.0" name="antsibull-docs" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>alfresco.platform.hxi_connector role – Install a Hx Insight Connector &mdash; Alfresco.Platform Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="alfresco.platform.java role – Main entrypoint for the java role" href="java_role.html" />
+    <link rel="prev" title="Alfresco.Platform" href="index.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://Alfresco.github.io/alfresco-ansible-collection/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Alfresco.Platform Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alfresco.Platform Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-main-install-a-hx-insight-connector">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Install a Hx Insight Connector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-repository-extension-install-a-hx-insight-connector-repository-extension">Entry point <code class="docutils literal notranslate"><span class="pre">repository-extension</span></code> – Install a Hx Insight Connector Repository Extension</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collection-links">Collection links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systemd_service_role.html">alfresco.platform.systemd_service role – Install a systemd service unit</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alfresco.Platform Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansible-collections-alfresco-platform-hxi-connector-role"></span><section id="alfresco-platform-hxi-connector-role-install-a-hx-insight-connector">
+<h1>alfresco.platform.hxi_connector role – Install a Hx Insight Connector<a class="headerlink" href="#alfresco-platform-hxi-connector-role-install-a-hx-insight-connector" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This role is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.1.1).</p>
+<p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
+To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">alfresco.platform</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">alfresco.platform.hxi_connector</span></code>.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#entry-point-main-install-a-hx-insight-connector" id="id3">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Install a Hx Insight Connector</a></p>
+<ul>
+<li><p><a class="reference internal" href="#synopsis" id="id4">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id5">Parameters</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#entry-point-repository-extension-install-a-hx-insight-connector-repository-extension" id="id6">Entry point <code class="docutils literal notranslate"><span class="pre">repository-extension</span></code> – Install a Hx Insight Connector Repository Extension</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id7">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id8">Parameters</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="entry-point-main-install-a-hx-insight-connector">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Install a Hx Insight Connector</a><a class="headerlink" href="#entry-point-main-install-a-hx-insight-connector" title="Link to this heading"></a></h2>
+<section id="synopsis">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>This role installs a Hx Insight Connector and starts it.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_activemq_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-activemq-password"><strong>hxi_connector_alfresco_activemq_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_activemq_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password for the ActiveMQ server</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_activemq_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-activemq-url"><strong>hxi_connector_alfresco_activemq_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_activemq_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the ActiveMQ server</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_activemq_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-activemq-username"><strong>hxi_connector_alfresco_activemq_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_activemq_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Username for the ActiveMQ server</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_base_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-base-url"><strong>hxi_connector_alfresco_base_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_base_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the Alfresco server (required for Prediction Applier)</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_db_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-db-password"><strong>hxi_connector_alfresco_db_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_db_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password for the database for the Alfresco server (required for the Bulk Ingester)</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_db_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-db-url"><strong>hxi_connector_alfresco_db_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_db_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the database for the Alfresco server (required for the Bulk Ingester)</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_db_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-db-username"><strong>hxi_connector_alfresco_db_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_db_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Username for the database for the Alfresco server (required for the Bulk Ingester)</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-password"><strong>hxi_connector_alfresco_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password for the Alfresco server (required for Prediction Applier)</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_sfs_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-sfs-url"><strong>hxi_connector_alfresco_sfs_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_sfs_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the Shared File Store for the Alfresco server</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-username"><strong>hxi_connector_alfresco_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Username for the Alfresco server (required for Prediction Applier)</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_alfresco_version_override"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-alfresco-version-override"><strong>hxi_connector_alfresco_version_override</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_alfresco_version_override" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Alfresco server version to override Service Discovery (otherwise `hxi_connector_alfresco_base_url`, `hxi_connector_alfresco_username`, `hxi_connector_alfresco_password` need to be set)</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_application_sourceid"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-application-sourceid"><strong>hxi_connector_application_sourceid</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_application_sourceid" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>ID of the source Application as defined in the Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_artifact_default_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-artifact-default-version"><strong>hxi_connector_artifact_default_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_artifact_default_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Default version for all Hx Insight Connector artifacts unless specified otherwise</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_artifact_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-artifact-password"><strong>hxi_connector_artifact_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_artifact_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password for the artifact repository</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_artifact_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-artifact-username"><strong>hxi_connector_artifact_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_artifact_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Username for the artifact repository</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_java_bin_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-java-bin-path"><strong>hxi_connector_java_bin_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_java_bin_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the Java binary</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java/bin/java&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_java_home_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-java-home-path"><strong>hxi_connector_java_home_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_java_home_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the Java home directory</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_live_ingester_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-live-ingester-artifact-version"><strong>hxi_connector_live_ingester_artifact_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_live_ingester_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Version of the Hx Insight Connector Live Ingester artifact</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_live_ingester_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-live-ingester-port"><strong>hxi_connector_live_ingester_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_live_ingester_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Port for the Hx Insight Connector Live Ingester service</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">8080</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_prediction_applier_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-prediction-applier-artifact-version"><strong>hxi_connector_prediction_applier_artifact_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_prediction_applier_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Version of the Hx Insight Connector Prediction Applier artifact</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_prediction_applier_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-prediction-applier-enabled"><strong>hxi_connector_prediction_applier_enabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_prediction_applier_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Enable the Hx Insight Connector Prediction Applier service</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_prediction_applier_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-prediction-applier-port"><strong>hxi_connector_prediction_applier_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_prediction_applier_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Port for the Hx Insight Connector Prediction Applier service</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">8081</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_client_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-client-id"><strong>hxi_connector_remote_client_id</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_client_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Client ID for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_client_secret"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-client-secret"><strong>hxi_connector_remote_client_secret</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_client_secret" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Client secret for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_environment_key"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-environment-key"><strong>hxi_connector_remote_environment_key</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_environment_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Environment key for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_grant_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-grant-type"><strong>hxi_connector_remote_grant_type</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_grant_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Grant type for the remote Hx Insight service</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;urn:hyland:params:oauth:grant-type:api-credentials&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_ingestion_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-ingestion-url"><strong>hxi_connector_remote_ingestion_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_ingestion_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the remote Hx Insight Ingestion service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_prediction_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-prediction-url"><strong>hxi_connector_remote_prediction_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_prediction_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the prediction API for the remote Hx Insight Prediction service</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_remote_token_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-remote-token-url"><strong>hxi_connector_remote_token_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_remote_token_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the token API for the remote Hx Insight Token service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--hxi_connector_service_user"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-main-hxi-connector-service-user"><strong>hxi_connector_service_user</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--hxi_connector_service_user" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>User to run the Hx Insight Connector services</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="entry-point-repository-extension-install-a-hx-insight-connector-repository-extension">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">repository-extension</span></code> – Install a Hx Insight Connector Repository Extension</a><a class="headerlink" href="#entry-point-repository-extension-install-a-hx-insight-connector-repository-extension" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Synopsis</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>This role installs a Hx Insight Connector Repository Extension in an Alfresco install.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Parameters</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_alfresco_service_existing_handler_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-alfresco-service-existing-handler-name"><strong>hxi_connector_alfresco_service_existing_handler_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_alfresco_service_existing_handler_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Name of an existing handler for the Alfresco service to be restarted after extension installation</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;None&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_alfresco_service_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-alfresco-service-name"><strong>hxi_connector_alfresco_service_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_alfresco_service_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Name of the Alfresco service to be restarted after extension installation</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco-content-monitored-startup&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_application_sourceid"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-application-sourceid"><strong>hxi_connector_application_sourceid</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_application_sourceid" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>ID of the source Application as defined in the Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_artifact_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-artifact-password"><strong>hxi_connector_artifact_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_artifact_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password for the artifact repository</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_artifact_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-artifact-username"><strong>hxi_connector_artifact_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_artifact_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Username for the artifact repository</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_client_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-client-id"><strong>hxi_connector_remote_client_id</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_client_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Client ID for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_client_secret"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-client-secret"><strong>hxi_connector_remote_client_secret</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_client_secret" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Client secret for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_discovery_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-discovery-url"><strong>hxi_connector_remote_discovery_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_discovery_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the remote Hx Insight Discovery service</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_environment_key"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-environment-key"><strong>hxi_connector_remote_environment_key</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_environment_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Environment key for the remote Hx Insight service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_grant_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-grant-type"><strong>hxi_connector_remote_grant_type</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_grant_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Grant type for the remote Hx Insight service</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;urn:hyland:params:oauth:grant-type:api-credentials&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_remote_token_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-remote-token-url"><strong>hxi_connector_remote_token_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_remote_token_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the token API for the remote Hx Insight Token service</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_acs_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-acs-version"><strong>hxi_connector_repository_extension_acs_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_acs_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Version of the Alfresco Content Services repository where to install the extension</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_artifact_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-artifact-path"><strong>hxi_connector_repository_extension_artifact_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_artifact_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path where the Hx Insight Connector Repository Extension artifact will be downloaded</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_artifact_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-artifact-url"><strong>hxi_connector_repository_extension_artifact_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_artifact_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL of the Hx Insight Connector Repository Extension artifact</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-artifact-version"><strong>hxi_connector_repository_extension_artifact_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Version of the Hx Insight Connector Repository Extension artifact</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-group"><strong>hxi_connector_repository_extension_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Group of the Hx Insight Connector Repository Extension artifact and its properties file</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_modules_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-modules-path"><strong>hxi_connector_repository_extension_modules_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_modules_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the platform modules directory of the Alfresco server</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/alfresco/content-services-{{</span> <span class="pre">hxi_connector_repository_extension_acs_version</span> <span class="pre">}}/modules&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_owner"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-owner"><strong>hxi_connector_repository_extension_owner</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_owner" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Owner of the Hx Insight Connector Repository Extension artifact and its properties file</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repository-extension--hxi_connector_repository_extension_properties_snippet_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-hxi-connector-role-parameter-repository-extension-hxi-connector-repository-extension-properties-snippet-path"><strong>hxi_connector_repository_extension_properties_snippet_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repository-extension--hxi_connector_repository_extension_properties_snippet_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the properties file for the Hx Insight Connector Repository Extension</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="collection-links">
+<h4>Collection links<a class="headerlink" href="#collection-links" title="Link to this heading"></a></h4>
+<ul class="ansible-links">
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Alfresco.Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="java_role.html" class="btn btn-neutral float-right" title="alfresco.platform.java role – Main entrypoint for the java role" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Alfresco.Platform Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
