@@ -33,7 +33,7 @@ audit_storage_default_environment:
   AUDIT_EVENTINGESTION_URI: activemq:topic:alfresco.repo.event2
 audit_storage_environment: {}
 
-audit_storage_java_home_path: /opt/openjdk-17.0.15
+audit_storage_java_home_path: /opt/java
 audit_storage_java_bin_path: "{{ audit_storage_java_home_path }}/bin/java"
 
 audit_storage_binaries_dir: "/opt/alfresco/audit-storage-{{ audit_storage_version }}"

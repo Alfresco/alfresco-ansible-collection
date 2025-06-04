@@ -1,10 +1,14 @@
 ---
 - name: Converge
   hosts: instance
+  vars:
+    molecule_java_home: /opt/java
   tasks:
     - name: Include java role
       ansible.builtin.include_role:
         name: alfresco.platform.java
+      vars:
+        java_home: "{{ molecule_java_home }}"
     - name: Include main role
       ansible.builtin.include_role:
         name: alfresco.platform.audit_storage
@@ -13,3 +17,4 @@
         audit_storage_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         audit_storage_broker_url: failover:(tcp://activemq-instance:61616)
         audit_storage_opensearch_url: http://elasticsearch-instance:9200
+        audit_storage_java_home_path: "{{ molecule_java_home }}"
