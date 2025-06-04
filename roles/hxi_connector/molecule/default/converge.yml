@@ -1,15 +1,20 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    molecule_java_home: /opt/java
   tasks:
     - name: Include java role
       ansible.builtin.include_role:
         name: alfresco.platform.java
+      vars:
+        java_home: "{{ molecule_java_home }}"
 
     - name: Include main role
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
       vars:
+        hxi_connector_java_home_path: "{{ molecule_java_home }}"
         hxi_connector_remote_ingestion_url: "https://hxinsight.alfresco.com"
         hxi_connector_remote_client_id: "client-id"
         hxi_connector_remote_client_secret: "client-secret"
