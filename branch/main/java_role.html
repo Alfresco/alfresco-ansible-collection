@@ -4,7 +4,7 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="2.16.3" name="antsibull-docs" />
+<meta content="2.17.0" name="antsibull-docs" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>alfresco.platform.java role – Main entrypoint for the java role &mdash; Alfresco.Platform Collection  documentation</title>
@@ -184,7 +184,7 @@ certificates and security keys.</p></li>
 <a class="ansibleOptionLink" href="#parameter-keystores--java_home" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Path to the java home (installation directory)</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/openjdk-17.0.14&quot;</span></code></p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -327,8 +327,8 @@ The whole object needs to be given (defaults are not merged)</p>
 <div class="ansibleOptionAnchor" id="parameter-main--java_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-checksum"><strong>java_checksum</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--java_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Checksum of the java tarball in format hash_type:[hash_value|hash_url]</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;sha256:https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.?14%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.14_7.tar.gz.sha256.txt&quot;</span></code></p>
+<td><div class="ansible-option-cell"><p>Checksum of the java tarball in format hash_type:[hash_value|hash_url]. Default is built from the java_version.
+Check defaults/main.yml for more details.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
@@ -336,23 +336,21 @@ The whole object needs to be given (defaults are not merged)</p>
 <a class="ansibleOptionLink" href="#parameter-main--java_home" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Path to the java home (installation directory)</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/openjdk-17.0.14&quot;</span></code></p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--java_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-url"><strong>java_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--java_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>URL to download the java tarball</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.?14%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.14_7.tar.gz&quot;</span></code></p>
+<td><div class="ansible-option-cell"><p>URL to download the java tarball. Default is built from the java_version. Check defaults/main.yml for more details.</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--java_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-version"><strong>java_version</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--java_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Version of the java to install</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;17.0.14+7&quot;</span></code></p>
+<td><div class="ansible-option-cell"><p>Version of the java to install. Check defaults/main.yml for current default value.</p>
 </div></td>
 </tr>
 </tbody>
