@@ -8,7 +8,7 @@
 
     - name: Verify Java binary
       ansible.builtin.file:
-        path: /opt/openjdk-{{ java_core }}/bin/java
+        path: "{{ java_home }}/bin/java"
         state: file
         mode: "0755"
       register: java_binary

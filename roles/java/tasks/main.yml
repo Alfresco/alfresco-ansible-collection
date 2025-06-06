@@ -13,10 +13,19 @@
     - name: Extract OpenJDK archive {{ java_tar_file }}
       ansible.builtin.unarchive:
         src: "{{ java_download_location }}/{{ java_tar_file }}"
-        dest: "{{ java_home | dirname }}"
+        dest: "{{ java_installation_home | dirname }}"
         remote_src: true
-        creates: "{{ java_home }}"
+        creates: "{{ java_installation_home }}"
         owner: root
         group: root
         extra_opts:
-          - --xform=s,[^/]*,{{ java_home | basename }},
+          - --xform=s,[^/]*,{{ java_installation_home | basename }},
+
+    - name: Create symlink for java home
+      ansible.builtin.file:
+        src: "{{ java_installation_home }}"
+        dest: "{{ java_home }}"
+        state: link
+        owner: root
+        group: root
+        force: true

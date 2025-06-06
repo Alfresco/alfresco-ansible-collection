@@ -9,24 +9,20 @@ argument_specs:
         type: str
         description: |
           Path to the java home (installation directory)
-        default: /opt/openjdk-17.0.14
+        default: /opt/java
       java_version:
         type: str
         description: |
-          Version of the java to install
-        default: 17.0.14+7
+          Version of the java to install. Check defaults/main.yml for current default value.
       java_url:
         type: str
         description: |
-          URL to download the java tarball
-        default: >-
-          https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.?14%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.14_7.tar.gz
+          URL to download the java tarball. Default is built from the java_version. Check defaults/main.yml for more details.
       java_checksum:
         type: str
         description: |
-          Checksum of the java tarball in format hash_type:[hash_value|hash_url]
-        default: >-
-          sha256:https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.?14%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.14_7.tar.gz.sha256.txt
+          Checksum of the java tarball in format hash_type:[hash_value|hash_url]. Default is built from the java_version.
+          Check defaults/main.yml for more details.
   keystores:
     short_description: Keystores entrypoint for the java role
     description: |
@@ -38,7 +34,7 @@ argument_specs:
         type: str
         description: |
           Path to the java home (installation directory)
-        default: /opt/openjdk-17.0.14
+        default: /opt/java
       java_keystore:
         required: true
         type: dict
