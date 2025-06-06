@@ -1,0 +1,103 @@
+argument_specs:
+  main:
+    short_description: Install a Alfresco Audit Storage
+    description: |
+      This role installs Alfresco Audit Storage and starts it.
+    options:
+      audit_storage_version:
+        type: str
+        description: Version of the Audit Storage to install
+      audit_storage_zip_url:
+        type: str
+        description: URL to download the Audit Storage distribution zip file
+      audit_storage_zip_checksum:
+        type: str
+        description: Checksum for the Audit Storage distribution zip file
+      audit_storage_download_location:
+        type: str
+        description: Location to download the Audit Storage distribution zip file
+      audit_storage_download_artifact_name:
+        type: str
+        description: Name of the Audit Storage artifact to download
+      audit_storage_nexus_username:
+        type: str
+        description: Username for the Nexus repository to download the Audit Storage artifact
+        required: true
+      audit_storage_nexus_password:
+        type: str
+        description: Password for the Nexus repository to download the Audit Storage artifact
+        required: true
+      audit_storage_username:
+        type: str
+        description: Username for the Audit Storage service
+        required: true
+      audit_storage_group_name:
+        type: str
+        description: Group name for the Audit Storage service
+        required: true
+      audit_storage_server_port:
+        type: int
+        description: Port for the Audit Storage service
+        default: 8083
+      audit_storage_broker_url:
+        type: str
+        description: URL for the message broker used by Audit Storage
+        required: true
+      audit_storage_broker_username:
+        type: str
+        description: Username for the message broker used by Audit Storage
+      audit_storage_broker_password:
+        type: str
+        description: Password for the message broker used by Audit Storage
+      audit_storage_opensearch_url:
+        type: str
+        description: URL for the OpenSearch instance used by Audit Storage
+        required: true
+      audit_storage_opensearch_username:
+        type: str
+        description: Username for the OpenSearch instance used by Audit Storage
+      audit_storage_opensearch_password:
+        type: str
+        description: Password for the OpenSearch instance used by Audit Storage
+      audit_storage_environment:
+        type: dict
+        description: Additional environment variables for the Audit Storage service
+      audit_storage_java_home_path:
+        type: str
+        description: Path to the Java home directory for the Audit Storage service
+        default: /opt/java
+      audit_storage_java_bin_path:
+        type: str
+        description: Path to the Java binary for the Audit Storage service
+        default: /opt/java/bin/java
+      audit_storage_binaries_dir:
+        type: str
+        description: Directory where the Audit Storage binaries will be installed
+      audit_storage_config_dir:
+        type: str
+        description: Directory where the Audit Storage configuration files will be stored
+  download:
+    short_description: Download the Audit Storage distribution
+    description: |
+      This task downloads the Audit Storage distribution zip file.
+    options:
+      audit_storage_zip_url:
+        type: str
+        description: URL to download the Audit Storage distribution zip file
+      audit_storage_zip_checksum:
+        type: str
+        description: Checksum for the Audit Storage distribution zip file
+      audit_storage_download_location:
+        type: str
+        description: Location to download the Audit Storage distribution zip file
+      audit_storage_download_artifact_name:
+        type: str
+        description: Name of the Audit Storage artifact to download
+      audit_storage_nexus_username:
+        type: str
+        description: Username for the Nexus repository to download the Audit Storage artifact
+        required: true
+      audit_storage_nexus_password:
+        type: str
+        description: Password for the Nexus repository to download the Audit Storage artifact
+        required: true

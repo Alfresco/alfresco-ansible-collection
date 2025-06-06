@@ -1,0 +1,62 @@
+---
+# tasks file for audit_storage
+- name: Test java bin path
+  ansible.builtin.stat:
+    path: "{{ audit_storage_java_bin_path }}"
+  register: stat_result
+
+- name: Assert java bin is in the expected path
+  ansible.builtin.assert:
+    that:
+      - "stat_result.stat.exists"
+    fail_msg: "Java command not found in the expected path: {{ audit_storage_java_bin_path }}"
+    quiet: true
+
+- name: Download Audit Storage
+  ansible.builtin.include_tasks: download.yml
+
+- name: Install required packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ audit_storage_packages }}"
+    state: present
+
+- name: Install Audit Storage
+  become: true
+  block:
+    - name: Create directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ audit_storage_username }}"
+        group: "{{ audit_storage_group_name }}"
+        mode: "0755"
+      loop:
+        - "{{ audit_storage_binaries_dir }}"
+        - "{{ audit_storage_config_dir }}"
+
+    - name: Extract distribution zip in binaries
+      ansible.builtin.unarchive:
+        src: "{{ audit_storage_download_location }}/{{ audit_storage_download_artifact_name }}-{{ audit_storage_version }}.zip"
+        dest: "{{ audit_storage_binaries_dir }}"
+        remote_src: true
+        creates: "{{ audit_storage_binaries_dir }}/README.md"
+        owner: "{{ audit_storage_username }}"
+        group: "{{ audit_storage_group_name }}"
+
+    - name: Install Audit Storage
+      ansible.builtin.include_role:
+        name: alfresco.platform.systemd_service
+        apply:
+          become: true
+      vars:
+        systemd_service_unit_name: "{{ audit_storage_systemd_service_unit_name }}"
+        systemd_service_unit_description: "{{ audit_storage_systemd_service_unit_description }}"
+        systemd_service_unit_after: "{{ audit_storage_systemd_service_unit_after }}"
+        systemd_service_type: "{{ audit_storage_systemd_service_type }}"
+        systemd_service_exec_start: "{{ audit_storage_systemd_service_exec_start }}"
+        systemd_service_exec_stop: "{{ audit_storage_systemd_service_exec_stop }}"
+        systemd_service_user: "{{ audit_storage_systemd_service_user }}"
+        systemd_service_environment: "{{ audit_storage_systemd_service_environment }}"
+        systemd_service_working_directory: "{{ audit_storage_systemd_service_working_directory }}"
+        systemd_service_additional_options: "{{ audit_storage_systemd_service_additional_options }}"

@@ -1,0 +1,32 @@
+---
+- name: Verify
+  hosts: instance
+  gather_facts: false
+  tasks:
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check that service is up and running
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.services['alfresco-audit-storage.service'] is defined
+          - ansible_facts.services['alfresco-audit-storage.service'].state == 'running'
+        quiet: true
+
+    - name: Check readiness probe
+      ansible.builtin.uri:
+        url: "http://localhost:8083/actuator/health/readiness"
+        status_code: 200
+      register: readiness_check_result
+      until: readiness_check_result.status == 200
+      retries: 5
+      delay: 10
+
+    - name: Check liveness probe
+      ansible.builtin.uri:
+        url: "http://localhost:8083/actuator/health/liveness"
+        status_code: 200
+      register: liveness_check_result
+      until: liveness_check_result.status == 200
+      retries: 5
+      delay: 10
