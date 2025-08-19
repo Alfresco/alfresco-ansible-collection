@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.21.0" name="antsibull-docs" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>alfresco.platform.java role – Main entrypoint for the java role &mdash; Alfresco.Platform Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="alfresco.platform.systemd_service role – Install a systemd service unit" href="systemd_service_role.html" />
+    <link rel="prev" title="alfresco.platform.hxi_connector role – Install a Hx Insight Connector" href="hxi_connector_role.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://Alfresco.github.io/alfresco-ansible-collection/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Alfresco.Platform Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alfresco.Platform Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="audit_storage_role.html">alfresco.platform.audit_storage role – Install a Alfresco Audit Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hxi_connector_role.html">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.java role – Main entrypoint for the java role</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-keystores-keystores-entrypoint-for-the-java-role">Entry point <code class="docutils literal notranslate"><span class="pre">keystores</span></code> – Keystores entrypoint for the java role</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-main-main-entrypoint-for-the-java-role">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Main entrypoint for the java role</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#collection-links">Collection links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="systemd_service_role.html">alfresco.platform.systemd_service role – Install a systemd service unit</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alfresco.Platform Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">alfresco.platform.java role – Main entrypoint for the java role</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansible-collections-alfresco-platform-java-role"></span><section id="alfresco-platform-java-role-main-entrypoint-for-the-java-role">
+<h1>alfresco.platform.java role – Main entrypoint for the java role<a class="headerlink" href="#alfresco-platform-java-role-main-entrypoint-for-the-java-role" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This role is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.2.0).</p>
+<p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
+To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
+<p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">alfresco.platform</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">alfresco.platform.java</span></code>.</p>
+</div>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#entry-point-keystores-keystores-entrypoint-for-the-java-role" id="id3">Entry point <code class="docutils literal notranslate"><span class="pre">keystores</span></code> – Keystores entrypoint for the java role</a></p>
+<ul>
+<li><p><a class="reference internal" href="#synopsis" id="id4">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id5">Parameters</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#entry-point-main-main-entrypoint-for-the-java-role" id="id6">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Main entrypoint for the java role</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id7">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id8">Parameters</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<span class="target" id="ansible-collections-alfresco-platform-java-role-entrypoint-keystores"></span><section id="entry-point-keystores-keystores-entrypoint-for-the-java-role">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">keystores</span></code> – Keystores entrypoint for the java role</a><a class="headerlink" href="#entry-point-keystores-keystores-entrypoint-for-the-java-role" title="Link to this heading"></a></h2>
+<section id="synopsis">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>This entrypoint is used to manage the java keystores
+and truststores. It is used to create, import and export
+certificates and security keys.</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_default_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-default-group"><strong>java_default_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_default_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Default group to use for the java keystore</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_default_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-default-username"><strong>java_default_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_default_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Default username to use for the java keystore</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_home"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-home"><strong>java_home</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_home" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the java home (installation directory)</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore"><strong>java_keystore</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Representation of the JRE keystore
+The whole object needs to be given (defaults are not merged)</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/cert_containers"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-cert-containers"><strong>cert_containers</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/cert_containers" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>A list of dict to represent certificates to import in keystore.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/cert_containers/add_to_trusted_ca"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-cert-containers-add-to-trusted-ca"><strong>add_to_trusted_ca</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/cert_containers/add_to_trusted_ca" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Whether to look for and trust CA chain</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">false</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/cert_containers/pass"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-cert-containers-pass"><strong>pass</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/cert_containers/pass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Certificate container password</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/cert_containers/path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-cert-containers-path"><strong>path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/cert_containers/path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Local path to the host specific PKCS12 certificate container</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/pass"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-pass"><strong>pass</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/pass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Password to unlock the java keystore</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-path"><strong>path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Local path to the java keystore</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/seckeys"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-seckeys"><strong>seckeys</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/seckeys" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>A list of dict to represent security keys.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/seckeys/algorythm"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-seckeys-algorythm"><strong>algorythm</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/seckeys/algorythm" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Encryption algorythm of the security key</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;AES&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/seckeys/length"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-seckeys-length"><strong>length</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/seckeys/length" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Length of the security key</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">256</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/seckeys/name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-seckeys-name"><strong>name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/seckeys/name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the security key to use as an alias in the keystore</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/seckeys/pass"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-seckeys-pass"><strong>pass</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/seckeys/pass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Passphrase of the security key</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_keystore/type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-keystore-type"><strong>type</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_keystore/type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Type of keystore (JKS, JCEKS, PKCS12)</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_truststore"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-truststore"><strong>java_truststore</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_truststore" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Local path to the java truststore</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">java_home</span> <span class="pre">}}/lib/security/cacerts&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-keystores--java_truststore_pass"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-keystores-java-truststore-pass"><strong>java_truststore_pass</strong></p>
+<a class="ansibleOptionLink" href="#parameter-keystores--java_truststore_pass" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Password to unlock the java truststore</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;changeit&quot;</span></code></p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="ansible-collections-alfresco-platform-java-role-entrypoint-main"></span></section>
+</section>
+<section id="entry-point-main-main-entrypoint-for-the-java-role">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Main entrypoint for the java role</a><a class="headerlink" href="#entry-point-main-main-entrypoint-for-the-java-role" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Synopsis</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>This entrypoint is used to install the java runtime with a given version.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Parameters</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--java_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-checksum"><strong>java_checksum</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--java_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Checksum of the java tarball in format hash_type:[hash_value|hash_url]. Default is built from the java_version.
+Check defaults/main.yml for more details.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--java_home"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-home"><strong>java_home</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--java_home" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the java home (installation directory)</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--java_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-url"><strong>java_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--java_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>URL to download the java tarball. Default is built from the java_version. Check defaults/main.yml for more details.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--java_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-java-role-parameter-main-java-version"><strong>java_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--java_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Version of the java to install. Check defaults/main.yml for current default value.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="collection-links">
+<h4>Collection links<a class="headerlink" href="#collection-links" title="Link to this heading"></a></h4>
+<ul class="ansible-links">
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hxi_connector_role.html" class="btn btn-neutral float-left" title="alfresco.platform.hxi_connector role – Install a Hx Insight Connector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="systemd_service_role.html" class="btn btn-neutral float-right" title="alfresco.platform.systemd_service role – Install a systemd service unit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Alfresco.Platform Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
