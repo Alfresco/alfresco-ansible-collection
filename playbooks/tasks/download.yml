@@ -1,0 +1,39 @@
+- name: Set artifact variables
+  ansible.builtin.set_fact:
+    artifact_name: "{{ resource_url | basename }}"
+    artifact_path: "./{{ resource_url | basename }}"
+    checksum_url: "{{ resource_url }}.sha1"
+
+- name: Fetch checksum file
+  ansible.builtin.get_url:
+    url: "{{ checksum_url }}"
+    dest: "{{ artifact_path }}.sha1"
+    mode: "0644"
+    url_username: "{{ url_username | default(omit) }}"
+    url_password: "{{ url_password | default(omit) }}"
+
+- name: Read and decode checksum file
+  ansible.builtin.set_fact:
+    checksum_text: "{{ lookup('file', artifact_path + '.sha1') | b64decode | trim }}"
+
+- name: Parse checksum (try Maven, fallback to legacy)
+  ansible.builtin.set_fact:
+    parsed_checksum: >-
+      {% if checksum_text | length == 40 %}
+        {{ checksum_text }}
+      {% else %}
+        {{ checksum_text.split()[0] }}
+      {% endif %}
+
+- name: Normalize checksum for Ansible
+  ansible.builtin.set_fact:
+    normalized_checksum: "sha1:{{ parsed_checksum }}"
+
+- name: Download artifact with checksum verification
+  ansible.builtin.get_url:
+    url: "{{ resource_url }}"
+    dest: "{{ artifact_path }}"
+    checksum: "{{ normalized_checksum }}"
+    mode: "0644"
+    url_username: "{{ url_username | default(omit) }}"
+    url_password: "{{ url_password | default(omit) }}"

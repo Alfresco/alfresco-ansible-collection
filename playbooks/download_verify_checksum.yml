@@ -1,0 +1,15 @@
+- name: Download artifacts with checksum verification
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    resource_url: []
+    url_username: ""
+    url_password: ""
+
+  tasks:
+    - name: Download each resource
+      ansible.builtin.include_tasks: ./playbooks/tasks/download.yml
+      loop: "{{ resource_url }}"
+      loop_control:
+        loop_var: resource_url
