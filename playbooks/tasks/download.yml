@@ -1,7 +1,7 @@
 - name: Set artifact variables
   ansible.builtin.set_fact:
     artifact_name: "{{ resource_url | basename }}"
-    artifact_path: "./{{ resource_url | basename }}"
+    artifact_path: "{{ dest_path }}/{{ resource_url | basename }}"
     checksum_url: "{{ resource_url }}.sha1"
 
 - name: Fetch checksum file

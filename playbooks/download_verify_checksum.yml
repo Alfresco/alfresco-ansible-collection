@@ -6,6 +6,7 @@
     resource_url: []
     url_username: ""
     url_password: ""
+    dest_path: "./"
 
   tasks:
     - name: Download each resource
