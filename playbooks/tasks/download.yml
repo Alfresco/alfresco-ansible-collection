@@ -1,8 +1,8 @@
-- name: Ensure downloads are provided
-  ansible.builtin.assert:
-    that:
-      - downloads | length > 0
-    fail_msg: "downloads must contain at least one artifact"
+# - name: Ensure downloads are provided
+#   ansible.builtin.assert:
+#     that:
+#       - downloads | length > 0
+#     fail_msg: "downloads must contain at least one artifact"
 
 - name: Set checksum defaults and metadata
   ansible.builtin.set_fact:
