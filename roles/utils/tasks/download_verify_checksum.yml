@@ -1,0 +1,12 @@
+---
+- name: Ensure downloads list is defined
+  ansible.builtin.assert:
+    that:
+      - downloads is defined
+      - downloads | length > 0
+    fail_msg: "You must provide at least one artifact in 'downloads'."
+
+- name: Download and verify artifacts
+  ansible.builtin.include_tasks: download.yml
+  vars:
+    downloads_list: "{{ downloads }}"

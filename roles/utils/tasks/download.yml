@@ -1,0 +1,46 @@
+- name: Set artifact variables
+  ansible.builtin.set_fact:
+    artifact_path: "{{ artifact.dest | default('./' + (artifact.url | basename)) }}"
+    checksum_type: "{{ artifact.checksum_type | default('sha1') }}"
+    checksum_url: "{{ artifact.url }}.{{ artifact.checksum_type | default('sha1') }}"
+
+- name: Fetch checksum file
+  ansible.builtin.get_url:
+    url: "{{ checksum_url }}"
+    dest: "{{ artifact_path }}.{{ checksum_type }}"
+    mode: "0644"
+    url_username: "{{ artifact.username | default(omit) }}"
+    url_password: "{{ artifact.password | default(omit) }}"
+  register: checksum_download
+  retries: 3
+  delay: 5
+  until: checksum_download is succeeded
+
+- name: Read checksum file
+  ansible.builtin.slurp:
+    src: "{{ artifact_path }}.{{ checksum_type }}"
+  register: checksum_file
+
+- name: Parse checksum
+  ansible.builtin.set_fact:
+    checksum_text: "{{ checksum_file.content | b64decode | trim }}"
+    parsed_checksum: >-
+      {% set text = checksum_file.content | b64decode | trim %}
+      {% if text | length == checksum_length_map[checksum_type] %}
+        {{ text }}
+      {% else %}
+        {{ text.split()[0] }}
+      {% endif %}
+
+- name: Normalize checksum for Ansible
+  ansible.builtin.set_fact:
+    normalized_checksum: "{{ checksum_type }}:{{ parsed_checksum }}"
+
+- name: Download artifact with checksum verification
+  ansible.builtin.get_url:
+    url: "{{ artifact.url }}"
+    dest: "{{ artifact_path }}"
+    checksum: "{{ normalized_checksum }}"
+    mode: "0644"
+    url_username: "{{ artifact.username | default(omit) }}"
+    url_password: "{{ artifact.password | default(omit) }}"
