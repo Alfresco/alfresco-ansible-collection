@@ -11,12 +11,6 @@
     artifact_path: "{{ dest_path | default('./' + (resource_url | basename)) }}"
     checksum_url: "{{ resource_url }}.{{ checksum_type }}"
 
-- name: Ensure artifact directory exists
-  ansible.builtin.file:
-    path: "{{ artifact_path | dirname }}"
-    state: directory
-    mode: "0755"
-
 - name: Fetch checksum file
   ansible.builtin.get_url:
     url: "{{ checksum_url }}"
@@ -47,12 +41,6 @@
 - name: Normalize checksum for Ansible
   ansible.builtin.set_fact:
     normalized_checksum: "{{ checksum_type }}:{{ parsed_checksum }}"
-
-- name: Validate checksum length
-  ansible.builtin.assert:
-    that:
-      - parsed_checksum | length == checksum_length_map[checksum_type]
-    fail_msg: "Invalid {{ checksum_type }} checksum format"
 
 - name: Download artifact with checksum verification
   ansible.builtin.get_url:
