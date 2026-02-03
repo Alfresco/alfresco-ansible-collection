@@ -1,6 +1,6 @@
 - name: Set artifact variables
   ansible.builtin.set_fact:
-    utils_artifact_path: "{{ artifact.dest | default('./' + (artifact.url | basename)) }}"
+    utils_artifact_path: "{{ artifact.dest }}"
     utils_checksum_type: "{{ artifact.checksum_type | default('sha1') }}"
     utils_checksum_url: "{{ artifact.url }}.{{ artifact.checksum_type | default('sha1') }}"
 
