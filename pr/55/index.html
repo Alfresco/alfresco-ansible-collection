@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.24.0" name="antsibull-docs" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alfresco.Platform &mdash; Alfresco.Platform Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="alfresco.platform.audit_storage role – Install a Alfresco Audit Storage" href="audit_storage_role.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://Alfresco.github.io/alfresco-ansible-collection/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Alfresco.Platform Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Alfresco.Platform Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="audit_storage_role.html">alfresco.platform.audit_storage role – Install a Alfresco Audit Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hxi_connector_role.html">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systemd_service_role.html">alfresco.platform.systemd_service role – Install a systemd service unit</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Alfresco.Platform Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Alfresco.Platform</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="alfresco-platform">
+<span id="plugins-in-alfresco-platform"></span><h1>Alfresco.Platform<a class="headerlink" href="#alfresco-platform" title="Link to this heading"></a></h1>
+<p>Collection version 0.2.1</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#description" id="id1">Description</a></p></li>
+<li><p><a class="reference internal" href="#plugin-index" id="id2">Plugin Index</a></p></li>
+<li><p><a class="reference internal" href="#role-index" id="id3">Role Index</a></p></li>
+</ul>
+</nav>
+<section id="description">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Description</a><a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>a collection of Ansible roles and modules for Alfresco Platform</p>
+<p><strong>Author:</strong></p>
+<ul class="simple">
+<li><p>Hyland Alfresco Ops Readiness</p></li>
+</ul>
+<p><strong>Supported ansible-core versions:</strong></p>
+<ul class="simple">
+<li><p>2.16.0 or newer</p></li>
+</ul>
+<ul class="ansible-links">
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="plugin-index">
+<span id="plugin-index-for-alfresco-platform"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Plugin Index</a><a class="headerlink" href="#plugin-index" title="Link to this heading"></a></h2>
+<p>There are no plugins in the alfresco.platform collection with automatically generated documentation.</p>
+</section>
+<section id="role-index">
+<span id="role-plugins-in-alfresco-platform"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Role Index</a><a class="headerlink" href="#role-index" title="Link to this heading"></a></h2>
+<p>These are the roles in the alfresco.platform collection:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="audit_storage_role.html#ansible-collections-alfresco-platform-audit-storage-role"><span class="std std-ref">audit_storage role</span></a> – Install a Alfresco Audit Storage</p></li>
+<li><p><a class="reference internal" href="hxi_connector_role.html#ansible-collections-alfresco-platform-hxi-connector-role"><span class="std std-ref">hxi_connector role</span></a> – Install a Hx Insight Connector</p></li>
+<li><p><a class="reference internal" href="java_role.html#ansible-collections-alfresco-platform-java-role"><span class="std std-ref">java role</span></a> – Main entrypoint for the java role</p></li>
+<li><p><a class="reference internal" href="systemd_service_role.html#ansible-collections-alfresco-platform-systemd-service-role"><span class="std std-ref">systemd_service role</span></a> – Install a systemd service unit</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="audit_storage_role.html" class="btn btn-neutral float-right" title="alfresco.platform.audit_storage role – Install a Alfresco Audit Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Alfresco.Platform Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
