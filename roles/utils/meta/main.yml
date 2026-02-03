@@ -1,0 +1,25 @@
+galaxy_info:
+  author: Alfresco Ops Readiness
+  namespace: alfresco
+  description: Download artifact with checksum verification
+  company: Hyland Software
+
+  license: Apache-2.0
+
+  min_ansible_version: "2.2"
+
+  galaxy_tags:
+    - download
+    - checksum
+
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - noble
+    - name: EL
+      versions:
+        - "8"
+        - "9"

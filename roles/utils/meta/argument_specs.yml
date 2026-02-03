@@ -1,0 +1,43 @@
+argument_specs:
+  main:
+    short_description: Download artifact with checksum verification
+    description:
+      - Downloads an artifact from a remote URL and verifies checksum file.
+
+    options:
+      artifact:
+        type: dict
+        required: true
+        description:
+          - Artifact download configuration.
+
+        options:
+          url:
+            type: str
+            required: true
+            description:
+              - URL of the artifact to download.
+
+          dest:
+            type: str
+            required: false
+            description:
+              - Destination path where the artifact will be saved.
+
+          checksum_type:
+            type: str
+            default: sha1
+            choices: [sha1, sha256, sha512]
+            description:
+              - Checksum algorithm used to verify the artifact
+          username:
+            type: str
+            required: false
+            description:
+              - Username for authentication
+
+          password:
+            type: str
+            required: false
+            description:
+              - Password for authentication

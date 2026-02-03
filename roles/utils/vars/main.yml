@@ -1,0 +1,5 @@
+---
+utils_checksum_length_map:
+  sha1: 40
+  sha256: 64
+  sha512: 128
