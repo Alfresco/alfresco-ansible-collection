@@ -6,6 +6,18 @@
     - name: Populate service facts
       ansible.builtin.service_facts:
 
+    - name: Check that activemq is reachable
+      ansible.builtin.wait_for:
+        host: activemq-instance
+        port: 61616
+        timeout: 30
+
+    - name: Check that elasticsearch is reachable
+      ansible.builtin.wait_for:
+        host: elasticsearch-instance
+        port: 9200
+        timeout: 30
+
     - name: Check that service is up and running
       ansible.builtin.assert:
         that:
