@@ -20,7 +20,7 @@ platforms:
     image: alfresco/alfresco-activemq:5.18-jre17-rockylinux8
     pre_build_image: true
     mem_limit: "1g"
-    command: "./init.sh /opt/activemq"
+    command: "activemq console"
     exposed_ports:
       - 61616
     networks:
