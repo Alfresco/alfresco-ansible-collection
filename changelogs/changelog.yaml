@@ -47,3 +47,11 @@ releases:
     fragments:
       - community_general.yaml
     release_date: "2025-09-01"
+  0.2.2:
+    changes:
+      bugfixes:
+        - Fix startup issue in audit storage by not overriding eventIngestion uri and
+          fixing username key
+    fragments:
+      - audit_storage-role.yaml
+    release_date: "2026-02-04"

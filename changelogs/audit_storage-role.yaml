@@ -1,2 +1,0 @@
-bugfixes:
-  - Fix startup issue in audit storage by not overriding eventIngestion uri and fixing username key

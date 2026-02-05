@@ -2,6 +2,8 @@
 
 **Topics**
 
+- <a href="#v0-2-2">v0\.2\.2</a>
+    - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v0-2-1">v0\.2\.1</a>
     - <a href="#minor-changes">Minor Changes</a>
 - <a href="#v0-2-0">v0\.2\.0</a>
@@ -9,9 +11,17 @@
     - <a href="#minor-changes-1">Minor Changes</a>
 - <a href="#v0-1-1">v0\.1\.1</a>
     - <a href="#minor-changes-2">Minor Changes</a>
-    - <a href="#bugfixes">Bugfixes</a>
+    - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
     - <a href="#major-changes-1">Major Changes</a>
+
+<a id="v0-2-2"></a>
+## v0\.2\.2
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+* Fix startup issue in audit storage by not overriding eventIngestion uri and fixing username key
 
 <a id="v0-2-1"></a>
 ## v0\.2\.1
@@ -42,7 +52,7 @@
 
 * Allow using an existing handler to trigger the restart of the Alfresco service after installing the repository extension to prevent unwanted restarts\.
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
 * Fix idempotency issue in hxi extension entrypoint
