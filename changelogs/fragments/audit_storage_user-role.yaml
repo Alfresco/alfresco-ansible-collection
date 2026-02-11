@@ -1,0 +1,2 @@
+bugfixes:
+  - Bring back userame key for audit storage for retrocompatibility with existing configurations and to prevent startup issues.
