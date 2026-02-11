@@ -1,2 +1,3 @@
 bugfixes:
   - Bring back userame key for audit storage for retrocompatibility with existing configurations and to prevent startup issues.
+    Add SPRING_PROFILES_ACTIVE variable to enable audit picking default ingrestion URI.

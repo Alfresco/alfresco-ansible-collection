@@ -12,6 +12,7 @@ audit_storage_nexus_password: ''
 
 audit_storage_username: alfresco
 audit_storage_group_name: alfresco
+audit_storage_profiles_active: durable-subscriptions
 
 audit_storage_server_port: 8083
 
@@ -28,6 +29,7 @@ audit_storage_default_environment:
   SPRING_ACTIVEMQ_USERNAME: "{{ audit_storage_broker_username }}"
   SPRING_ACTIVEMQ_USER: "{{ audit_storage_broker_username }}"
   SPRING_ACTIVEMQ_PASSWORD: "{{ audit_storage_broker_password }}"
+  SPRING_PROFILES_ACTIVE: "{{ audit_storage_profiles_active }}"
   AUDIT_ENTRYSTORAGE_OPENSEARCH_CONNECTOR_URI: "{{ audit_storage_opensearch_url }}"
   AUDIT_ENTRYSTORAGE_OPENSEARCH_CONNECTOR_USERNAME: "{{ audit_storage_opensearch_username }}"
   AUDIT_ENTRYSTORAGE_OPENSEARCH_CONNECTOR_PASSWORD: "{{ audit_storage_opensearch_password }}"
