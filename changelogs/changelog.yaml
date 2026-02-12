@@ -55,3 +55,11 @@ releases:
     fragments:
       - audit_storage-role.yaml
     release_date: "2026-02-04"
+  0.2.3:
+    changes:
+      bugfixes:
+        - Revert ActiveMQ username key for audit storage. Add SPRING_PROFILES_ACTIVE
+          variable to enable audit picking default ingestion URI.
+    fragments:
+      - audit_storage_user-role.yaml
+    release_date: "2026-02-12"
