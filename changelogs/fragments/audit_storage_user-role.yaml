@@ -1,2 +1,2 @@
 bugfixes:
-  - Revert username key for audit storage. Add SPRING_PROFILES_ACTIVE variable to enable audit picking default ingrestion URI.
+  - Revert ActiveMQ username key for audit storage. Add SPRING_PROFILES_ACTIVE variable to enable audit picking default ingestion URI.
