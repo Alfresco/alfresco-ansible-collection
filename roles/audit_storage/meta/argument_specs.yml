@@ -76,6 +76,10 @@ argument_specs:
       audit_storage_config_dir:
         type: str
         description: Directory where the Audit Storage configuration files will be stored
+      audit_storage_profiles_active:
+        type: str
+        description: Spring profiles to be activated for the Audit Storage service
+        default: durable-subscriptions
   download:
     short_description: Download the Audit Storage distribution
     description: |
