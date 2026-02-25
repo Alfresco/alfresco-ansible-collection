@@ -63,3 +63,12 @@ releases:
     fragments:
       - audit_storage_user-role.yaml
     release_date: "2026-02-12"
+  0.3.0:
+    changes:
+      minor_changes:
+        - Bump Java to 17.0.18
+    fragments:
+      - audit_storage-role.yaml
+      - hxi_connector-role.yaml
+      - java-role.yaml
+    release_date: "2026-02-25"

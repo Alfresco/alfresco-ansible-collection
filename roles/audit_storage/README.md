@@ -48,13 +48,13 @@ You also need user and group created on host
       ansible.builtin.include_role:
         name: alfresco.platform.java
       vars:
-        java_version: 17.0.14+7
+        java_version: 17.0.18+8
 
     - name: Include main role
       ansible.builtin.include_role:
         name: alfresco.platform.audit_storage
       vars:
-        audit_storage_java_home_path: "/opt/openjdk-17.0.14"
+        audit_storage_java_home_path: "/opt/openjdk-17.0.18"
         audit_storage_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
         audit_storage_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         audit_storage_username: "{{ username }}"
