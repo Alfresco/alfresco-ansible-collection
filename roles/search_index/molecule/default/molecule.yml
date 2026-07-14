@@ -1,0 +1,59 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: elasticsearch-instance
+    image: elasticsearch:8.17.3
+    pre_build_image: true
+    env:
+      xpack.security.enabled: "false"
+      discovery.type: "single-node"
+    command: "eswrapper"
+    cap_add:
+      - IPC_LOCK
+    exposed_ports:
+      - 9200
+    networks:
+      - name: molecule_default
+
+  - name: postgres-instance
+    image: postgres:15
+    pre_build_image: true
+    command: "postgres"
+    env:
+      POSTGRES_DB: alfresco
+      POSTGRES_USER: alfresco
+      POSTGRES_PASSWORD: alfresco
+    exposed_ports:
+      - 5432
+    networks:
+      - name: molecule_default
+
+  - name: instance
+    image: ${MOLECULE_ROLE_IMAGE:-rockylinux:9}
+    dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
+    command: "/lib/systemd/systemd"
+    privileged: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    groups:
+      - search_index
+    networks:
+      - name: molecule_default
+        links:
+          - elasticsearch-instance
+          - postgres-instance
+
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      pipelining: true
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: ansible

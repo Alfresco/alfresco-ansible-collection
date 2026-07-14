@@ -1,0 +1,71 @@
+---
+# tasks file for search_index
+- name: Assert ACS version is supported
+  ansible.builtin.assert:
+    that:
+      - "search_index_acs_version is version(search_index_min_acs_version, 'ge')"
+    fail_msg: "search_index requires ACS {{ search_index_min_acs_version }} or later, got {{ search_index_acs_version }}"
+    quiet: true
+
+- name: Test java bin path
+  ansible.builtin.stat:
+    path: "{{ search_index_java_bin_path }}"
+  register: stat_result
+
+- name: Assert java bin is in the expected path
+  ansible.builtin.assert:
+    that:
+      - "stat_result.stat.exists"
+    fail_msg: "Java command not found in the expected path: {{ search_index_java_bin_path }}"
+    quiet: true
+
+- name: Download Batch Indexing
+  ansible.builtin.include_tasks: download.yml
+
+- name: Install required packages
+  become: true
+  ansible.builtin.package:
+    name: "{{ search_index_packages }}"
+    state: present
+
+- name: Install Batch Indexing
+  become: true
+  block:
+    - name: Create directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ search_index_username }}"
+        group: "{{ search_index_group_name }}"
+        mode: "0755"
+      loop:
+        - "{{ search_index_binaries_dir }}"
+        - "{{ search_index_config_dir }}"
+
+    - name: Extract distribution zip in binaries
+      ansible.builtin.unarchive:
+        src: "{{ search_index_download_location }}/{{ search_index_artifact_name }}-{{ search_index_version }}.zip"
+        dest: "{{ search_index_binaries_dir }}"
+        remote_src: true
+        creates: "{{ search_index_binaries_dir }}/README.md"
+        owner: "{{ search_index_username }}"
+        group: "{{ search_index_group_name }}"
+
+    - name: Install Batch Indexing service
+      ansible.builtin.include_role:
+        name: alfresco.platform.systemd_service
+        apply:
+          become: true
+      vars:
+        systemd_service_unit_name: "{{ search_index_systemd_service_unit_name }}"
+        systemd_service_unit_description: "{{ search_index_systemd_service_unit_description }}"
+        systemd_service_unit_after: "{{ search_index_systemd_service_unit_after }}"
+        systemd_service_type: "{{ search_index_systemd_service_type }}"
+        systemd_service_exec_start: "{{ search_index_systemd_service_exec_start }}"
+        systemd_service_exec_stop: "{{ search_index_systemd_service_exec_stop }}"
+        systemd_service_user: "{{ search_index_systemd_service_user }}"
+        systemd_service_environment: "{{ search_index_systemd_service_environment }}"
+        systemd_service_working_directory: "{{ search_index_systemd_service_working_directory }}"
+        systemd_service_additional_options: "{{ search_index_systemd_service_additional_options }}"
+        systemd_service_state: "{{ search_index_systemd_service_state }}"
+        systemd_service_enabled: "{{ search_index_systemd_service_enabled }}"
