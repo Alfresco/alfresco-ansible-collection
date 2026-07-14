@@ -10,7 +10,7 @@ search_index_download_location: /tmp
 search_index_nexus_username: ''
 search_index_nexus_password: ''
 
-search_index_acs_version: "{{ acs_play_repository_acs_version | default('26.2.0') }}"
+search_index_acs_version: "26.2.0"
 
 search_index_username: alfresco
 search_index_group_name: alfresco
