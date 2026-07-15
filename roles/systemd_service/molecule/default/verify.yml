@@ -7,6 +7,7 @@
       ansible.builtin.systemd:
         name: my-test-service
         state: started
+      register: service_status
 
     - name: Check service is enabled
       ansible.builtin.systemd:
@@ -23,4 +24,57 @@
         that:
           - journalctl_output.stdout_lines[0] == '-- No entries --'
         fail_msg: "Service logs contain warnings or errors: {{ journalctl_output.stdout }}"
+        quiet: true
+
+    - name: Stat the environment file
+      ansible.builtin.stat:
+        path: /etc/systemd/system/my-test-service.env
+      register: env_file
+
+    - name: Assert environment file is root-owned and not world-readable
+      ansible.builtin.assert:
+        that:
+          - env_file.stat.exists
+          - env_file.stat.pw_name == 'root'
+          - env_file.stat.mode == '0600'
+        fail_msg: "Environment file is not a root-owned 0600 file: {{ env_file.stat }}"
+        quiet: true
+
+    - name: Read the unit file
+      ansible.builtin.slurp:
+        src: /etc/systemd/system/my-test-service.service
+      register: unit_file
+
+    - name: Assert the unit file contains no environment values
+      ansible.builtin.assert:
+        that:
+          - "'my_value' not in (unit_file.content | b64decode)"
+          - "'another_value' not in (unit_file.content | b64decode)"
+          - "'p%ssw0rd' not in (unit_file.content | b64decode)"
+        fail_msg: "Environment values leaked into the world-readable unit file"
+        quiet: true
+
+    - name: Read the environment file
+      ansible.builtin.slurp:
+        src: /etc/systemd/system/my-test-service.env
+      register: env_file_content
+
+    - name: Assert percent values are written literally (not %%-escaped)
+      ansible.builtin.assert:
+        that:
+          - "'PERCENT_ENV_VAR=p%ssw0rd' in (env_file_content.content | b64decode)"
+          - "'p%%ssw0rd' not in (env_file_content.content | b64decode)"
+        fail_msg: "Percent sign was incorrectly escaped in the environment file"
+        quiet: true
+
+    - name: Read the main process environment
+      ansible.builtin.slurp:
+        src: /proc/{{ service_status.status.MainPID }}/environ
+      register: proc_environ
+
+    - name: Assert the running process sees the literal percent value
+      ansible.builtin.assert:
+        that:
+          - "'PERCENT_ENV_VAR=p%ssw0rd' in (proc_environ.content | b64decode)"
+        fail_msg: "Running process did not receive the expected literal environment value"
         quiet: true

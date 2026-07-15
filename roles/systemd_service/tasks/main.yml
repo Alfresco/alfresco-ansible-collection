@@ -1,5 +1,16 @@
 ---
 # tasks file for systemd-service
+- name: Create systemd service environment file
+  ansible.builtin.template:
+    src: systemd-service.env.j2
+    dest: "{{ systemd_service_environment_file }}"
+    owner: root
+    group: root
+    mode: "0600"
+  notify:
+    - Systemd reload {{ systemd_service_unit_name }}
+    - Restart {{ systemd_service_unit_name }}
+
 - name: Create systemd service
   ansible.builtin.template:
     src: systemd-service.j2

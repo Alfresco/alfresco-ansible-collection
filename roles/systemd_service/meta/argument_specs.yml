@@ -28,6 +28,13 @@ argument_specs:
         type: dict
         description: Environment variables to set for the systemd service unit
         default: {}
+      systemd_service_environment_file:
+        type: str
+        description: |
+          Path to the root-owned, mode 0600 EnvironmentFile that holds the
+          environment variables (including secrets), keeping them out of the
+          world-readable unit file.
+        default: /etc/systemd/system/{{ systemd_service_unit_name }}.env
       systemd_service_exec_start:
         type: str
         description: Command to start the systemd service unit
