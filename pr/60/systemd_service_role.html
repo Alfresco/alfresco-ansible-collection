@@ -182,13 +182,23 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--systemd_service_environment_file"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-environment-file"><strong>systemd_service_environment_file</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--systemd_service_environment_file" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Path to the root-owned, mode 0600 EnvironmentFile that holds the
+environment variables (including secrets), keeping them out of the
+world-readable unit file.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/etc/systemd/system/{{</span> <span class="pre">systemd_service_unit_name</span> <span class="pre">}}.env&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_exec_start"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-exec-start"><strong>systemd_service_exec_start</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_exec_start" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Command to start the systemd service unit</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_exec_stop"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-exec-stop"><strong>systemd_service_exec_stop</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_exec_stop" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -196,7 +206,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;kill</span> <span class="pre">-15</span> <span class="pre">$MAINPID&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_state"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-state"><strong>systemd_service_state</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_state" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -204,7 +214,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;started&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-type"><strong>systemd_service_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -212,35 +222,35 @@ To check whether it is installed, run <code class="code docutils literal notrans
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;simple&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_unit_after"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-unit-after"><strong>systemd_service_unit_after</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_unit_after" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>List of systemd targets to start after (space separated)</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_unit_description"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-unit-description"><strong>systemd_service_unit_description</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_unit_description" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Description of the systemd service unit</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_unit_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-unit-name"><strong>systemd_service_unit_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_unit_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the systemd service unit</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_user"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-user"><strong>systemd_service_user</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_user" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>User to run the systemd service as</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--systemd_service_working_directory"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-systemd-service-role-parameter-main-systemd-service-working-directory"><strong>systemd_service_working_directory</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--systemd_service_working_directory" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
