@@ -10,9 +10,7 @@ RemainAfterExit=yes
 
 User={{ systemd_service_user }}
 
-{% for key, value in systemd_service_environment.items() %}
-Environment="{{ key }}={{ value | replace('%', '%%') }}"
-{% endfor %}
+EnvironmentFile={{ systemd_service_environment_file }}
 
 ExecStart={{ systemd_service_exec_start }}
 ExecStop={{ systemd_service_exec_stop }}

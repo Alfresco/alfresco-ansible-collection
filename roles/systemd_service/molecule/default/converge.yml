@@ -13,3 +13,4 @@
         systemd_service_environment:
           MY_ENV_VAR: my_value
           ANOTHER_ENV_VAR: another_value
+          PERCENT_ENV_VAR: p%ssw0rd
