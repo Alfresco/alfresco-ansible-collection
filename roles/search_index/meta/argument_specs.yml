@@ -43,7 +43,7 @@ argument_specs:
       search_index_server_port:
         type: int
         description: Port for the Batch Indexing service
-        default: 8080
+        default: 8086
       search_index_elasticsearch_url:
         type: str
         description: URL for the Elasticsearch instance to index into

@@ -27,7 +27,7 @@
 
     - name: Check the actuator health endpoint is reachable
       ansible.builtin.uri:
-        url: "http://localhost:8080/actuator/health"
+        url: "http://localhost:8086/actuator/health"
         status_code:
           - 200
           - 503

@@ -15,7 +15,7 @@ search_index_acs_version: "26.2.0"
 search_index_username: alfresco
 search_index_group_name: alfresco
 
-search_index_server_port: 8080
+search_index_server_port: 8086
 
 search_index_elasticsearch_url: http://localhost:9200
 search_index_elasticsearch_username: ''
