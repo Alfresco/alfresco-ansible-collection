@@ -6,8 +6,6 @@ Batch Indexing is a Spring Boot service (shipped with ACS 26.2) that continuousl
 indexes Alfresco content into Elasticsearch by polling the repository database and
 retrieving content over HTTP from ACS. It does **not** require ActiveMQ.
 
-This role refuses to run on ACS versions earlier than 26.2.
-
 ## Requirements
 
 For this role to function as intended, the following prerequisites must be met:
@@ -62,7 +60,6 @@ You also need a user and group created on the host.
       ansible.builtin.include_role:
         name: alfresco.platform.search_index
       vars:
-        search_index_acs_version: "26.2.0"
         search_index_java_home_path: "/opt/openjdk-17.0.18"
         search_index_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
         search_index_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"

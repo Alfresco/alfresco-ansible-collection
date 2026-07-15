@@ -3,7 +3,7 @@ argument_specs:
     short_description: Install Alfresco Elasticsearch Batch Indexing
     description: |
       This role installs the Alfresco Elasticsearch Batch Indexing service and
-      starts it. It refuses to run on ACS versions earlier than 26.2.
+      starts it.
     options:
       search_index_version:
         type: str
@@ -29,9 +29,6 @@ argument_specs:
       search_index_nexus_password:
         type: str
         description: Password for the Nexus repository to download the Batch Indexing artifact
-      search_index_acs_version:
-        type: str
-        description: Version of ACS being deployed; the role fails when this is earlier than 26.2
       search_index_username:
         type: str
         description: Username for the Batch Indexing service

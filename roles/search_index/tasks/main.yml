@@ -1,12 +1,5 @@
 ---
 # tasks file for search_index
-- name: Assert ACS version is supported
-  ansible.builtin.assert:
-    that:
-      - "search_index_acs_version is version(search_index_min_acs_version, 'ge')"
-    fail_msg: "search_index requires ACS {{ search_index_min_acs_version }} or later, got {{ search_index_acs_version }}"
-    quiet: true
-
 - name: Test java bin path
   ansible.builtin.stat:
     path: "{{ search_index_java_bin_path }}"

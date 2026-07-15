@@ -1,6 +1,5 @@
 ---
 # vars file for search_index
-search_index_min_acs_version: "26.2"
 search_index_artifact_path: "{{ search_index_binaries_dir }}/alfresco-elasticsearch-batch-indexing-{{ search_index_version }}-app.jar"
 search_index_systemd_service_environment: >-
   {{ search_index_default_environment |
