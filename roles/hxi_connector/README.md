@@ -23,13 +23,13 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
       ansible.builtin.include_role:
         name: alfresco.platform.java
       vars:
-        java_version: 17.0.18+8
+        java_version: 17.0.19+10
 
     - name: Include main role
       ansible.builtin.include_role:
         name: alfresco.platform.hxi_connector
       vars:
-        hxi_connector_java_bin_path: "/opt/openjdk-17.0.18/bin/java"
+        hxi_connector_java_bin_path: "/opt/openjdk-17.0.19/bin/java"
         hxi_connector_remote_ingestion_url: "https://hxinsight.alfresco.com/ingestion"
         hxi_connector_remote_prediction_url: "https://hxinsight.alfresco.com/predictions"
         hxi_connector_remote_token_url: "https://hxinsight.alfresco.com/token"

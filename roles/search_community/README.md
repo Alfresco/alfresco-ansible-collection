@@ -54,13 +54,13 @@ You also need a user and group created on the host.
       ansible.builtin.include_role:
         name: alfresco.platform.java
       vars:
-        java_version: 17.0.18+8
+        java_version: 17.0.19+10
 
     - name: Include main role
       ansible.builtin.include_role:
         name: alfresco.platform.search_community
       vars:
-        search_community_java_home_path: "/opt/openjdk-17.0.18"
+        search_community_java_home_path: "/opt/openjdk-17.0.19"
         search_community_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
         search_community_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         search_community_username: "{{ username }}"
