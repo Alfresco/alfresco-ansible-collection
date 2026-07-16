@@ -7,7 +7,7 @@
 <meta content="2.24.0" name="antsibull-docs" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>alfresco.platform.search_index role – Install Alfresco Elasticsearch Batch Indexing &mdash; Alfresco.Platform Collection  documentation</title>
+  <title>alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing &mdash; Alfresco.Platform Collection  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
       <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=b54c304f" />
       <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
@@ -77,7 +77,7 @@
 <li class="toctree-l1"><a class="reference internal" href="audit_storage_role.html">alfresco.platform.audit_storage role – Install a Alfresco Audit Storage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hxi_connector_role.html">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.search_index role – Install Alfresco Elasticsearch Batch Indexing</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#entry-point-download-download-the-batch-indexing-distribution">Entry point <code class="docutils literal notranslate"><span class="pre">download</span></code> – Download the Batch Indexing distribution</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
@@ -111,7 +111,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">alfresco.platform.search_index role – Install Alfresco Elasticsearch Batch Indexing</li>
+      <li class="breadcrumb-item active">alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -122,15 +122,15 @@
   
            <div itemprop="articleBody">
              
-  <span class="target" id="ansible-collections-alfresco-platform-search-index-role"></span><section id="alfresco-platform-search-index-role-install-alfresco-elasticsearch-batch-indexing">
-<h1>alfresco.platform.search_index role – Install Alfresco Elasticsearch Batch Indexing<a class="headerlink" href="#alfresco-platform-search-index-role-install-alfresco-elasticsearch-batch-indexing" title="Link to this heading"></a></h1>
+  <span class="target" id="ansible-collections-alfresco-platform-search-community-role"></span><section id="alfresco-platform-search-community-role-install-alfresco-elasticsearch-batch-indexing">
+<h1>alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing<a class="headerlink" href="#alfresco-platform-search-community-role-install-alfresco-elasticsearch-batch-indexing" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This role is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.3.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">alfresco.platform</span></code>.</p>
-<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">alfresco.platform.search_index</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">alfresco.platform.search_community</span></code>.</p>
 </div>
 <nav class="contents local" id="contents">
 <ul class="simple">
@@ -148,7 +148,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </li>
 </ul>
 </nav>
-<span class="target" id="ansible-collections-alfresco-platform-search-index-role-entrypoint-download"></span><section id="entry-point-download-download-the-batch-indexing-distribution">
+<span class="target" id="ansible-collections-alfresco-platform-search-community-role-entrypoint-download"></span><section id="entry-point-download-download-the-batch-indexing-distribution">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">download</span></code> – Download the Batch Indexing distribution</a><a class="headerlink" href="#entry-point-download-download-the-batch-indexing-distribution" title="Link to this heading"></a></h2>
 <section id="synopsis">
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h3>
@@ -166,57 +166,57 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_artifact_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-artifact-name"><strong>search_index_artifact_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_artifact_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_artifact_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-artifact-name"><strong>search_community_artifact_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_artifact_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the Batch Indexing distribution artifact</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_download_location"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-download-location"><strong>search_index_download_location</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_download_location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_download_location"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-download-location"><strong>search_community_download_location</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_download_location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Location to download the Batch Indexing distribution zip file</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_nexus_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-nexus-password"><strong>search_index_nexus_password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_nexus_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_nexus_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-nexus-password"><strong>search_community_nexus_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_nexus_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password for the Nexus repository to download the Batch Indexing artifact</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_nexus_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-nexus-username"><strong>search_index_nexus_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_nexus_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_nexus_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-nexus-username"><strong>search_community_nexus_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_nexus_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the Nexus repository to download the Batch Indexing artifact</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-version"><strong>search_index_version</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-version"><strong>search_community_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Version of the Batch Indexing distribution to download</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_zip_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-zip-checksum"><strong>search_index_zip_checksum</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_zip_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_zip_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-zip-checksum"><strong>search_community_zip_checksum</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_zip_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Checksum for the Batch Indexing distribution zip file</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-download--search_index_zip_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-download-search-index-zip-url"><strong>search_index_zip_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-download--search_index_zip_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-download--search_community_zip_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-download-search-community-zip-url"><strong>search_community_zip_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--search_community_zip_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>URL to download the Batch Indexing distribution zip file</p>
 </div></td>
 </tr>
 </tbody>
 </table>
-<span class="target" id="ansible-collections-alfresco-platform-search-index-role-entrypoint-main"></span></section>
+<span class="target" id="ansible-collections-alfresco-platform-search-community-role-entrypoint-main"></span></section>
 </section>
 <section id="entry-point-main-install-alfresco-elasticsearch-batch-indexing">
 <h2><a class="toc-backref" href="#id6" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">main</span></code> – Install Alfresco Elasticsearch Batch Indexing</a><a class="headerlink" href="#entry-point-main-install-alfresco-elasticsearch-batch-indexing" title="Link to this heading"></a></h2>
@@ -237,180 +237,180 @@ starts it.</p></li>
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_acs_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-acs-url"><strong>search_index_acs_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_acs_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_acs_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-acs-url"><strong>search_community_acs_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_acs_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Base URL of the ACS repository</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_artifact_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-artifact-name"><strong>search_index_artifact_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_artifact_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_artifact_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-artifact-name"><strong>search_community_artifact_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_artifact_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the Batch Indexing distribution artifact</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_binaries_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-binaries-dir"><strong>search_index_binaries_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_binaries_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_binaries_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-binaries-dir"><strong>search_community_binaries_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_binaries_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Directory where the Batch Indexing binaries will be installed</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_config_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-config-dir"><strong>search_index_config_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_config_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_config_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-config-dir"><strong>search_community_config_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_config_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Directory where the Batch Indexing configuration files will be stored</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_content_transform_shared_secret"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-content-transform-shared-secret"><strong>search_index_content_transform_shared_secret</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_content_transform_shared_secret" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_content_transform_shared_secret"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-content-transform-shared-secret"><strong>search_community_content_transform_shared_secret</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_content_transform_shared_secret" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Shared secret used to authenticate content transform requests to ACS</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_db_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-db-password"><strong>search_index_db_password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_db_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_db_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-db-password"><strong>search_community_db_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_db_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password for the ACS repository database</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_db_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-db-url"><strong>search_index_db_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_db_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_db_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-db-url"><strong>search_community_db_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_db_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>JDBC URL for the ACS repository database</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_db_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-db-username"><strong>search_index_db_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_db_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_db_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-db-username"><strong>search_community_db_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_db_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the ACS repository database</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_download_location"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-download-location"><strong>search_index_download_location</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_download_location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_download_location"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-download-location"><strong>search_community_download_location</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_download_location" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Location to download the Batch Indexing distribution zip file</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_elasticsearch_index_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-elasticsearch-index-name"><strong>search_index_elasticsearch_index_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_elasticsearch_index_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_elasticsearch_community_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-elasticsearch-community-name"><strong>search_community_elasticsearch_community_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_elasticsearch_community_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Name of the Elasticsearch index to write to</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_elasticsearch_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-elasticsearch-password"><strong>search_index_elasticsearch_password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_elasticsearch_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_elasticsearch_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-elasticsearch-password"><strong>search_community_elasticsearch_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_elasticsearch_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password for the Elasticsearch instance</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_elasticsearch_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-elasticsearch-url"><strong>search_index_elasticsearch_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_elasticsearch_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_elasticsearch_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-elasticsearch-url"><strong>search_community_elasticsearch_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_elasticsearch_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>URL for the Elasticsearch instance to index into</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_elasticsearch_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-elasticsearch-username"><strong>search_index_elasticsearch_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_elasticsearch_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_elasticsearch_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-elasticsearch-username"><strong>search_community_elasticsearch_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_elasticsearch_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the Elasticsearch instance</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_environment"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-environment"><strong>search_index_environment</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_environment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_environment"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-environment"><strong>search_community_environment</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_environment" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Additional environment variables for the Batch Indexing service</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_group_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-group-name"><strong>search_index_group_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_group_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_group_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-group-name"><strong>search_community_group_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_group_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Group name for the Batch Indexing service</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_java_bin_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-java-bin-path"><strong>search_index_java_bin_path</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_java_bin_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_java_bin_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-java-bin-path"><strong>search_community_java_bin_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_java_bin_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Path to the Java binary for the Batch Indexing service</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java/bin/java&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_java_home_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-java-home-path"><strong>search_index_java_home_path</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_java_home_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_java_home_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-java-home-path"><strong>search_community_java_home_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_java_home_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Path to the Java home directory for the Batch Indexing service</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_nexus_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-nexus-password"><strong>search_index_nexus_password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_nexus_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_nexus_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-nexus-password"><strong>search_community_nexus_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_nexus_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Password for the Nexus repository to download the Batch Indexing artifact</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_nexus_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-nexus-username"><strong>search_index_nexus_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_nexus_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_nexus_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-nexus-username"><strong>search_community_nexus_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_nexus_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the Nexus repository to download the Batch Indexing artifact</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_repository"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-repository"><strong>search_index_repository</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_repository" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_repository"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-repository"><strong>search_community_repository</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_repository" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Base repository URL to download the Batch Indexing distribution from</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_server_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-server-port"><strong>search_index_server_port</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_server_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_server_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-server-port"><strong>search_community_server_port</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_server_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Port for the Batch Indexing service</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">8086</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-username"><strong>search_index_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-username"><strong>search_community_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the Batch Indexing service</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-version"><strong>search_index_version</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-version"><strong>search_community_version</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Version of the Batch Indexing distribution to install</p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_zip_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-zip-checksum"><strong>search_index_zip_checksum</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_zip_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_zip_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-zip-checksum"><strong>search_community_zip_checksum</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_zip_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Checksum for the Batch Indexing distribution zip file</p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-main--search_index_zip_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-index-role-parameter-main-search-index-zip-url"><strong>search_index_zip_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-main--search_index_zip_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-main--search_community_zip_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-search-community-role-parameter-main-search-community-zip-url"><strong>search_community_zip_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--search_community_zip_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>URL to download the Batch Indexing distribution zip file</p>
 </div></td>
