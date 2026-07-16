@@ -1,4 +1,4 @@
-# search_index
+# search_community
 
 Install and configure the Alfresco Elasticsearch Batch Indexing service.
 
@@ -14,7 +14,7 @@ For this role to function as intended, the following prerequisites must be met:
   for both read & **write** index operations.
 * The **ACS repository database** must be reachable from the target host so the
   service can read node metadata.
-* A running **ACS 26.2+ repository** reachable at `search_index_acs_url` so content
+* A running **ACS 26.2+ repository** reachable at `search_community_acs_url` so content
   can be retrieved and transformed.
 * Access to [Alfresco's artifacts repository](https://artifacts.alfresco.com/nexus)
   (or another artifact repository) to pull the Batch Indexing distribution from.
@@ -22,7 +22,7 @@ For this role to function as intended, the following prerequisites must be met:
 ## Dependencies
 
 This role requires an openjdk installation to be present on the target system and
-provided as `search_index_java_home_path`.
+provided as `search_community_java_home_path`.
 
 The role `alfresco.platform.java` is recommended to install the openjdk.
 
@@ -32,7 +32,7 @@ You also need a user and group created on the host.
 
 ```yaml
 - name: Converge Batch Indexing Hosts
-  hosts: search_index
+  hosts: search_community
   vars:
     username: alfresco
     group_name: alfresco
@@ -58,26 +58,26 @@ You also need a user and group created on the host.
 
     - name: Include main role
       ansible.builtin.include_role:
-        name: alfresco.platform.search_index
+        name: alfresco.platform.search_community
       vars:
-        search_index_java_home_path: "/opt/openjdk-17.0.18"
-        search_index_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
-        search_index_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
-        search_index_username: "{{ username }}"
-        search_index_group_name: "{{ group_name }}"
-        search_index_elasticsearch_url: http://elasticsearch:9200
-        search_index_elasticsearch_username: admin
-        search_index_elasticsearch_password: admin
-        search_index_db_url: jdbc:postgresql://postgres:5432/alfresco
-        search_index_db_username: alfresco
-        search_index_db_password: alfresco
-        search_index_acs_url: http://alfresco:8080
-        search_index_content_transform_shared_secret: mysecret
+        search_community_java_home_path: "/opt/openjdk-17.0.18"
+        search_community_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
+        search_community_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
+        search_community_username: "{{ username }}"
+        search_community_group_name: "{{ group_name }}"
+        search_community_elasticsearch_url: http://elasticsearch:9200
+        search_community_elasticsearch_username: admin
+        search_community_elasticsearch_password: admin
+        search_community_db_url: jdbc:postgresql://postgres:5432/alfresco
+        search_community_db_username: alfresco
+        search_community_db_password: alfresco
+        search_community_acs_url: http://alfresco:8080
+        search_community_content_transform_shared_secret: mysecret
 ```
 
 Continuous-reindexing behaviour can be tuned by adding the corresponding Spring Boot
 environment variables (e.g. `ALFRESCO_REINDEX_CONTINUOUS_POLLINGINTERVAL`) via
-`search_index_environment`.
+`search_community_environment`.
 
 > **Note:** While this component can be installed independently, an operational
 > **Alfresco Content Services (ACS) 26.2+ instance** is required for it to function

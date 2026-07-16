@@ -1,0 +1,6 @@
+---
+# vars file for search_community
+search_community_artifact_path: "{{ search_community_binaries_dir }}/alfresco-elasticsearch-batch-indexing-{{ search_community_version }}-app.jar"
+search_community_systemd_service_environment: >-
+  {{ search_community_default_environment |
+  combine(search_community_environment) }}

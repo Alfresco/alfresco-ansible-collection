@@ -1,0 +1,63 @@
+---
+# defaults file for search_community
+search_community_version: 5.7.0-A.5
+search_community_artifact_name: alfresco-elasticsearch-batch-indexing-distribution
+search_community_repository: https://nexus.alfresco.com/nexus/content/repositories/releases/org/alfresco
+search_community_zip_url: "{{ search_community_repository }}/{{ search_community_artifact_name }}/{{ search_community_version }}/{{ search_community_artifact_name }}-{{ search_community_version }}.zip" # noqa yaml[line-length]
+search_community_zip_checksum: sha1:{{ search_community_zip_url }}.sha1
+
+search_community_download_location: /tmp
+search_community_nexus_username: ''
+search_community_nexus_password: ''
+
+search_community_username: alfresco
+search_community_group_name: alfresco
+
+search_community_server_port: 8086
+
+search_community_elasticsearch_url: http://localhost:9200
+search_community_elasticsearch_username: ''
+search_community_elasticsearch_password: ''
+search_community_elasticsearch_community_name: alfresco
+
+search_community_db_url: jdbc:postgresql://localhost:5432/alfresco
+search_community_db_username: alfresco
+search_community_db_password: ''
+
+search_community_acs_url: http://localhost:8080
+search_community_content_transform_shared_secret: ''
+
+search_community_default_environment:
+  SERVER_PORT: "{{ search_community_server_port }}"
+  SPRING_ELASTICSEARCH_REST_URIS: "{{ search_community_elasticsearch_url }}"
+  SPRING_ELASTICSEARCH_REST_USERNAME: "{{ search_community_elasticsearch_username }}"
+  SPRING_ELASTICSEARCH_REST_PASSWORD: "{{ search_community_elasticsearch_password }}"
+  ELASTICSEARCH_INDEXNAME: "{{ search_community_elasticsearch_community_name }}"
+  SPRING_DATASOURCE_URL: "{{ search_community_db_url }}"
+  SPRING_DATASOURCE_USERNAME: "{{ search_community_db_username }}"
+  SPRING_DATASOURCE_PASSWORD: "{{ search_community_db_password }}"
+  ALFRESCO_ACS_URL: "{{ search_community_acs_url }}"
+  ALFRESCO_CONTENT_TRANSFORM_SHAREDSECRET: "{{ search_community_content_transform_shared_secret }}"
+search_community_environment: {}
+
+search_community_java_home_path: /opt/java
+search_community_java_bin_path: "{{ search_community_java_home_path }}/bin/java"
+
+search_community_binaries_dir: "/opt/alfresco/batch-indexing-{{ search_community_version }}"
+search_community_config_dir: "/etc/alfresco/batch-indexing"
+
+search_community_packages:
+  - unzip
+
+search_community_systemd_service_unit_name: "alfresco-batch-indexing"
+search_community_systemd_service_unit_description: "Alfresco Elasticsearch Batch Indexing"
+search_community_systemd_service_exec_start: "{{ search_community_java_bin_path }} -jar {{ search_community_artifact_path }}"
+search_community_systemd_service_user: "{{ search_community_username }}"
+
+search_community_systemd_service_unit_after: syslog.target network.target local-fs.target remote-fs.target nss-lookup.target
+search_community_systemd_service_type: simple
+search_community_systemd_service_exec_stop: kill -15 $MAINPID
+search_community_systemd_service_working_directory: /tmp
+search_community_systemd_service_additional_options: {}
+search_community_systemd_service_state: started
+search_community_systemd_service_enabled: true

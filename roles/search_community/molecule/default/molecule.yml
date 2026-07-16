@@ -41,7 +41,7 @@ platforms:
     volume_mounts:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
-      - search_index
+      - search_community
     networks:
       - name: molecule_default
         links:
