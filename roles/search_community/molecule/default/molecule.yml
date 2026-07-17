@@ -16,13 +16,16 @@ platforms:
     networks:
       - name: molecule_default
 
-  - name: activemq-instance
-    image: alfresco/alfresco-activemq:5.18-jre17-rockylinux8
+  - name: postgres-instance
+    image: postgres:15
     pre_build_image: true
-    mem_limit: "1g"
-    command: "activemq console"
+    command: "postgres"
+    env:
+      POSTGRES_DB: alfresco
+      POSTGRES_USER: alfresco
+      POSTGRES_PASSWORD: alfresco
     exposed_ports:
-      - 61616
+      - 5432
     networks:
       - name: molecule_default
 
@@ -38,12 +41,12 @@ platforms:
     volume_mounts:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
-      - audit_storage
+      - search_community
     networks:
       - name: molecule_default
         links:
           - elasticsearch-instance
-          - activemq-instance
+          - postgres-instance
 
 provisioner:
   name: ansible

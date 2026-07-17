@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: instance
+  vars:
+    molecule_java_home: /opt/java
+  tasks:
+    - name: Include java role
+      ansible.builtin.include_role:
+        name: alfresco.platform.java
+      vars:
+        java_home: "{{ molecule_java_home }}"
+    - name: Include main role
+      ansible.builtin.include_role:
+        name: alfresco.platform.search_community
+      vars:
+        search_community_nexus_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
+        search_community_nexus_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
+        search_community_elasticsearch_url: http://elasticsearch-instance:9200
+        search_community_db_url: jdbc:postgresql://postgres-instance:5432/alfresco
+        search_community_db_password: alfresco
+        search_community_java_home_path: "{{ molecule_java_home }}"

@@ -1,0 +1,9 @@
+---
+- name: Download batch indexing distribution {{ search_community_version }}
+  ansible.builtin.get_url:
+    url: "{{ search_community_zip_url }}"
+    dest: "{{ search_community_download_location }}/{{ search_community_artifact_name }}-{{ search_community_version }}.zip"
+    checksum: "{{ search_community_zip_checksum }}"
+    mode: "0644"
+    url_username: "{{ search_community_nexus_username | default(omit) }}"
+    url_password: "{{ search_community_nexus_password | default(omit) }}"

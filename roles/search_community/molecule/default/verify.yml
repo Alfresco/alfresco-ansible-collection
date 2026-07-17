@@ -1,0 +1,37 @@
+---
+- name: Verify
+  hosts: instance
+  gather_facts: false
+  tasks:
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check that elasticsearch is reachable
+      ansible.builtin.wait_for:
+        host: elasticsearch-instance
+        port: 9200
+        timeout: 30
+
+    - name: Check that postgres is reachable
+      ansible.builtin.wait_for:
+        host: postgres-instance
+        port: 5432
+        timeout: 30
+
+    - name: Check that service is up and running
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.services['alfresco-batch-indexing.service'] is defined
+          - ansible_facts.services['alfresco-batch-indexing.service'].state == 'running'
+        quiet: true
+
+    - name: Check the actuator health endpoint is reachable
+      ansible.builtin.uri:
+        url: "http://localhost:8086/actuator/health"
+        status_code:
+          - 200
+          - 503
+      register: health_check_result
+      until: health_check_result.status in [200, 503]
+      retries: 10
+      delay: 15
