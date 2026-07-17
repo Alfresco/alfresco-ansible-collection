@@ -9,14 +9,14 @@ releases:
     fragments:
       - hxi_connector-role.yaml
       - systemd_service.yaml
-    release_date: "2025-04-29"
+    release_date: '2025-04-29'
   0.1.0-alpha.0:
     changes:
       major_changes:
         - add java role
     fragments:
       - java_initial_release.yml
-    release_date: "2025-04-10"
+    release_date: '2025-04-10'
   0.1.1:
     changes:
       bugfixes:
@@ -28,7 +28,7 @@ releases:
     fragments:
       - mandatory-args.yml
       - optional-handler.yml
-    release_date: "2025-05-12"
+    release_date: '2025-05-12'
   0.2.0:
     changes:
       major_changes:
@@ -39,14 +39,14 @@ releases:
     fragments:
       - audit_storage-role.yaml
       - common-arg-spec.yaml
-    release_date: "2025-06-06"
+    release_date: '2025-06-06'
   0.2.1:
     changes:
       minor_changes:
         - Allow usage of community.general v11
     fragments:
       - community_general.yaml
-    release_date: "2025-09-01"
+    release_date: '2025-09-01'
   0.2.2:
     changes:
       bugfixes:
@@ -54,7 +54,7 @@ releases:
           fixing username key
     fragments:
       - audit_storage-role.yaml
-    release_date: "2026-02-04"
+    release_date: '2026-02-04'
   0.2.3:
     changes:
       bugfixes:
@@ -62,7 +62,7 @@ releases:
           variable to enable audit picking default ingestion URI.
     fragments:
       - audit_storage_user-role.yaml
-    release_date: "2026-02-12"
+    release_date: '2026-02-12'
   0.3.0:
     changes:
       minor_changes:
@@ -71,4 +71,17 @@ releases:
       - audit_storage-role.yaml
       - hxi_connector-role.yaml
       - java-role.yaml
-    release_date: "2026-02-25"
+    release_date: '2026-02-25'
+  0.4.0:
+    changes:
+      major_changes:
+        - Add search_community service role
+      security_fixes:
+        - systemd_service - write the service environment (including database and other
+          credentials) to a root-owned ``EnvironmentFile`` with mode ``0600`` referenced
+          from the unit, instead of embedding it as ``Environment=`` lines in the world-readable
+          (``0644``) unit file.
+    fragments:
+      - search_community-role.yaml
+      - systemd_service-environment-file.yaml
+    release_date: '2026-07-17'
