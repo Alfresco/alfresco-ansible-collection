@@ -110,6 +110,13 @@ jobs:
         with:
           python-version-file: ".python-version"
 
+      - name: Disable unix-chkpwd AppArmor profile
+        run: |
+          if sudo aa-status --enabled 2>/dev/null; then
+            sudo ln -sf /etc/apparmor.d/unix-chkpwd /etc/apparmor.d/disable/
+            sudo apparmor_parser -R /etc/apparmor.d/unix-chkpwd 2>/dev/null || true
+          fi
+
       - name: Run molecule
         env:
           ANSIBLE_DIFF_ALWAYS: "true"
