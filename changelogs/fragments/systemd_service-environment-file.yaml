@@ -1,5 +1,0 @@
-security_fixes:
-  - systemd_service - write the service environment (including database and
-    other credentials) to a root-owned ``EnvironmentFile`` with mode ``0600``
-    referenced from the unit, instead of embedding it as ``Environment=`` lines
-    in the world-readable (``0644``) unit file.
