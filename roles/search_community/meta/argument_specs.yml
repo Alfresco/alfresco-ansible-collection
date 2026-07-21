@@ -69,6 +69,10 @@ argument_specs:
         type: str
         description: Base URL of the ACS repository
         required: true
+      search_community_transform_url:
+        type: str
+        description: URL of the Alfresco transform config endpoint (e.g. http://transform-core-aio:8090/transform/config)
+        required: true
       search_community_content_transform_shared_secret:
         type: str
         description: Shared secret used to authenticate content transform requests to ACS
