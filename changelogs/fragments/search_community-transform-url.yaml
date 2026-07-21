@@ -1,0 +1,7 @@
+minor_changes:
+  - search_community - add ``search_community_transform_url`` to configure the
+    Alfresco transform config endpoint, mapped to the batch indexing service's
+    ``ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_BASEURL`` environment variable so
+    it can discover the content media types it is able to transform.
+  - search_community - bump the batch indexing distribution to the released
+    ``5.7.0`` version (previously the ``5.7.0-A.5`` pre-release).
