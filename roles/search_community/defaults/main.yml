@@ -26,6 +26,7 @@ search_community_db_password: ''
 
 search_community_acs_url: http://localhost:8080
 search_community_transform_url: http://localhost:8090/transform/config
+search_community_transform_enabled: true
 search_community_content_transform_shared_secret: ''
 
 search_community_default_environment:
@@ -39,6 +40,7 @@ search_community_default_environment:
   SPRING_DATASOURCE_PASSWORD: "{{ search_community_db_password }}"
   ALFRESCO_ACS_URL: "{{ search_community_acs_url }}"
   ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_BASEURL: "{{ search_community_transform_url }}"
+  ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_ENABLED: "{{ search_community_transform_enabled | string | lower }}"
   ALFRESCO_CONTENT_TRANSFORM_SHAREDSECRET: "{{ search_community_content_transform_shared_secret }}"
 search_community_environment: {}
 
