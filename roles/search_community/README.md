@@ -16,6 +16,9 @@ For this role to function as intended, the following prerequisites must be met:
   service can read node metadata.
 * A running **ACS 26.2+ repository** reachable at `search_community_acs_url` so content
   can be retrieved and transformed.
+* A **transform service** whose config endpoint is reachable at
+  `search_community_transform_url` (e.g. `http://transform-core-aio:8090/transform/config`)
+  so the service can discover the content media types it is able to transform.
 * Access to [Alfresco's artifacts repository](https://artifacts.alfresco.com/nexus)
   (or another artifact repository) to pull the Batch Indexing distribution from.
 
@@ -72,6 +75,7 @@ You also need a user and group created on the host.
         search_community_db_username: alfresco
         search_community_db_password: alfresco
         search_community_acs_url: http://alfresco:8080
+        search_community_transform_url: http://transform-core-aio:8090/transform/config
         search_community_content_transform_shared_secret: mysecret
 ```
 
