@@ -2,25 +2,37 @@
 
 **Topics**
 
+- <a href="#v0-4-1">v0\.4\.1</a>
+    - <a href="#minor-changes">Minor Changes</a>
 - <a href="#v0-4-0">v0\.4\.0</a>
     - <a href="#major-changes">Major Changes</a>
     - <a href="#security-fixes">Security Fixes</a>
 - <a href="#v0-3-0">v0\.3\.0</a>
-    - <a href="#minor-changes">Minor Changes</a>
+    - <a href="#minor-changes-1">Minor Changes</a>
 - <a href="#v0-2-3">v0\.2\.3</a>
     - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v0-2-2">v0\.2\.2</a>
     - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v0-2-1">v0\.2\.1</a>
-    - <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#minor-changes-2">Minor Changes</a>
 - <a href="#v0-2-0">v0\.2\.0</a>
     - <a href="#major-changes-1">Major Changes</a>
-    - <a href="#minor-changes-2">Minor Changes</a>
-- <a href="#v0-1-1">v0\.1\.1</a>
     - <a href="#minor-changes-3">Minor Changes</a>
+- <a href="#v0-1-1">v0\.1\.1</a>
+    - <a href="#minor-changes-4">Minor Changes</a>
     - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
     - <a href="#major-changes-2">Major Changes</a>
+
+<a id="v0-4-1"></a>
+## v0\.4\.1
+
+<a id="minor-changes"></a>
+### Minor Changes
+
+* search\_community \- add <code>search\_community\_transform\_enabled</code> to toggle the accepted content media types cache via the <code>ALFRESCO\_ACCEPTEDCONTENTMEDIATYPESCACHE\_ENABLED</code> environment variable\.
+* search\_community \- add <code>search\_community\_transform\_url</code> to configure the Alfresco transform config endpoint\, mapped to the batch indexing service\'s <code>ALFRESCO\_ACCEPTEDCONTENTMEDIATYPESCACHE\_BASEURL</code> environment variable so it can discover the content media types it is able to transform\.
+* search\_community \- bump the batch indexing distribution to the released <code>5\.7\.0</code> version \(previously the <code>5\.7\.0\-A\.5</code> pre\-release\)\.
 
 <a id="v0-4-0"></a>
 ## v0\.4\.0
@@ -38,7 +50,7 @@
 <a id="v0-3-0"></a>
 ## v0\.3\.0
 
-<a id="minor-changes"></a>
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
 * Bump Java to 17\.0\.18
@@ -62,7 +74,7 @@
 <a id="v0-2-1"></a>
 ## v0\.2\.1
 
-<a id="minor-changes-1"></a>
+<a id="minor-changes-2"></a>
 ### Minor Changes
 
 * Allow usage of community\.general v11
@@ -75,7 +87,7 @@
 
 * Add audit\_storage service role
 
-<a id="minor-changes-2"></a>
+<a id="minor-changes-3"></a>
 ### Minor Changes
 
 * Use common java home argument across roles and rely on default java version coming from role defaults
@@ -83,7 +95,7 @@
 <a id="v0-1-1"></a>
 ## v0\.1\.1
 
-<a id="minor-changes-3"></a>
+<a id="minor-changes-4"></a>
 ### Minor Changes
 
 * Allow using an existing handler to trigger the restart of the Alfresco service after installing the repository extension to prevent unwanted restarts\.
