@@ -1,0 +1,45 @@
+---
+- name: Ensure required variables are properly set
+  ansible.builtin.assert:
+    that:
+      - cic_connector_alfresco_db_username | length > 0
+      - cic_connector_alfresco_db_password | length > 0
+    fail_msg: >-
+      cic_connector_alfresco_db_username and cic_connector_alfresco_db_password must be defined
+      when cic_connector_alfresco_db_url is set
+    quiet: true
+
+- name: Fetch Bulk Ingester artifact for version {{ cic_connector_bulk_ingester_artifact_version }}
+  become: true
+  become_user: "{{ cic_connector_service_user }}"
+  ansible.builtin.get_url:
+    url: "{{ cic_connector_bulk_ingester_artifact_url }}"
+    dest: "{{ cic_connector_bulk_ingester_artifact_path }}"
+    url_username: "{{ cic_connector_artifact_username }}"
+    url_password: "{{ cic_connector_artifact_password }}"
+    mode: "0600"
+
+- name: Set environments specific for Bulk Ingester
+  ansible.builtin.set_fact:
+    cic_connector_bulk_ingester_environment:
+      SPRING_DATASOURCE_URL: "{{ cic_connector_alfresco_db_url }}"
+      SPRING_DATASOURCE_USERNAME: "{{ cic_connector_alfresco_db_username }}"
+      SPRING_DATASOURCE_PASSWORD: "{{ cic_connector_alfresco_db_password }}"
+      ALFRESCO_BULK_INGEST_NODEPARAMS_FROMID: "{{ cic_connector_bulk_ingester_node_from_id }}"
+      ALFRESCO_BULK_INGEST_NODEPARAMS_TOID: "{{ cic_connector_bulk_ingester_node_to_id }}"
+      ALFRESCO_BULK_INGEST_PUBLISHER_ENDPOINT: "{{ cic_connector_bulk_ingester_publisher_endpoint }}"
+
+- name: Install Bulk Ingester
+  ansible.builtin.include_role:
+    name: alfresco.platform.systemd_service
+    apply:
+      become: true
+  vars:
+    systemd_service_unit_name: "alfresco-cic-connector-bulk-ingester"
+    systemd_service_unit_description: "Alfresco Content Intelligence Connector Bulk Ingester"
+    systemd_service_exec_start: "{{ cic_connector_java_bin_path }} -jar {{ cic_connector_bulk_ingester_artifact_path }}"
+    systemd_service_user: "{{ cic_connector_service_user }}"
+    systemd_service_environment: "{{ cic_connector_base_environment | combine(cic_connector_bulk_ingester_environment) }}"
+    systemd_service_type: oneshot
+    systemd_service_state: stopped
+    systemd_service_enabled: false

@@ -1,0 +1,103 @@
+---
+# required variables
+cic_connector_artifact_username: ''
+cic_connector_artifact_password: ''
+
+cic_connector_java_home_path: /opt/java
+cic_connector_java_bin_path: "{{ cic_connector_java_home_path }}/bin/java"
+
+cic_connector_artifact_base_path: /opt/alfresco/cic-connector
+cic_connector_artifact_repository_url: https://nexus.alfresco.com/nexus/repository/enterprise-releases/
+cic_connector_artifact_default_version: 1.0.1
+
+## live ingester section
+cic_connector_live_ingester_artifact_name: alfresco-cic-connector-live-ingester
+cic_connector_live_ingester_artifact_version: "{{ cic_connector_artifact_default_version }}"
+cic_connector_live_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+  {{ cic_connector_live_ingester_artifact_name }}/{{ cic_connector_live_ingester_artifact_version }}/\
+  {{ cic_connector_live_ingester_artifact_name }}-{{ cic_connector_live_ingester_artifact_version }}-app.jar"
+cic_connector_live_ingester_artifact_path: >-
+  {{ cic_connector_artifact_base_path }}/{{ cic_connector_live_ingester_artifact_name }}-{{ cic_connector_live_ingester_artifact_version }}-app.jar
+cic_connector_live_ingester_port: 8080
+cic_connector_alfresco_version_override: ''
+
+## nucleus sync section
+cic_connector_nucleus_sync_artifact_name: alfresco-cic-connector-nucleus-sync
+cic_connector_nucleus_sync_artifact_version: "{{ cic_connector_artifact_default_version }}"
+cic_connector_nucleus_sync_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+  {{ cic_connector_nucleus_sync_artifact_name }}/{{ cic_connector_nucleus_sync_artifact_version }}/\
+  {{ cic_connector_nucleus_sync_artifact_name }}-{{ cic_connector_nucleus_sync_artifact_version }}-app.jar"
+cic_connector_nucleus_sync_artifact_path: >-
+  {{ cic_connector_artifact_base_path }}/{{ cic_connector_nucleus_sync_artifact_name }}-{{ cic_connector_nucleus_sync_artifact_version }}-app.jar
+cic_connector_nucleus_sync_port: 8081
+cic_connector_nucleus_sync_enabled_sync: true
+cic_connector_nucleus_sync_cron_expression: "0 0 0 * * *"
+cic_connector_nucleus_idp_base_url: ''
+cic_connector_nucleus_base_url: ''
+cic_connector_nucleus_system_id: ''
+cic_connector_nucleus_sync_auth_alfresco_type: basic
+cic_connector_nucleus_sync_auth_hx_type: oauth2
+
+## bulk ingester section
+cic_connector_bulk_ingester_artifact_name: alfresco-cic-connector-bulk-ingester
+cic_connector_bulk_ingester_artifact_version: "{{ cic_connector_artifact_default_version }}"
+cic_connector_bulk_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+  {{ cic_connector_bulk_ingester_artifact_name }}/{{ cic_connector_bulk_ingester_artifact_version }}/\
+  {{ cic_connector_bulk_ingester_artifact_name }}-{{ cic_connector_bulk_ingester_artifact_version }}-app.jar"
+cic_connector_bulk_ingester_artifact_path: >-
+  {{ cic_connector_artifact_base_path }}/{{ cic_connector_bulk_ingester_artifact_name }}-{{ cic_connector_bulk_ingester_artifact_version }}-app.jar
+cic_connector_bulk_ingester_node_from_id: 0
+cic_connector_bulk_ingester_node_to_id: 20000000000
+cic_connector_bulk_ingester_publisher_endpoint: activemq:queue:bulk-ingester-events
+
+## Alfresco section
+cic_connector_alfresco_activemq_username: ''
+cic_connector_alfresco_activemq_password: ''
+cic_connector_alfresco_db_url: ''
+cic_connector_alfresco_db_username: ''
+cic_connector_alfresco_db_password: ''
+cic_connector_alfresco_base_url: ''
+cic_connector_alfresco_username: ''
+cic_connector_alfresco_password: ''
+cic_connector_alfresco_sfs_url: ''
+cic_connector_alfresco_activemq_url: ''
+cic_connector_application_sourceid: ''
+
+## Remote section
+cic_connector_remote_ingestion_url: ''
+cic_connector_remote_token_url: ''
+cic_connector_remote_client_id: ''
+cic_connector_remote_client_secret: ''
+cic_connector_remote_environment_key: ''
+cic_connector_remote_grant_type: client_credentials
+
+## Live Ingester reliability section
+cic_connector_transform_response_queue_name: org.alfresco.cic-connector.transform.response
+
+cic_connector_events_subscription_durable: true
+cic_connector_events_subscription_name: LiveIngesterSubscription
+
+cic_connector_repo_events_dead_letter_enabled: true
+cic_connector_repo_events_dead_letter_uri: activemq:queue:ActiveMQ.DLQ
+cic_connector_repo_events_maximum_redeliveries: 6
+cic_connector_repo_events_redelivery_delay_ms: 1000
+cic_connector_repo_events_use_exponential_back_off: false
+
+cic_connector_transform_response_dead_letter_enabled: true
+cic_connector_transform_response_dead_letter_uri: activemq:queue:ActiveMQ.DLQ
+cic_connector_transform_response_maximum_redeliveries: 6
+cic_connector_transform_response_redelivery_delay_ms: 1000
+cic_connector_transform_response_use_exponential_back_off: false
+
+cic_connector_bulk_events_dead_letter_enabled: false
+cic_connector_bulk_events_dead_letter_uri: activemq:queue:ActiveMQ.DLQ
+cic_connector_bulk_events_maximum_redeliveries: 6
+cic_connector_bulk_events_redelivery_delay_ms: 1000
+
+cic_connector_activemq_redelivery_maximum_redeliveries: 6
+cic_connector_activemq_redelivery_initial_redelivery_delay_ms: 1000
+cic_connector_activemq_redelivery_use_exponential_back_off: false
+cic_connector_activemq_redelivery_back_off_multiplier: 5.0
+
+cic_connector_jms_transacted: true
+cic_connector_jms_transaction_manager: "#jmsTransactionManager"

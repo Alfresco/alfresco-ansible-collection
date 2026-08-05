@@ -1,0 +1,48 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Populate service facts
+      ansible.builtin.service_facts:
+
+    - name: Check expected services are present
+      ansible.builtin.assert:
+        that:
+          - "'alfresco-cic-connector-live-ingester.service' in ansible_facts.services"
+          - ansible_facts.services['alfresco-cic-connector-live-ingester.service'].state == 'running'
+          - "'alfresco-cic-connector-nucleus-sync.service' in ansible_facts.services"
+          - ansible_facts.services['alfresco-cic-connector-nucleus-sync.service'].state == 'running'
+          - "'alfresco-cic-connector-bulk-ingester.service' in ansible_facts.services"
+          - ansible_facts.services['alfresco-cic-connector-bulk-ingester.service'].state != 'running'
+
+    - name: Ensure live-ingester service is running
+      ansible.builtin.systemd:
+        name: alfresco-cic-connector-live-ingester
+        state: started
+      register: live_ingester_svc
+
+    - name: Check live ingester reliability env vars are set
+      become: true
+      changed_when: false
+      ansible.builtin.command:
+        cmd: >-
+          grep -q '{{ item }}'
+          /proc/{{ live_ingester_svc.status.ExecMainPID }}/environ
+      loop:
+        - 'ALFRESCO_TRANSFORM_RESPONSE_QUEUENAME=org.alfresco.cic-connector.transform.response'
+        - 'ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DURABLE=true'
+        - 'ALFRESCO_TRANSFORM_RESPONSE_DEADLETTERENABLED=true'
+        - 'CAMEL_COMPONENT_ACTIVEMQ_TRANSACTED=true'
+
+    - name: Ensure bulk-ingester service is not running
+      ansible.builtin.systemd:
+        name: alfresco-cic-connector-bulk-ingester
+      register: bulk_ingester_svc
+
+    - name: Check bulk-ingester is installed but stopped and disabled
+      ansible.builtin.assert:
+        that:
+          - bulk_ingester_svc.status.ActiveState != 'active'
+          - bulk_ingester_svc.status.UnitFileState == 'disabled'
+        quiet: true

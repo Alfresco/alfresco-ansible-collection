@@ -1,0 +1,24 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: cic-instance
+    image: ${MOLECULE_ROLE_IMAGE:-rockylinux/rockylinux:9}
+    dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
+    command: "/lib/systemd/systemd"
+    privileged: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      pipelining: true
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: ansible

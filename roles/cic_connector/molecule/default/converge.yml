@@ -1,0 +1,32 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Include java role
+      ansible.builtin.include_role:
+        name: alfresco.platform.java
+
+    - name: Include main role
+      ansible.builtin.include_role:
+        name: alfresco.platform.cic_connector
+      vars:
+        cic_connector_artifact_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
+        cic_connector_artifact_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
+        cic_connector_remote_ingestion_url: "https://hxinsight.alfresco.com"
+        cic_connector_remote_client_id: "client-id"
+        cic_connector_remote_client_secret: "client-secret"
+        cic_connector_remote_environment_key: "environment-key"
+        cic_connector_alfresco_base_url: "http://localhost:8080"
+        cic_connector_alfresco_username: "admin" # pragma: allowlist secret
+        cic_connector_alfresco_password: "admin" # pragma: allowlist secret
+        cic_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
+        cic_connector_alfresco_activemq_url: "nio://activemq.alfresco.com:61616"
+        cic_connector_service_user: "alfresco"
+        cic_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
+        cic_connector_application_sourceid: "some-uuid-1234ab"
+        cic_connector_nucleus_idp_base_url: "https://idp.nucleus.alfresco.com"
+        cic_connector_nucleus_base_url: "https://nucleus.alfresco.com"
+        cic_connector_nucleus_system_id: "some-system-id"
+        cic_connector_alfresco_db_url: "jdbc:postgresql://localhost:5432/alfresco"
+        cic_connector_alfresco_db_username: "alfresco"
+        cic_connector_alfresco_db_password: "alfresco" # pragma: allowlist secret
