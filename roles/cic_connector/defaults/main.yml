@@ -59,6 +59,11 @@ cic_connector_alfresco_db_password: ''
 cic_connector_alfresco_base_url: ''
 cic_connector_alfresco_username: ''
 cic_connector_alfresco_password: ''
+cic_connector_alfresco_auth_type: basic
+cic_connector_alfresco_client_id: ''
+cic_connector_alfresco_client_secret: ''
+cic_connector_alfresco_grant_type: client_credentials
+cic_connector_alfresco_token_url: ''
 cic_connector_alfresco_sfs_url: ''
 cic_connector_alfresco_activemq_url: ''
 cic_connector_application_sourceid: ''

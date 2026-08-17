@@ -18,6 +18,17 @@ cic_connector_remote_client_environment:
   AUTH_PROVIDERS_ALFRESCO_PASSWORD: "{{ cic_connector_alfresco_password }}"
   ALFRESCO_REPOSITORY_BASEURL: "{{ cic_connector_alfresco_base_url }}"
 
+# Only applied to the Live Ingester when cic_connector_alfresco_auth_type is not "basic";
+# username/password above are always set, mirroring the alfresco-connector-cic Helm chart.
+cic_connector_alfresco_oauth_environment: "{{ {} if cic_connector_alfresco_auth_type == 'basic' else _cic_connector_alfresco_oauth_environment }}"
+
+_cic_connector_alfresco_oauth_environment:
+  AUTH_PROVIDERS_ALFRESCO_TYPE: "{{ cic_connector_alfresco_auth_type }}"
+  AUTH_PROVIDERS_ALFRESCO_CLIENTID: "{{ cic_connector_alfresco_client_id }}"
+  AUTH_PROVIDERS_ALFRESCO_CLIENTSECRET: "{{ cic_connector_alfresco_client_secret }}"
+  AUTH_PROVIDERS_ALFRESCO_GRANTTYPE: "{{ cic_connector_alfresco_grant_type }}"
+  AUTH_PROVIDERS_ALFRESCO_TOKENURI: "{{ cic_connector_alfresco_token_url }}"
+
 cic_connector_live_ingester_reliability_environment:
   ALFRESCO_BULKINGESTER_ENDPOINT: "{{ cic_connector_bulk_ingester_publisher_endpoint }}"
   ALFRESCO_BULKINGESTER_DEADLETTERENABLED: "{{ cic_connector_bulk_events_dead_letter_enabled | string | lower }}"

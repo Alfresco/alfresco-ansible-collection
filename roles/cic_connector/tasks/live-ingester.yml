@@ -1,4 +1,16 @@
 ---
+- name: Ensure repository OAuth variables are set when auth type is not basic
+  ansible.builtin.assert:
+    that:
+      - cic_connector_alfresco_client_id | length > 0
+      - cic_connector_alfresco_client_secret | length > 0
+      - cic_connector_alfresco_token_url | length > 0
+    fail_msg: >-
+      cic_connector_alfresco_client_id, cic_connector_alfresco_client_secret and
+      cic_connector_alfresco_token_url must be set when cic_connector_alfresco_auth_type is not "basic"
+    quiet: true
+  when: cic_connector_alfresco_auth_type != "basic"
+
 - name: Fetch Live Ingester artifact for version {{ cic_connector_live_ingester_artifact_version }}
   become: true
   become_user: "{{ cic_connector_service_user }}"
@@ -30,5 +42,6 @@
     systemd_service_environment: >-
       {{ cic_connector_base_environment |
       combine(cic_connector_remote_client_environment) |
+      combine(cic_connector_alfresco_oauth_environment) |
       combine(cic_connector_live_ingester_reliability_environment) |
       combine(cic_connector_live_ingester_environment) }}

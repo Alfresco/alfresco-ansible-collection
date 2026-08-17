@@ -60,6 +60,26 @@ argument_specs:
         type: str
         description: Password for the Alfresco server (required for Nucleus Sync)
         required: true
+      cic_connector_alfresco_auth_type:
+        type: str
+        description: >-
+          Authentication type the Live Ingester uses against the Alfresco server. Use "basic"
+          (username/password) or a non-basic value (e.g. "oauth2") to authenticate with a client
+          id/secret. Only applies to the Live Ingester; Nucleus Sync always uses basic auth.
+        default: basic
+      cic_connector_alfresco_client_id:
+        type: str
+        description: Client ID for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
+      cic_connector_alfresco_client_secret:
+        type: str
+        description: Client secret for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
+      cic_connector_alfresco_grant_type:
+        type: str
+        description: OAuth grant type used when authenticating to the Alfresco server with a client id/secret
+        default: client_credentials
+      cic_connector_alfresco_token_url:
+        type: str
+        description: OAuth token endpoint for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
       cic_connector_alfresco_version_override:
         type: str
         description: >-
