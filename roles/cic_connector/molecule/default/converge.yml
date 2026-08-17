@@ -1,6 +1,6 @@
 ---
 - name: Converge
-  hosts: all
+  hosts: cic-instance
   tasks:
     - name: Include java role
       ansible.builtin.include_role:
@@ -20,7 +20,9 @@
         cic_connector_alfresco_username: "admin" # pragma: allowlist secret
         cic_connector_alfresco_password: "admin" # pragma: allowlist secret
         cic_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
-        cic_connector_alfresco_activemq_url: "nio://activemq.alfresco.com:61616"
+        cic_connector_alfresco_activemq_url: "nio://activemq-instance:61616"
+        cic_connector_alfresco_activemq_username: "admin" # pragma: allowlist secret
+        cic_connector_alfresco_activemq_password: "admin" # pragma: allowlist secret
         cic_connector_service_user: "alfresco"
         cic_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
         cic_connector_application_sourceid: "some-uuid-1234ab"

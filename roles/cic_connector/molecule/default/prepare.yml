@@ -1,6 +1,6 @@
 ---
 - name: Prepare
-  hosts: all
+  hosts: cic-instance
   tasks:
     - name: Add an application user
       become: true

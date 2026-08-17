@@ -1,6 +1,6 @@
 ---
 - name: Verify
-  hosts: all
+  hosts: cic-instance
   gather_facts: false
   tasks:
     - name: Populate service facts
@@ -34,6 +34,34 @@
         - 'ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DURABLE=true'
         - 'ALFRESCO_TRANSFORM_RESPONSE_DEADLETTERENABLED=true'
         - 'CAMEL_COMPONENT_ACTIVEMQ_TRANSACTED=true'
+
+    - name: Ensure the ActiveMQ broker is reachable from the connector host
+      ansible.builtin.wait_for:
+        host: activemq-instance
+        port: 61616
+        timeout: 60
+
+    - name: Check the live-ingester liveness probe is reachable
+      ansible.builtin.uri:
+        url: "http://localhost:8080/actuator/health/liveness"
+        status_code: 200
+      register: liveness_probe
+      until: liveness_probe.status == 200
+      retries: 12
+      delay: 10
+
+    - name: Report the live-ingester aggregate health probe
+      ansible.builtin.uri:
+        url: "http://localhost:8080/actuator/health"
+        status_code:
+          - 200
+          - 503
+      register: health_probe
+      changed_when: false
+
+    - name: Show live-ingester health status
+      ansible.builtin.debug:
+        msg: "live-ingester /actuator/health -> HTTP {{ health_probe.status }}, status={{ health_probe.json.status | default('n/a') }}"
 
     - name: Ensure bulk-ingester service is not running
       ansible.builtin.systemd:
