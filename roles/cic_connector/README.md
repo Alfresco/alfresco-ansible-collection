@@ -29,6 +29,10 @@ and provided as `cic_connector_java_bin_path` variable.
 
 The role `alfresco.platform.java` is recommended to install the openjdk.
 
+The connector artifacts are pulled from Alfresco's Nexus `enterprise-releases`
+repository, which requires Alfresco Enterprise credentials. Provide them via
+`cic_connector_artifact_username` and `cic_connector_artifact_password`.
+
 ## Example Playbook
 
 ```yaml
@@ -46,6 +50,8 @@ The role `alfresco.platform.java` is recommended to install the openjdk.
         name: alfresco.platform.cic_connector
       vars:
         cic_connector_java_bin_path: "/opt/openjdk-17.0.19/bin/java"
+        cic_connector_artifact_username: "{{ lookup('env', 'NEXUS_USERNAME') }}"
+        cic_connector_artifact_password: "{{ lookup('env', 'NEXUS_PASSWORD') }}"
         cic_connector_remote_ingestion_url: "https://hxinsight.alfresco.com/ingestion"
         cic_connector_remote_token_url: "https://hxinsight.alfresco.com/token"
         cic_connector_remote_client_id: "client-id"
