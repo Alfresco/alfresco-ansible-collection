@@ -41,7 +41,7 @@
         port: 61616
         timeout: 60
 
-    - name: Check the live-ingester liveness probe is reachable
+    - name: Check the live-ingester liveness probe is UP
       ansible.builtin.uri:
         url: "http://localhost:8080/actuator/health/liveness"
         status_code: 200
@@ -50,12 +50,19 @@
       retries: 12
       delay: 10
 
-    - name: Report the live-ingester aggregate health probe
+    - name: Check the live-ingester readiness probe reaches UP
+      ansible.builtin.uri:
+        url: "http://localhost:8080/actuator/health/readiness"
+        status_code: 200
+      register: readiness_probe
+      until: readiness_probe.status == 200
+      retries: 24
+      delay: 10
+
+    - name: Confirm the aggregate health endpoint is UP
       ansible.builtin.uri:
         url: "http://localhost:8080/actuator/health"
-        status_code:
-          - 200
-          - 503
+        status_code: 200
       register: health_probe
       changed_when: false
 

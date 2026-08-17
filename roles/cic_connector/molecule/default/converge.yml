@@ -16,7 +16,8 @@
         cic_connector_remote_client_id: "client-id"
         cic_connector_remote_client_secret: "client-secret"
         cic_connector_remote_environment_key: "environment-key"
-        cic_connector_alfresco_base_url: "http://localhost:8080"
+        cic_connector_alfresco_base_url: "http://acs-mock-instance:80"
+        cic_connector_alfresco_version_override: "23.2.0"
         cic_connector_alfresco_username: "admin" # pragma: allowlist secret
         cic_connector_alfresco_password: "admin" # pragma: allowlist secret
         cic_connector_alfresco_sfs_url: "https://sfs.alfresco.com"
