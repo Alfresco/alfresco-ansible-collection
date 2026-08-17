@@ -3,8 +3,8 @@ argument_specs:
   main:
     short_description: Install the Content Intelligence Connector
     description: |
-      This role installs the Content Intelligence Connector live-ingester, bulk-ingester
-      and nucleus-sync services and starts them.
+      This role installs the Content Intelligence Connector live-ingester and nucleus-sync services (started and enabled).
+      The bulk-ingester service is installed only when cic_connector_alfresco_db_url is set, and is not started automatically.
     options:
       cic_connector_artifact_default_version:
         type: str
