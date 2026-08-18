@@ -1,0 +1,49 @@
+---
+driver:
+  name: docker
+platforms:
+  - name: activemq-instance
+    image: alfresco/alfresco-activemq:5.18.3-jre17-rockylinux8
+    pre_build_image: true
+    command: "/opt/activemq/init.sh /opt/activemq"
+    exposed_ports:
+      - 61616
+    networks:
+      - name: molecule_default
+
+  # Stands in for ACS: the connector's AcsHealthProbe treats any HTTP < 400 on
+  # the repository base-url as healthy, which lets the Camel routes start.
+  - name: acs-mock-instance
+    image: python:3-alpine
+    pre_build_image: true
+    command: "python -m http.server 80"
+    exposed_ports:
+      - 80
+    networks:
+      - name: molecule_default
+
+  - name: cic-instance
+    image: ${MOLECULE_ROLE_IMAGE:-rockylinux/rockylinux:9}
+    dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
+    command: "/lib/systemd/systemd"
+    privileged: true
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    networks:
+      - name: molecule_default
+        links:
+          - activemq-instance
+          - acs-mock-instance
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      pipelining: true
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: ansible

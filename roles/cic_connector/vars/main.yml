@@ -1,0 +1,56 @@
+---
+# vars file for cic_connector
+cic_connector_base_environment:
+  JAVA_HOME: "{{ cic_connector_java_home_path }}"
+  SPRING_ACTIVEMQ_BROKERURL: "{{ cic_connector_alfresco_activemq_url }}"
+  SPRING_ACTIVEMQ_USER: "{{ cic_connector_alfresco_activemq_username }}"
+  SPRING_ACTIVEMQ_PASSWORD: "{{ cic_connector_alfresco_activemq_password }}"
+
+cic_connector_remote_client_environment:
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_CLIENTID: "{{ cic_connector_remote_client_id }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_CLIENTSECRET: "{{ cic_connector_remote_client_secret }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_ENVIRONMENTKEY: "{{ cic_connector_remote_environment_key }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_TOKENURI: "{{ cic_connector_remote_token_url }}"
+  AUTH_PROVIDERS_HYLANDEXPERIENCE_GRANTTYPE: "{{ cic_connector_remote_grant_type }}"
+  ALFRESCO_REPOSITORY_DISCOVERYENDPOINT: "{{ cic_connector_alfresco_base_url }}/api/discovery"
+  ALFRESCO_REPOSITORY_VERSIONOVERRIDE: "{{ cic_connector_alfresco_version_override }}"
+  AUTH_PROVIDERS_ALFRESCO_USERNAME: "{{ cic_connector_alfresco_username }}"
+  AUTH_PROVIDERS_ALFRESCO_PASSWORD: "{{ cic_connector_alfresco_password }}"
+  ALFRESCO_REPOSITORY_BASEURL: "{{ cic_connector_alfresco_base_url }}"
+
+# Only applied to the Live Ingester when cic_connector_alfresco_auth_type is not "basic";
+# username/password above are always set, mirroring the alfresco-connector-cic Helm chart.
+cic_connector_alfresco_oauth_environment: "{{ {} if cic_connector_alfresco_auth_type == 'basic' else _cic_connector_alfresco_oauth_environment }}"
+
+_cic_connector_alfresco_oauth_environment:
+  AUTH_PROVIDERS_ALFRESCO_TYPE: "{{ cic_connector_alfresco_auth_type }}"
+  AUTH_PROVIDERS_ALFRESCO_CLIENTID: "{{ cic_connector_alfresco_client_id }}"
+  AUTH_PROVIDERS_ALFRESCO_CLIENTSECRET: "{{ cic_connector_alfresco_client_secret }}"
+  AUTH_PROVIDERS_ALFRESCO_GRANTTYPE: "{{ cic_connector_alfresco_grant_type }}"
+  AUTH_PROVIDERS_ALFRESCO_TOKENURI: "{{ cic_connector_alfresco_token_url }}"
+
+cic_connector_live_ingester_reliability_environment:
+  ALFRESCO_BULKINGESTER_ENDPOINT: "{{ cic_connector_bulk_ingester_publisher_endpoint }}"
+  ALFRESCO_BULKINGESTER_DEADLETTERENABLED: "{{ cic_connector_bulk_events_dead_letter_enabled | string | lower }}"
+  ALFRESCO_BULKINGESTER_DEADLETTERURI: "{{ cic_connector_bulk_events_dead_letter_uri }}"
+  ALFRESCO_BULKINGESTER_MAXIMUMREDELIVERIES: "{{ cic_connector_bulk_events_maximum_redeliveries }}"
+  ALFRESCO_BULKINGESTER_REDELIVERYDELAYMS: "{{ cic_connector_bulk_events_redelivery_delay_ms }}"
+  ALFRESCO_TRANSFORM_RESPONSE_QUEUENAME: "{{ cic_connector_transform_response_queue_name }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DURABLE: "{{ cic_connector_events_subscription_durable | string | lower }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_NAME: "{{ cic_connector_events_subscription_name }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DEADLETTERENABLED: "{{ cic_connector_repo_events_dead_letter_enabled | string | lower }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DEADLETTERURI: "{{ cic_connector_repo_events_dead_letter_uri }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_MAXIMUMREDELIVERIES: "{{ cic_connector_repo_events_maximum_redeliveries }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_REDELIVERYDELAYMS: "{{ cic_connector_repo_events_redelivery_delay_ms }}"
+  ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_USEEXPONENTIALBACKOFF: "{{ cic_connector_repo_events_use_exponential_back_off | string | lower }}"
+  ALFRESCO_TRANSFORM_RESPONSE_DEADLETTERENABLED: "{{ cic_connector_transform_response_dead_letter_enabled | string | lower }}"
+  ALFRESCO_TRANSFORM_RESPONSE_DEADLETTERURI: "{{ cic_connector_transform_response_dead_letter_uri }}"
+  ALFRESCO_TRANSFORM_RESPONSE_MAXIMUMREDELIVERIES: "{{ cic_connector_transform_response_maximum_redeliveries }}"
+  ALFRESCO_TRANSFORM_RESPONSE_REDELIVERYDELAYMS: "{{ cic_connector_transform_response_redelivery_delay_ms }}"
+  ALFRESCO_TRANSFORM_RESPONSE_USEEXPONENTIALBACKOFF: "{{ cic_connector_transform_response_use_exponential_back_off | string | lower }}"
+  ALFRESCO_ACTIVEMQ_REDELIVERY_MAXIMUMREDELIVERIES: "{{ cic_connector_activemq_redelivery_maximum_redeliveries }}"
+  ALFRESCO_ACTIVEMQ_REDELIVERY_INITIALREDELIVERYDELAYMS: "{{ cic_connector_activemq_redelivery_initial_redelivery_delay_ms }}"
+  ALFRESCO_ACTIVEMQ_REDELIVERY_USEEXPONENTIALBACKOFF: "{{ cic_connector_activemq_redelivery_use_exponential_back_off | string | lower }}"
+  ALFRESCO_ACTIVEMQ_REDELIVERY_BACKOFFMULTIPLIER: "{{ cic_connector_activemq_redelivery_back_off_multiplier }}"
+  CAMEL_COMPONENT_ACTIVEMQ_TRANSACTED: "{{ cic_connector_jms_transacted | string | lower }}"
+  CAMEL_COMPONENT_ACTIVEMQ_TRANSACTIONMANAGER: "{{ cic_connector_jms_transaction_manager }}"

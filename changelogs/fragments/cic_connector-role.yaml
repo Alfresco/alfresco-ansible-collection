@@ -1,0 +1,3 @@
+---
+major_changes:
+  - add cic_connector role deploying the Content Intelligence Connector live-ingester, bulk-ingester and nucleus-sync services

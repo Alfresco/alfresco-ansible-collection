@@ -1,0 +1,9 @@
+---
+- name: Prepare
+  hosts: cic-instance
+  tasks:
+    - name: Add an application user
+      become: true
+      ansible.builtin.user:
+        name: alfresco
+        system: true

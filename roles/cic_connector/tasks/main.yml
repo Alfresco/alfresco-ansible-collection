@@ -1,0 +1,31 @@
+---
+# tasks file for cic_connector
+- name: Test java bin path
+  ansible.builtin.stat:
+    path: "{{ cic_connector_java_bin_path }}"
+  register: stat_result
+
+- name: Assert java bin is in the expected path
+  ansible.builtin.assert:
+    that:
+      - "stat_result.stat.exists"
+    fail_msg: "Java command not found in the expected path: {{ cic_connector_java_bin_path }}"
+    quiet: true
+
+- name: Create base directory
+  become: true
+  ansible.builtin.file:
+    name: "{{ cic_connector_artifact_base_path }}"
+    state: directory
+    owner: "{{ cic_connector_service_user }}"
+    mode: "0700"
+
+- name: Install Live Ingester
+  ansible.builtin.include_tasks: live-ingester.yml
+
+- name: Install Nucleus Sync
+  ansible.builtin.include_tasks: nucleus-sync.yml
+
+- name: Install Bulk Ingester
+  ansible.builtin.include_tasks: bulk-ingester.yml
+  when: cic_connector_alfresco_db_url | length > 0

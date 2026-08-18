@@ -1,0 +1,41 @@
+---
+- name: Fetch Nucleus Sync artifact for version {{ cic_connector_nucleus_sync_artifact_version }}
+  become: true
+  become_user: "{{ cic_connector_service_user }}"
+  ansible.builtin.get_url:
+    url: "{{ cic_connector_nucleus_sync_artifact_url }}"
+    dest: "{{ cic_connector_nucleus_sync_artifact_path }}"
+    url_username: "{{ cic_connector_artifact_username }}"
+    url_password: "{{ cic_connector_artifact_password }}"
+    mode: "0600"
+
+- name: Set environments specific for Nucleus Sync
+  ansible.builtin.set_fact:
+    cic_connector_nucleus_sync_environment:
+      JAVA_HOME: "{{ cic_connector_java_home_path }}"
+      SERVER_PORT: "{{ cic_connector_nucleus_sync_port }}"
+      SYNC_ENABLED: "{{ cic_connector_nucleus_sync_enabled_sync | string | lower }}"
+      SYNC_CRON_EXPRESSION: "{{ cic_connector_nucleus_sync_cron_expression }}"
+      AUTH_ALFRESCO_TYPE: "{{ cic_connector_nucleus_sync_auth_alfresco_type }}"
+      ALFRESCO_USER_NAME: "{{ cic_connector_alfresco_username }}"
+      ALFRESCO_PASSWORD: "{{ cic_connector_alfresco_password }}"
+      AUTH_HX_TYPE: "{{ cic_connector_nucleus_sync_auth_hx_type }}"
+      HX_CLIENT_ID: "{{ cic_connector_remote_client_id }}"
+      HX_CLIENT_SECRET: "{{ cic_connector_remote_client_secret }}"
+      HX_TOKEN_URI: "{{ cic_connector_remote_token_url }}"
+      ALFRESCO_BASE_URL: "{{ cic_connector_alfresco_base_url }}/api/-default-/public/alfresco/versions/1"
+      NUCLEUS_IDP_BASE_URL: "{{ cic_connector_nucleus_idp_base_url }}"
+      NUCLEUS_BASE_URL: "{{ cic_connector_nucleus_base_url }}"
+      NUCLEUS_SYSTEM_ID: "{{ cic_connector_nucleus_system_id }}"
+
+- name: Install Nucleus Sync
+  ansible.builtin.include_role:
+    name: alfresco.platform.systemd_service
+    apply:
+      become: true
+  vars:
+    systemd_service_unit_name: "alfresco-cic-connector-nucleus-sync"
+    systemd_service_unit_description: "Alfresco Content Intelligence Connector Nucleus Sync"
+    systemd_service_exec_start: "{{ cic_connector_java_bin_path }} -jar {{ cic_connector_nucleus_sync_artifact_path }}"
+    systemd_service_user: "{{ cic_connector_service_user }}"
+    systemd_service_environment: "{{ cic_connector_nucleus_sync_environment }}"

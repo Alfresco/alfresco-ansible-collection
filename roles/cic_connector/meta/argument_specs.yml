@@ -1,0 +1,271 @@
+---
+argument_specs:
+  main:
+    short_description: Install the Content Intelligence Connector
+    description: |
+      This role installs the Content Intelligence Connector live-ingester and nucleus-sync services (started and enabled).
+      The bulk-ingester service is installed only when cic_connector_alfresco_db_url is set, and is not started automatically.
+    options:
+      cic_connector_artifact_default_version:
+        type: str
+        description: Default version for all Content Intelligence Connector artifacts unless specified otherwise
+      cic_connector_live_ingester_artifact_version:
+        type: str
+        description: Version of the Content Intelligence Connector Live Ingester artifact
+      cic_connector_nucleus_sync_artifact_version:
+        type: str
+        description: Version of the Content Intelligence Connector Nucleus Sync artifact
+      cic_connector_bulk_ingester_artifact_version:
+        type: str
+        description: Version of the Content Intelligence Connector Bulk Ingester artifact
+      cic_connector_artifact_username:
+        type: str
+        description: Username for the artifact repository
+      cic_connector_artifact_password:
+        type: str
+        description: Password for the artifact repository
+      cic_connector_remote_ingestion_url:
+        type: str
+        description: Base URL of the remote Content Intelligence ingestion service
+        required: true
+      cic_connector_remote_token_url:
+        type: str
+        description: URL of the token API for the remote Content Intelligence service
+        required: true
+      cic_connector_remote_client_id:
+        type: str
+        description: Client ID for the remote Content Intelligence service
+        required: true
+      cic_connector_remote_client_secret:
+        type: str
+        description: Client secret for the remote Content Intelligence service
+        required: true
+      cic_connector_remote_environment_key:
+        type: str
+        description: Environment key for the remote Content Intelligence service
+        required: true
+      cic_connector_remote_grant_type:
+        type: str
+        description: Grant type for the remote Content Intelligence service
+        default: client_credentials
+      cic_connector_alfresco_base_url:
+        type: str
+        description: Base URL of the Alfresco server (required for Nucleus Sync)
+        required: true
+      cic_connector_alfresco_username:
+        type: str
+        description: Username for the Alfresco server (required for Nucleus Sync)
+        required: true
+      cic_connector_alfresco_password:
+        type: str
+        description: Password for the Alfresco server (required for Nucleus Sync)
+        required: true
+      cic_connector_alfresco_auth_type:
+        type: str
+        description: >-
+          Authentication type the Live Ingester uses against the Alfresco server. Use "basic"
+          (username/password) or a non-basic value (e.g. "oauth2") to authenticate with a client
+          id/secret. Only applies to the Live Ingester; Nucleus Sync always uses basic auth.
+        default: basic
+      cic_connector_alfresco_client_id:
+        type: str
+        description: Client ID for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
+      cic_connector_alfresco_client_secret:
+        type: str
+        description: Client secret for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
+      cic_connector_alfresco_grant_type:
+        type: str
+        description: OAuth grant type used when authenticating to the Alfresco server with a client id/secret
+        default: client_credentials
+      cic_connector_alfresco_token_url:
+        type: str
+        description: OAuth token endpoint for the Alfresco server (required when cic_connector_alfresco_auth_type is not basic)
+      cic_connector_alfresco_version_override:
+        type: str
+        description: >-
+          Alfresco server version to override Discovery API detection (otherwise
+          the Alfresco Discovery API is queried at Live Ingester startup)
+      cic_connector_alfresco_sfs_url:
+        type: str
+        description: URL of the Shared File Store for the Alfresco server
+        required: true
+      cic_connector_alfresco_activemq_url:
+        type: str
+        description: URL of the ActiveMQ server
+        required: true
+      cic_connector_alfresco_activemq_username:
+        type: str
+        description: Username for the ActiveMQ server
+        default: None
+      cic_connector_alfresco_activemq_password:
+        type: str
+        description: Password for the ActiveMQ server
+        default: None
+      cic_connector_alfresco_db_url:
+        type: str
+        description: URL of the database for the Alfresco server (required for the Bulk Ingester)
+        default: None
+      cic_connector_alfresco_db_username:
+        type: str
+        description: Username for the database for the Alfresco server (required for the Bulk Ingester)
+        default: None
+      cic_connector_alfresco_db_password:
+        type: str
+        description: Password for the database for the Alfresco server (required for the Bulk Ingester)
+        default: None
+      cic_connector_java_home_path:
+        type: str
+        description: Path to the Java home directory
+        default: /opt/java
+      cic_connector_java_bin_path:
+        type: str
+        description: Path to the Java binary
+        default: /opt/java/bin/java
+      cic_connector_service_user:
+        type: str
+        description: User to run the Content Intelligence Connector services
+        required: true
+      cic_connector_application_sourceid:
+        type: str
+        description: ID of the source Application as defined in the Content Intelligence service
+        required: true
+      cic_connector_live_ingester_port:
+        type: int
+        description: Port for the Content Intelligence Connector Live Ingester service
+        default: 8080
+      cic_connector_nucleus_sync_port:
+        type: int
+        description: Port for the Content Intelligence Connector Nucleus Sync service
+        default: 8081
+      cic_connector_nucleus_sync_enabled_sync:
+        type: bool
+        description: Whether the Nucleus Sync service's scheduled sync job is enabled
+        default: true
+      cic_connector_nucleus_sync_cron_expression:
+        type: str
+        description: Cron expression controlling how often Nucleus Sync runs
+        default: "0 0 0 * * *"
+      cic_connector_nucleus_idp_base_url:
+        type: str
+        description: Base URL of the Nucleus IDP service
+        required: true
+      cic_connector_nucleus_base_url:
+        type: str
+        description: Base URL of the Nucleus service
+        required: true
+      cic_connector_nucleus_system_id:
+        type: str
+        description: System ID of this Alfresco instance as registered in Nucleus
+        required: true
+      cic_connector_nucleus_sync_auth_alfresco_type:
+        type: str
+        description: Alfresco authentication type for Nucleus Sync
+        default: basic
+      cic_connector_nucleus_sync_auth_hx_type:
+        type: str
+        description: Hyland Experience authentication type for Nucleus Sync
+        default: oauth2
+      cic_connector_bulk_ingester_node_from_id:
+        type: int
+        description: Starting node ID, inclusive, for the Bulk Ingester
+        default: 0
+      cic_connector_bulk_ingester_node_to_id:
+        type: int
+        description: Ending node ID, inclusive, for the Bulk Ingester
+        default: 20000000000
+      cic_connector_bulk_ingester_publisher_endpoint:
+        type: str
+        description: ActiveMQ queue the Bulk Ingester publishes ingestion events to (must match the Live Ingester's endpoint)
+        default: activemq:queue:bulk-ingester-events
+      cic_connector_transform_response_queue_name:
+        type: str
+        description: Queue name for receiving transform responses
+        default: org.alfresco.cic-connector.transform.response
+      cic_connector_events_subscription_durable:
+        type: bool
+        description: Whether the Live Ingester subscribes to repo events as a durable topic consumer
+        default: true
+      cic_connector_events_subscription_name:
+        type: str
+        description: Durable subscription name and JMS clientId; must remain stable across restarts
+        default: LiveIngesterSubscription
+      cic_connector_repo_events_dead_letter_enabled:
+        type: bool
+        description: Whether repo events that fail processing are routed to a dead-letter queue
+        default: true
+      cic_connector_repo_events_dead_letter_uri:
+        type: str
+        description: Dead-letter destination URI for repo events
+        default: activemq:queue:ActiveMQ.DLQ
+      cic_connector_repo_events_maximum_redeliveries:
+        type: int
+        description: Maximum redelivery attempts for repo events before dead-lettering
+        default: 6
+      cic_connector_repo_events_redelivery_delay_ms:
+        type: int
+        description: Delay in milliseconds between repo event redelivery attempts
+        default: 1000
+      cic_connector_repo_events_use_exponential_back_off:
+        type: bool
+        description: Whether repo event redelivery uses exponential backoff
+        default: false
+      cic_connector_bulk_events_dead_letter_enabled:
+        type: bool
+        description: Whether bulk-ingester events that fail processing on the Live Ingester are routed to a dead-letter queue
+        default: false
+      cic_connector_bulk_events_dead_letter_uri:
+        type: str
+        description: Dead-letter destination URI for bulk-ingester events
+        default: activemq:queue:ActiveMQ.DLQ
+      cic_connector_bulk_events_maximum_redeliveries:
+        type: int
+        description: Maximum redelivery attempts for bulk-ingester events before dead-lettering
+        default: 6
+      cic_connector_bulk_events_redelivery_delay_ms:
+        type: int
+        description: Delay in milliseconds between bulk-ingester event redelivery attempts
+        default: 1000
+      cic_connector_transform_response_dead_letter_enabled:
+        type: bool
+        description: Whether transform responses that fail processing are routed to a dead-letter queue
+        default: true
+      cic_connector_transform_response_dead_letter_uri:
+        type: str
+        description: Dead-letter destination URI for transform responses
+        default: activemq:queue:ActiveMQ.DLQ
+      cic_connector_transform_response_maximum_redeliveries:
+        type: int
+        description: Maximum redelivery attempts for transform responses before dead-lettering
+        default: 6
+      cic_connector_transform_response_redelivery_delay_ms:
+        type: int
+        description: Delay in milliseconds between transform response redelivery attempts
+        default: 1000
+      cic_connector_transform_response_use_exponential_back_off:
+        type: bool
+        description: Whether transform response redelivery uses exponential backoff
+        default: false
+      cic_connector_activemq_redelivery_maximum_redeliveries:
+        type: int
+        description: Broker-side maximum redeliveries applied to every JMS consumer
+        default: 6
+      cic_connector_activemq_redelivery_initial_redelivery_delay_ms:
+        type: int
+        description: Broker-side initial redelivery delay in milliseconds
+        default: 1000
+      cic_connector_activemq_redelivery_use_exponential_back_off:
+        type: bool
+        description: Whether broker-side redelivery uses exponential backoff
+        default: false
+      cic_connector_activemq_redelivery_back_off_multiplier:
+        type: float
+        description: Multiplier applied when broker-side exponential backoff is enabled
+        default: 5.0
+      cic_connector_jms_transacted:
+        type: bool
+        description: Whether the Live Ingester's JMS consumer session is transactional
+        default: true
+      cic_connector_jms_transaction_manager:
+        type: str
+        description: Spring bean reference used as the Live Ingester's JMS transaction manager
+        default: "#jmsTransactionManager"
