@@ -95,7 +95,6 @@ jobs:
         roles:
           - role_name: java
           - role_name: systemd_service
-          - role_name: hxi_connector
           - role_name: cic_connector
           - role_name: audit_storage
           - role_name: search_community
