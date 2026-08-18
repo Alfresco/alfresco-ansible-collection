@@ -2,10 +2,12 @@
 
 **Topics**
 
+- <a href="#v0-5-0">v0\.5\.0</a>
+    - <a href="#major-changes">Major Changes</a>
 - <a href="#v0-4-1">v0\.4\.1</a>
     - <a href="#minor-changes">Minor Changes</a>
 - <a href="#v0-4-0">v0\.4\.0</a>
-    - <a href="#major-changes">Major Changes</a>
+    - <a href="#major-changes-1">Major Changes</a>
     - <a href="#security-fixes">Security Fixes</a>
 - <a href="#v0-3-0">v0\.3\.0</a>
     - <a href="#minor-changes-1">Minor Changes</a>
@@ -16,13 +18,22 @@
 - <a href="#v0-2-1">v0\.2\.1</a>
     - <a href="#minor-changes-2">Minor Changes</a>
 - <a href="#v0-2-0">v0\.2\.0</a>
-    - <a href="#major-changes-1">Major Changes</a>
+    - <a href="#major-changes-2">Major Changes</a>
     - <a href="#minor-changes-3">Minor Changes</a>
 - <a href="#v0-1-1">v0\.1\.1</a>
     - <a href="#minor-changes-4">Minor Changes</a>
     - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
-    - <a href="#major-changes-2">Major Changes</a>
+    - <a href="#major-changes-3">Major Changes</a>
+
+<a id="v0-5-0"></a>
+## v0\.5\.0
+
+<a id="major-changes"></a>
+### Major Changes
+
+* add cic\_connector role deploying the Content Intelligence Connector live\-ingester\, bulk\-ingester and nucleus\-sync services
+* remove the <code>hxi\_connector</code> role\, superseded by the <code>cic\_connector</code> role
 
 <a id="v0-4-1"></a>
 ## v0\.4\.1
@@ -37,7 +48,7 @@
 <a id="v0-4-0"></a>
 ## v0\.4\.0
 
-<a id="major-changes"></a>
+<a id="major-changes-1"></a>
 ### Major Changes
 
 * Add search\_community service role
@@ -82,7 +93,7 @@
 <a id="v0-2-0"></a>
 ## v0\.2\.0
 
-<a id="major-changes-1"></a>
+<a id="major-changes-2"></a>
 ### Major Changes
 
 * Add audit\_storage service role
@@ -109,7 +120,7 @@
 <a id="v0-1-0"></a>
 ## v0\.1\.0
 
-<a id="major-changes-2"></a>
+<a id="major-changes-3"></a>
 ### Major Changes
 
 * add hxi\_connector service role
