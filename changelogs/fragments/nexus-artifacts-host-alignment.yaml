@@ -16,3 +16,8 @@ breaking_changes:
     ``search_community_repository_url``, matching ``cic_connector``'s
     ``_url`` suffix convention. Playbooks overriding the old variable
     name must be updated.
+  - cic_connector - ``cic_connector_artifact_repository_url`` no longer
+    requires (or produces) a trailing slash; the role now inserts the
+    ``/`` itself between the repository base and each artifact path,
+    matching ``audit_storage`` and ``search_community``. Overrides that
+    supplied their own trailing slash will end up with a doubled ``//``.
