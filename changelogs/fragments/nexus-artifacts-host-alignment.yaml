@@ -8,3 +8,6 @@ minor_changes:
     ``cic_connector_artifact_repository_url`` itself, so the variable can be
     overridden with any repository style base URL without producing a
     duplicated path.
+  - search_community - default ``search_community_repository`` to the
+    ``/nexus/repository/releases/`` path instead of the legacy Nexus 2 style
+    ``/nexus/content/repositories/releases/``.
