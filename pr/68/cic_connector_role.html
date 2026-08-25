@@ -332,13 +332,20 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--cic_connector_artifact_repository_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-artifact-repository-url"><strong>cic_connector_artifact_repository_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--cic_connector_artifact_repository_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the Nexus repository to download the Content Intelligence Connector artifacts from</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_artifact_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-artifact-username"><strong>cic_connector_artifact_username</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_artifact_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Username for the artifact repository</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_events_dead_letter_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-events-dead-letter-enabled"><strong>cic_connector_bulk_events_dead_letter_enabled</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_events_dead_letter_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -350,7 +357,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_events_dead_letter_uri"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-events-dead-letter-uri"><strong>cic_connector_bulk_events_dead_letter_uri</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_events_dead_letter_uri" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -358,7 +365,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;activemq:queue:ActiveMQ.DLQ&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_events_maximum_redeliveries"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-events-maximum-redeliveries"><strong>cic_connector_bulk_events_maximum_redeliveries</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_events_maximum_redeliveries" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -366,7 +373,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">6</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_events_redelivery_delay_ms"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-events-redelivery-delay-ms"><strong>cic_connector_bulk_events_redelivery_delay_ms</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_events_redelivery_delay_ms" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -374,14 +381,14 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">1000</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_ingester_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-ingester-artifact-version"><strong>cic_connector_bulk_ingester_artifact_version</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_ingester_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Version of the Content Intelligence Connector Bulk Ingester artifact</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_ingester_node_from_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-ingester-node-from-id"><strong>cic_connector_bulk_ingester_node_from_id</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_ingester_node_from_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -389,7 +396,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">0</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_ingester_node_to_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-ingester-node-to-id"><strong>cic_connector_bulk_ingester_node_to_id</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_ingester_node_to_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -397,7 +404,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">20000000000</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_bulk_ingester_publisher_endpoint"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-bulk-ingester-publisher-endpoint"><strong>cic_connector_bulk_ingester_publisher_endpoint</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_bulk_ingester_publisher_endpoint" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -405,7 +412,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;activemq:queue:bulk-ingester-events&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_events_subscription_durable"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-events-subscription-durable"><strong>cic_connector_events_subscription_durable</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_events_subscription_durable" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -417,7 +424,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_events_subscription_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-events-subscription-name"><strong>cic_connector_events_subscription_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_events_subscription_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -425,7 +432,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;LiveIngesterSubscription&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_java_bin_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-java-bin-path"><strong>cic_connector_java_bin_path</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_java_bin_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -433,7 +440,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java/bin/java&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_java_home_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-java-home-path"><strong>cic_connector_java_home_path</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_java_home_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -441,7 +448,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/opt/java&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_jms_transacted"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-jms-transacted"><strong>cic_connector_jms_transacted</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_jms_transacted" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -453,7 +460,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_jms_transaction_manager"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-jms-transaction-manager"><strong>cic_connector_jms_transaction_manager</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_jms_transaction_manager" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -461,14 +468,14 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;#jmsTransactionManager&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_live_ingester_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-live-ingester-artifact-version"><strong>cic_connector_live_ingester_artifact_version</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_live_ingester_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Version of the Content Intelligence Connector Live Ingester artifact</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_live_ingester_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-live-ingester-port"><strong>cic_connector_live_ingester_port</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_live_ingester_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -476,28 +483,28 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">8080</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_base_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-base-url"><strong>cic_connector_nucleus_base_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_base_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Base URL of the Nucleus service</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_idp_base_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-idp-base-url"><strong>cic_connector_nucleus_idp_base_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_idp_base_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Base URL of the Nucleus IDP service</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_artifact_version"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-artifact-version"><strong>cic_connector_nucleus_sync_artifact_version</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_artifact_version" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Version of the Content Intelligence Connector Nucleus Sync artifact</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_auth_alfresco_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-auth-alfresco-type"><strong>cic_connector_nucleus_sync_auth_alfresco_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_auth_alfresco_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -505,7 +512,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_auth_hx_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-auth-hx-type"><strong>cic_connector_nucleus_sync_auth_hx_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_auth_hx_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -513,7 +520,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;oauth2&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_cron_expression"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-cron-expression"><strong>cic_connector_nucleus_sync_cron_expression</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_cron_expression" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -521,7 +528,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;0</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_enabled_sync"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-enabled-sync"><strong>cic_connector_nucleus_sync_enabled_sync</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_enabled_sync" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -533,7 +540,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_sync_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-sync-port"><strong>cic_connector_nucleus_sync_port</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_sync_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -541,35 +548,35 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">8081</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_nucleus_system_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-nucleus-system-id"><strong>cic_connector_nucleus_system_id</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_nucleus_system_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>System ID of this Alfresco instance as registered in Nucleus</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_client_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-client-id"><strong>cic_connector_remote_client_id</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_client_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Client ID for the remote Content Intelligence service</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_client_secret"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-client-secret"><strong>cic_connector_remote_client_secret</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_client_secret" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Client secret for the remote Content Intelligence service</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_environment_key"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-environment-key"><strong>cic_connector_remote_environment_key</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_environment_key" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Environment key for the remote Content Intelligence service</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_grant_type"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-grant-type"><strong>cic_connector_remote_grant_type</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_grant_type" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -577,21 +584,21 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;client_credentials&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_ingestion_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-ingestion-url"><strong>cic_connector_remote_ingestion_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_ingestion_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Base URL of the remote Content Intelligence ingestion service</p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_remote_token_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-remote-token-url"><strong>cic_connector_remote_token_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_remote_token_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>URL of the token API for the remote Content Intelligence service</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_repo_events_dead_letter_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-repo-events-dead-letter-enabled"><strong>cic_connector_repo_events_dead_letter_enabled</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_repo_events_dead_letter_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -603,7 +610,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_repo_events_dead_letter_uri"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-repo-events-dead-letter-uri"><strong>cic_connector_repo_events_dead_letter_uri</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_repo_events_dead_letter_uri" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -611,7 +618,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;activemq:queue:ActiveMQ.DLQ&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_repo_events_maximum_redeliveries"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-repo-events-maximum-redeliveries"><strong>cic_connector_repo_events_maximum_redeliveries</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_repo_events_maximum_redeliveries" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -619,7 +626,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">6</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_repo_events_redelivery_delay_ms"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-repo-events-redelivery-delay-ms"><strong>cic_connector_repo_events_redelivery_delay_ms</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_repo_events_redelivery_delay_ms" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -627,7 +634,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">1000</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_repo_events_use_exponential_back_off"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-repo-events-use-exponential-back-off"><strong>cic_connector_repo_events_use_exponential_back_off</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_repo_events_use_exponential_back_off" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -639,14 +646,14 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_service_user"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-service-user"><strong>cic_connector_service_user</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_service_user" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>User to run the Content Intelligence Connector services</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_dead_letter_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-dead-letter-enabled"><strong>cic_connector_transform_response_dead_letter_enabled</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_dead_letter_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
@@ -658,7 +665,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 </ul>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_dead_letter_uri"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-dead-letter-uri"><strong>cic_connector_transform_response_dead_letter_uri</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_dead_letter_uri" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -666,7 +673,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;activemq:queue:ActiveMQ.DLQ&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_maximum_redeliveries"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-maximum-redeliveries"><strong>cic_connector_transform_response_maximum_redeliveries</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_maximum_redeliveries" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -674,7 +681,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">6</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_queue_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-queue-name"><strong>cic_connector_transform_response_queue_name</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_queue_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -682,7 +689,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;org.alfresco.cic-connector.transform.response&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_redelivery_delay_ms"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-redelivery-delay-ms"><strong>cic_connector_transform_response_redelivery_delay_ms</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_redelivery_delay_ms" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -690,7 +697,7 @@ The bulk-ingester service is installed only when cic_connector_alfresco_db_url i
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">1000</span></code></p>
 </div></td>
 </tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--cic_connector_transform_response_use_exponential_back_off"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-cic-connector-role-parameter-main-cic-connector-transform-response-use-exponential-back-off"><strong>cic_connector_transform_response_use_exponential_back_off</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--cic_connector_transform_response_use_exponential_back_off" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
 </div></td>
