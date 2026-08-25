@@ -41,7 +41,7 @@ Every PR that changes a role must add a changelog fragment in `changelogs/fragme
 
 The release itself is a separate PR:
 
-1. `antsibull-changelog release --version X.Y.Z` to merge all pending fragments into `CHANGELOG.md`.
+1. `uv run antsibull-changelog release --version X.Y.Z` to merge all pending fragments into `CHANGELOG.md`.
 2. Bump `version` in `galaxy.yml` to `X.Y.Z`.
 3. Open and merge that PR.
 4. Only after merging, `gh release create vX.Y.Z` from `main` — tagging `v*` triggers the `build` workflow to publish to Galaxy (only from `alfresco/alfresco-ansible-collection`, tag push).
