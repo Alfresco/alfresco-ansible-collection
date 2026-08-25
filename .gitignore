@@ -8,3 +8,5 @@
 changelogs/.plugin-cache.yaml
 
 .env.credentials
+
+.claude
