@@ -4,12 +4,12 @@
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta content="2.21.0" name="antsibull-docs" />
+<meta content="2.26.0" name="antsibull-docs" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>alfresco.platform.audit_storage role – Install a Alfresco Audit Storage &mdash; Alfresco.Platform Collection  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
-      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=c5b67dd2" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=b54c304f" />
       <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
 
@@ -18,11 +18,11 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=7f41d439"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="alfresco.platform.hxi_connector role – Install a Hx Insight Connector" href="hxi_connector_role.html" />
+    <link rel="next" title="alfresco.platform.cic_connector role – Install the Content Intelligence Connector" href="cic_connector_role.html" />
     <link rel="prev" title="Alfresco.Platform" href="index.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
 
 
@@ -90,8 +90,9 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="hxi_connector_role.html">alfresco.platform.hxi_connector role – Install a Hx Insight Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cic_connector_role.html">alfresco.platform.cic_connector role – Install the Content Intelligence Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search_community_role.html">alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="systemd_service_role.html">alfresco.platform.systemd_service role – Install a systemd service unit</a></li>
 </ul>
 <!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
@@ -125,7 +126,7 @@
 <h1>alfresco.platform.audit_storage role – Install a Alfresco Audit Storage<a class="headerlink" href="#alfresco-platform-audit-storage-role-install-a-alfresco-audit-storage" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This role is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.2.1).</p>
+<p>This role is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.5.0).</p>
 <p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
 To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
 <p>To install it use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">alfresco.platform</span></code>.</p>
@@ -193,13 +194,20 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-download--audit_storage_repository_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-download-audit-storage-repository-url"><strong>audit_storage_repository_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-download--audit_storage_repository_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the Nexus repository to download the Audit Storage artifact from</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-download--audit_storage_zip_checksum"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-download-audit-storage-zip-checksum"><strong>audit_storage_zip_checksum</strong></p>
 <a class="ansibleOptionLink" href="#parameter-download--audit_storage_zip_checksum" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Checksum for the Audit Storage distribution zip file</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-download--audit_storage_zip_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-download-audit-storage-zip-url"><strong>audit_storage_zip_url</strong></p>
 <a class="ansibleOptionLink" href="#parameter-download--audit_storage_zip_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
@@ -342,6 +350,21 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--audit_storage_profiles_active"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-main-audit-storage-profiles-active"><strong>audit_storage_profiles_active</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--audit_storage_profiles_active" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Spring profiles to be activated for the Audit Storage service</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;durable-subscriptions&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-main--audit_storage_repository_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-main-audit-storage-repository-url"><strong>audit_storage_repository_url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-main--audit_storage_repository_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base URL of the Nexus repository to download the Audit Storage artifact from</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
 <div class="ansibleOptionAnchor" id="parameter-main--audit_storage_server_port"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-audit-storage-role-parameter-main-audit-storage-server-port"><strong>audit_storage_server_port</strong></p>
 <a class="ansibleOptionLink" href="#parameter-main--audit_storage_server_port" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">integer</span></p>
 </div></td>
@@ -397,7 +420,7 @@ To check whether it is installed, run <code class="code docutils literal notrans
 
 <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Alfresco.Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="hxi_connector_role.html" class="btn btn-neutral float-right" title="alfresco.platform.hxi_connector role – Install a Hx Insight Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cic_connector_role.html" class="btn btn-neutral float-right" title="alfresco.platform.cic_connector role – Install the Content Intelligence Connector" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
