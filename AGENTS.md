@@ -37,10 +37,14 @@ There is no single "test everything" command — CI runs sanity tests (via `ansi
 
 ## Releasing
 
-1. Every change needs a changelog fragment in `changelogs/fragments/` (see [antsibull-changelog fragment categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/#changelog-fragment-categories)).
-2. Before release: `antsibull-changelog release --version X.Y.Z`.
-3. Bump `version` in `galaxy.yml`.
-4. `gh release create vX.Y.Z` — tagging `v*` triggers the `build` workflow to publish to Galaxy (only from `alfresco/alfresco-ansible-collection`, tag push).
+Every PR that changes a role must add a changelog fragment in `changelogs/fragments/` (see [antsibull-changelog fragment categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/#changelog-fragment-categories)) — this is called out in the PR template.
+
+The release itself is a separate PR:
+
+1. `antsibull-changelog release --version X.Y.Z` to merge all pending fragments into `CHANGELOG.md`.
+2. Bump `version` in `galaxy.yml` to `X.Y.Z`.
+3. Open and merge that PR.
+4. Only after merging, `gh release create vX.Y.Z` from `main` — tagging `v*` triggers the `build` workflow to publish to Galaxy (only from `alfresco/alfresco-ansible-collection`, tag push).
 
 ## Architecture
 
