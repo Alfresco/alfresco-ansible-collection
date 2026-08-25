@@ -9,20 +9,20 @@ platforms:
       xpack.security.enabled: "false"
       discovery.type: "single-node"
     command: "eswrapper"
-    cap_add:
+    capabilities:
       - IPC_LOCK
     exposed_ports:
-      - 9200
+      - "9200"
     networks:
       - name: molecule_default
 
   - name: activemq-instance
     image: alfresco/alfresco-activemq:5.18-jre17-rockylinux8
     pre_build_image: true
-    mem_limit: "1g"
+    memory: "1g"
     command: "activemq console"
     exposed_ports:
-      - 61616
+      - "61616"
     networks:
       - name: molecule_default
 
