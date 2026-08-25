@@ -30,24 +30,4 @@ uv run ansible-galaxy install
 
 ## Releases
 
-For every change, a changelog yml fragment need to be drop inside the
-`changelogs/fragments` folder, using one or more [fragment
-categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/#changelog-fragment-categories).
-
-Before proceeding with the release, merge the fragments into the changelog with:
-
-```bash
-antsibull-changelog release --version 0.1.0
-```
-
-Then, update the version in `galaxy.yml`.
-
-```yaml
-version: 0.1.0
-```
-
-Finally, draft the github release with:
-
-```bash
-gh release create v0.1.0
-```
+See the [Releasing](AGENTS.md#releasing) section in `AGENTS.md`.
