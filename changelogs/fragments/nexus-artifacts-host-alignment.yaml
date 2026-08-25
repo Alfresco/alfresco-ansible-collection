@@ -1,0 +1,10 @@
+minor_changes:
+  - audit_storage, search_community, cic_connector - default the Nexus
+    artifact host to ``artifacts.alfresco.com``, matching every other role's
+    production URL, and add ``audit_storage_repository`` so downstream
+    playbooks can override just the repository base instead of the full
+    ``audit_storage_zip_url``.
+  - cic_connector - move the ``org/alfresco`` path segment into
+    ``cic_connector_artifact_repository_url`` itself, so the variable can be
+    overridden with any repository style base URL without producing a
+    duplicated path.
