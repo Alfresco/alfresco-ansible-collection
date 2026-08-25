@@ -7,13 +7,13 @@ cic_connector_java_home_path: /opt/java
 cic_connector_java_bin_path: "{{ cic_connector_java_home_path }}/bin/java"
 
 cic_connector_artifact_base_path: /opt/alfresco/cic-connector
-cic_connector_artifact_repository_url: https://artifacts.alfresco.com/nexus/repository/enterprise-releases/
+cic_connector_artifact_repository_url: https://artifacts.alfresco.com/nexus/repository/enterprise-releases/org/alfresco/
 cic_connector_artifact_default_version: 1.0.1
 
 ## live ingester section
 cic_connector_live_ingester_artifact_name: alfresco-cic-connector-live-ingester
 cic_connector_live_ingester_artifact_version: "{{ cic_connector_artifact_default_version }}"
-cic_connector_live_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+cic_connector_live_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}\
   {{ cic_connector_live_ingester_artifact_name }}/{{ cic_connector_live_ingester_artifact_version }}/\
   {{ cic_connector_live_ingester_artifact_name }}-{{ cic_connector_live_ingester_artifact_version }}-app.jar"
 cic_connector_live_ingester_artifact_path: >-
@@ -24,7 +24,7 @@ cic_connector_alfresco_version_override: ''
 ## nucleus sync section
 cic_connector_nucleus_sync_artifact_name: alfresco-cic-connector-nucleus-sync
 cic_connector_nucleus_sync_artifact_version: "{{ cic_connector_artifact_default_version }}"
-cic_connector_nucleus_sync_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+cic_connector_nucleus_sync_artifact_url: "{{ cic_connector_artifact_repository_url }}\
   {{ cic_connector_nucleus_sync_artifact_name }}/{{ cic_connector_nucleus_sync_artifact_version }}/\
   {{ cic_connector_nucleus_sync_artifact_name }}-{{ cic_connector_nucleus_sync_artifact_version }}-app.jar"
 cic_connector_nucleus_sync_artifact_path: >-
@@ -41,7 +41,7 @@ cic_connector_nucleus_sync_auth_hx_type: oauth2
 ## bulk ingester section
 cic_connector_bulk_ingester_artifact_name: alfresco-cic-connector-bulk-ingester
 cic_connector_bulk_ingester_artifact_version: "{{ cic_connector_artifact_default_version }}"
-cic_connector_bulk_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}org/alfresco/\
+cic_connector_bulk_ingester_artifact_url: "{{ cic_connector_artifact_repository_url }}\
   {{ cic_connector_bulk_ingester_artifact_name }}/{{ cic_connector_bulk_ingester_artifact_version }}/\
   {{ cic_connector_bulk_ingester_artifact_name }}-{{ cic_connector_bulk_ingester_artifact_version }}-app.jar"
 cic_connector_bulk_ingester_artifact_path: >-
