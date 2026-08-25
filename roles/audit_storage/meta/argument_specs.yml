@@ -7,6 +7,9 @@ argument_specs:
       audit_storage_version:
         type: str
         description: Version of the Audit Storage to install
+      audit_storage_repository_url:
+        type: str
+        description: Base URL of the Nexus repository to download the Audit Storage artifact from
       audit_storage_zip_url:
         type: str
         description: URL to download the Audit Storage distribution zip file
@@ -85,6 +88,9 @@ argument_specs:
     description: |
       This task downloads the Audit Storage distribution zip file.
     options:
+      audit_storage_repository_url:
+        type: str
+        description: Base URL of the Nexus repository to download the Audit Storage artifact from
       audit_storage_zip_url:
         type: str
         description: URL to download the Audit Storage distribution zip file

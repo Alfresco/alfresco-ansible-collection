@@ -18,6 +18,9 @@ argument_specs:
       cic_connector_bulk_ingester_artifact_version:
         type: str
         description: Version of the Content Intelligence Connector Bulk Ingester artifact
+      cic_connector_artifact_repository_url:
+        type: str
+        description: Base URL of the Nexus repository to download the Content Intelligence Connector artifacts from
       cic_connector_artifact_username:
         type: str
         description: Username for the artifact repository
