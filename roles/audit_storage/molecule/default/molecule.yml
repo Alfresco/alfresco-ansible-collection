@@ -31,13 +31,10 @@ platforms:
     dockerfile: ../../../../tests/molecule/Dockerfile-noprivs.j2
     command: "/lib/systemd/systemd"
     privileged: true
-    cgroupns_mode: host
     tmpfs:
       - /run
       - /run/lock
       - /tmp
-    volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
       - audit_storage
     networks:
