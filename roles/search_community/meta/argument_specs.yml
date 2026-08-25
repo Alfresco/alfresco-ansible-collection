@@ -105,6 +105,12 @@ argument_specs:
     description: |
       This task downloads the Batch Indexing distribution zip file.
     options:
+      search_community_repository_url:
+        type: str
+        description: Base repository URL to download the Batch Indexing distribution from
+      search_community_repository:
+        type: str
+        description: Deprecated. Use search_community_repository_url instead.
       search_community_zip_url:
         type: str
         description: URL to download the Batch Indexing distribution zip file
