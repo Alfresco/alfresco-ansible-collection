@@ -72,6 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Sanity against Ⓐ ${{ matrix.ansible }}
     strategy:
+      fail-fast: false
       matrix:
         ansible:
           - stable-2.16
@@ -91,6 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Molecule against ${{ matrix.roles.role_name }} role
     strategy:
+      fail-fast: false
       matrix:
         roles:
           - role_name: java
