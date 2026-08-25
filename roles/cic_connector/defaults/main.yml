@@ -8,7 +8,8 @@ cic_connector_java_bin_path: "{{ cic_connector_java_home_path }}/bin/java"
 
 cic_connector_artifact_base_path: /opt/alfresco/cic-connector
 cic_connector_artifact_repository_url: https://artifacts.alfresco.com/nexus/repository/enterprise-releases/org/alfresco
-# strips any trailing slash, so overrides written before the slash became optional keep working
+# backward compatibility only: strips any trailing slash so overrides written before
+# the slash became optional keep resolving to the correct URL instead of a doubled //
 cic_connector_artifact_repository_base_url: "{{ cic_connector_artifact_repository_url | regex_replace('/+$', '') }}"
 cic_connector_artifact_default_version: 1.0.1
 
