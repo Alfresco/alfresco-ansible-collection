@@ -50,8 +50,8 @@ releases:
   0.2.2:
     changes:
       bugfixes:
-        - Fix startup issue in audit storage by not overriding eventIngestion uri and
-          fixing username key
+        - Fix startup issue in audit storage by not overriding eventIngestion uri
+          and fixing username key
     fragments:
       - audit_storage-role.yaml
     release_date: '2026-02-04'
@@ -77,10 +77,10 @@ releases:
       major_changes:
         - Add search_community service role
       security_fixes:
-        - systemd_service - write the service environment (including database and other
-          credentials) to a root-owned ``EnvironmentFile`` with mode ``0600`` referenced
-          from the unit, instead of embedding it as ``Environment=`` lines in the world-readable
-          (``0644``) unit file.
+        - systemd_service - write the service environment (including database and
+          other credentials) to a root-owned ``EnvironmentFile`` with mode ``0600``
+          referenced from the unit, instead of embedding it as ``Environment=`` lines
+          in the world-readable (``0644``) unit file.
     fragments:
       - search_community-role.yaml
       - systemd_service-environment-file.yaml
@@ -88,15 +88,15 @@ releases:
   0.4.1:
     changes:
       minor_changes:
-        - search_community - add ``search_community_transform_enabled`` to toggle the
-          accepted content media types cache via the ``ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_ENABLED``
+        - search_community - add ``search_community_transform_enabled`` to toggle
+          the accepted content media types cache via the ``ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_ENABLED``
           environment variable.
         - search_community - add ``search_community_transform_url`` to configure the
           Alfresco transform config endpoint, mapped to the batch indexing service's
-          ``ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_BASEURL`` environment variable so
-          it can discover the content media types it is able to transform.
-        - search_community - bump the batch indexing distribution to the released ``5.7.0``
-          version (previously the ``5.7.0-A.5`` pre-release).
+          ``ALFRESCO_ACCEPTEDCONTENTMEDIATYPESCACHE_BASEURL`` environment variable
+          so it can discover the content media types it is able to transform.
+        - search_community - bump the batch indexing distribution to the released
+          ``5.7.0`` version (previously the ``5.7.0-A.5`` pre-release).
     fragments:
       - search_community-transform-url.yaml
     release_date: '2026-07-21'
@@ -109,3 +109,25 @@ releases:
     fragments:
       - cic_connector-role.yaml
     release_date: '2026-08-18'
+  0.6.0:
+    changes:
+      deprecated_features:
+        - search_community - ``search_community_repository`` is deprecated in favor
+          of ``search_community_repository_url``, matching ``cic_connector``'s ``_url``
+          suffix convention. The old variable name is still honored as a fallback
+          and will be removed in a future major release.
+      minor_changes:
+        - audit_storage, search_community, cic_connector - default the Nexus artifact
+          host to ``artifacts.alfresco.com``, matching every other role's production
+          URL, and add ``audit_storage_repository_url`` so downstream playbooks can
+          override just the repository base instead of the full ``audit_storage_zip_url``.
+        - cic_connector - move the ``org/alfresco`` path segment into ``cic_connector_artifact_repository_url``
+          itself, so the variable can be overridden with any repository style base
+          URL without producing a duplicated path. A trailing slash on the override,
+          previously required, is now optional and stripped automatically, so existing
+          overrides keep working unchanged.
+        - search_community - default ``search_community_repository_url`` to the ``/nexus/repository/releases/``
+          path instead of the legacy Nexus 2 style ``/nexus/content/repositories/releases/``.
+    fragments:
+      - nexus-artifacts-host-alignment.yaml
+    release_date: '2026-08-25'
