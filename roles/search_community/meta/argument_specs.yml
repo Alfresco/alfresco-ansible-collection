@@ -11,7 +11,7 @@ argument_specs:
       search_community_artifact_name:
         type: str
         description: Name of the Batch Indexing distribution artifact
-      search_community_repository:
+      search_community_repository_url:
         type: str
         description: Base repository URL to download the Batch Indexing distribution from
       search_community_zip_url:

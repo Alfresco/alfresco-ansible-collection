@@ -8,6 +8,11 @@ minor_changes:
     ``cic_connector_artifact_repository_url`` itself, so the variable can be
     overridden with any repository style base URL without producing a
     duplicated path.
-  - search_community - default ``search_community_repository`` to the
+  - search_community - default ``search_community_repository_url`` to the
     ``/nexus/repository/releases/`` path instead of the legacy Nexus 2 style
     ``/nexus/content/repositories/releases/``.
+breaking_changes:
+  - search_community - renamed ``search_community_repository`` to
+    ``search_community_repository_url``, matching ``cic_connector``'s
+    ``_url`` suffix convention. Playbooks overriding the old variable
+    name must be updated.
