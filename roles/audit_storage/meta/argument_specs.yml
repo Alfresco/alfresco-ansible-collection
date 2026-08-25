@@ -7,7 +7,7 @@ argument_specs:
       audit_storage_version:
         type: str
         description: Version of the Audit Storage to install
-      audit_storage_repository:
+      audit_storage_repository_url:
         type: str
         description: Base URL of the Nexus repository to download the Audit Storage artifact from
       audit_storage_zip_url:
