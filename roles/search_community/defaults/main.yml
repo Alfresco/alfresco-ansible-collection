@@ -2,7 +2,7 @@
 # defaults file for search_community
 search_community_version: 5.7.0
 search_community_artifact_name: alfresco-elasticsearch-batch-indexing-distribution
-search_community_repository: https://nexus.alfresco.com/nexus/content/repositories/releases/org/alfresco
+search_community_repository: https://artifacts.alfresco.com/nexus/content/repositories/releases/org/alfresco
 search_community_zip_url: "{{ search_community_repository }}/{{ search_community_artifact_name }}/{{ search_community_version }}/{{ search_community_artifact_name }}-{{ search_community_version }}.zip" # noqa yaml[line-length]
 search_community_zip_checksum: sha1:{{ search_community_zip_url }}.sha1
 

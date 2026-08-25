@@ -7,7 +7,7 @@ cic_connector_java_home_path: /opt/java
 cic_connector_java_bin_path: "{{ cic_connector_java_home_path }}/bin/java"
 
 cic_connector_artifact_base_path: /opt/alfresco/cic-connector
-cic_connector_artifact_repository_url: https://nexus.alfresco.com/nexus/repository/enterprise-releases/
+cic_connector_artifact_repository_url: https://artifacts.alfresco.com/nexus/repository/enterprise-releases/
 cic_connector_artifact_default_version: 1.0.1
 
 ## live ingester section
