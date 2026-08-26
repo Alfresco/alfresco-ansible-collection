@@ -7,7 +7,7 @@ platforms:
     pre_build_image: true
     command: "/opt/activemq/init.sh /opt/activemq"
     exposed_ports:
-      - 61616
+      - "61616"
     networks:
       - name: molecule_default
 
@@ -18,7 +18,7 @@ platforms:
     pre_build_image: true
     command: "python -m http.server 80"
     exposed_ports:
-      - 80
+      - "80"
     networks:
       - name: molecule_default
 
@@ -31,8 +31,6 @@ platforms:
       - /run
       - /run/lock
       - /tmp
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     networks:
       - name: molecule_default
         links:

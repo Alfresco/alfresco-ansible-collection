@@ -9,10 +9,10 @@ platforms:
       xpack.security.enabled: "false"
       discovery.type: "single-node"
     command: "eswrapper"
-    cap_add:
+    capabilities:
       - IPC_LOCK
     exposed_ports:
-      - 9200
+      - "9200"
     networks:
       - name: molecule_default
 
@@ -25,7 +25,7 @@ platforms:
       POSTGRES_USER: alfresco
       POSTGRES_PASSWORD: alfresco
     exposed_ports:
-      - 5432
+      - "5432"
     networks:
       - name: molecule_default
 
@@ -38,8 +38,6 @@ platforms:
       - /run
       - /run/lock
       - /tmp
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
     groups:
       - search_community
     networks:
