@@ -53,10 +53,10 @@
         - name: Read truststore
           ansible.builtin.command:
             cmd: "{{ java_home }}/bin/keytool -list -cacerts"
-          register: truststore_output
+          register: java_truststore_output
           changed_when: false
 
         - name: Check Truststore contains the certificate
           ansible.builtin.assert:
-            that: "'alfresco' in truststore_output.stdout"
+            that: "'alfresco' in java_truststore_output.stdout"
             msg: Truststore does not contain the CA certificate

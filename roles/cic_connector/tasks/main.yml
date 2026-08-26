@@ -3,12 +3,12 @@
 - name: Test java bin path
   ansible.builtin.stat:
     path: "{{ cic_connector_java_bin_path }}"
-  register: stat_result
+  register: cic_connector_stat_result
 
 - name: Assert java bin is in the expected path
   ansible.builtin.assert:
     that:
-      - "stat_result.stat.exists"
+      - "cic_connector_stat_result.stat.exists"
     fail_msg: "Java command not found in the expected path: {{ cic_connector_java_bin_path }}"
     quiet: true
 

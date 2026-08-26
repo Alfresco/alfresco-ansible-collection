@@ -20,7 +20,7 @@
       ansible.builtin.systemd:
         name: alfresco-cic-connector-live-ingester
         state: started
-      register: live_ingester_svc
+      register: cic_connector_live_ingester_svc
 
     - name: Check live ingester reliability env vars are set
       become: true
@@ -28,7 +28,7 @@
       ansible.builtin.command:
         cmd: >-
           grep -q '{{ item }}'
-          /proc/{{ live_ingester_svc.status.ExecMainPID }}/environ
+          /proc/{{ cic_connector_live_ingester_svc.status.ExecMainPID }}/environ
       loop:
         - 'ALFRESCO_TRANSFORM_RESPONSE_QUEUENAME=org.alfresco.cic-connector.transform.response'
         - 'ALFRESCO_REPOSITORY_EVENTSSUBSCRIPTION_DURABLE=true'
@@ -45,8 +45,8 @@
       ansible.builtin.uri:
         url: "http://localhost:8080/actuator/health/liveness"
         status_code: 200
-      register: liveness_probe
-      until: liveness_probe.status == 200
+      register: cic_connector_liveness_probe
+      until: cic_connector_liveness_probe.status == 200
       retries: 12
       delay: 10
 
@@ -54,8 +54,8 @@
       ansible.builtin.uri:
         url: "http://localhost:8080/actuator/health/readiness"
         status_code: 200
-      register: readiness_probe
-      until: readiness_probe.status == 200
+      register: cic_connector_readiness_probe
+      until: cic_connector_readiness_probe.status == 200
       retries: 24
       delay: 10
 
@@ -63,21 +63,23 @@
       ansible.builtin.uri:
         url: "http://localhost:8080/actuator/health"
         status_code: 200
-      register: health_probe
+      register: cic_connector_health_probe
       changed_when: false
 
     - name: Show live-ingester health status
       ansible.builtin.debug:
-        msg: "live-ingester /actuator/health -> HTTP {{ health_probe.status }}, status={{ health_probe.json.status | default('n/a') }}"
+        msg: >-
+          live-ingester /actuator/health -> HTTP {{ cic_connector_health_probe.status }},
+          status={{ cic_connector_health_probe.json.status | default('n/a') }}
 
     - name: Ensure bulk-ingester service is not running
       ansible.builtin.systemd:
         name: alfresco-cic-connector-bulk-ingester
-      register: bulk_ingester_svc
+      register: cic_connector_bulk_ingester_svc
 
     - name: Check bulk-ingester is installed but stopped and disabled
       ansible.builtin.assert:
         that:
-          - bulk_ingester_svc.status.ActiveState != 'active'
-          - bulk_ingester_svc.status.UnitFileState == 'disabled'
+          - cic_connector_bulk_ingester_svc.status.ActiveState != 'active'
+          - cic_connector_bulk_ingester_svc.status.UnitFileState == 'disabled'
         quiet: true
