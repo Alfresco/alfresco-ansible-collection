@@ -4,9 +4,17 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "roles/**"
+      - "galaxy.yml"
+      - ".github/workflows/docs.yml"
   push:
     branches:
       - main
+    paths:
+      - "roles/**"
+      - "galaxy.yml"
+      - ".github/workflows/docs.yml"
 
 concurrency:
   group: ${{ github.workflow}}-${{ github.ref_name }}
