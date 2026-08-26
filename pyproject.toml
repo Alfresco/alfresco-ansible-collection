@@ -8,7 +8,7 @@ dependencies = [
     "ansible-core==2.16.14",
     "ansible-lint==25.4.0",
     "antsibull-changelog==0.34.0",
-    "molecule==25.9.0",
+    "molecule==26.8.0",
     "molecule-plugins[docker]==26.7.15",
     "antsibull-docs==2.21.0",
     "sphinx-ansible-theme==0.10.3",
