@@ -7,6 +7,10 @@ updates:
     ignore:
       - dependency-name: "ansible-core"
         update-types: ["version-update:semver-minor"]
+    groups:
+      python:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
