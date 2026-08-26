@@ -31,7 +31,7 @@
         status_code:
           - 200
           - 503
-      register: health_check_result
-      until: health_check_result.status in [200, 503]
+      register: search_community_health_check_result
+      until: search_community_health_check_result.status in [200, 503]
       retries: 10
       delay: 15

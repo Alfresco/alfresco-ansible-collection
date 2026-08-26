@@ -5,7 +5,7 @@
     - name: Include java Role
       ansible.builtin.include_role:
         name: alfresco.platform.java
-    - name: Include java Role
+    - name: Include java Role keystores tasks
       ansible.builtin.include_role:
         name: alfresco.platform.java
         tasks_from: keystores
