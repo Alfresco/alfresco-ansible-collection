@@ -64,7 +64,7 @@ jobs:
         with:
           python-version-file: ".python-version"
 
-      - uses: Alfresco/alfresco-build-tools/.github/actions/pre-commit@v18.24.1
+      - uses: Alfresco/alfresco-build-tools/.github/actions/pre-commit@v18.26.0
         with:
           skip_checkout: true
 
