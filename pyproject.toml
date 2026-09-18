@@ -10,6 +10,6 @@ dependencies = [
     "antsibull-changelog==0.35.1",
     "molecule==26.8.0",
     "molecule-plugins[docker]==26.7.15",
-    "antsibull-docs==2.26.0",
+    "antsibull-docs==2.27.0",
     "sphinx-ansible-theme==0.10.4",
 ]
