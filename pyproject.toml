@@ -6,9 +6,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "ansible-core==2.16.19",
-    "ansible-lint==26.8.0",
+    "ansible-lint==26.9.0",
     "antsibull-changelog==0.35.1",
-    "molecule==26.8.0",
+    "molecule==26.9.0",
     "molecule-plugins[docker]==26.7.15",
     "antsibull-docs==2.27.0",
     "sphinx-ansible-theme==0.10.4",
