@@ -188,11 +188,11 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "ansible-core", specifier = "==2.16.19" },
-    { name = "ansible-lint", specifier = "==26.9.0" },
-    { name = "antsibull-changelog", specifier = "==0.35.1" },
-    { name = "antsibull-docs", specifier = "==2.27.0" },
-    { name = "molecule", specifier = "==26.9.0" },
-    { name = "molecule-plugins", extras = ["docker"], specifier = "==26.7.15" },
+    { name = "ansible-lint", specifier = "==26.10.1" },
+    { name = "antsibull-changelog", specifier = "==0.35.2" },
+    { name = "antsibull-docs", specifier = "==2.28.0" },
+    { name = "molecule", specifier = "==26.10.0" },
+    { name = "molecule-plugins", extras = ["docker"], specifier = "==26.10.12" },
     { name = "sphinx-ansible-theme", specifier = "==0.10.4" },
 ]
 
@@ -241,7 +241,7 @@ wheels = [
 
 [[package]]
 name = "ansible-lint"
-version = "26.9.0"
+version = "26.10.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-compat" },
@@ -262,9 +262,9 @@ dependencies = [
     { name = "wcmatch" },
     { name = "yamllint" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/09/b5/841f5ae439a2a039c6045880042d6acd8a8e2fd4e2fb66bc706e321ecb59/ansible_lint-26.9.0.tar.gz", hash = "sha256:cb3265888f30815de0dcf0964d34768b45c98bb4361eea7eb42c0342e81b51b4", size = 826447, upload-time = "2026-09-22T17:05:32.099Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fe/55/94814bfe335b58e1f65c0b2e6c8d0676737eadd7cc1466d8fe7213345a13/ansible_lint-26.10.1.tar.gz", hash = "sha256:a746c6f3cb5719d1c202bc14e956ef3b0eca704025d1aa92707a27fc73ed73ea", size = 829069, upload-time = "2026-10-13T12:45:06.196Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d6/23/abf992bbe521b4c9cac629d87a5928b35b3a39084ea299df64daed216e55/ansible_lint-26.9.0-py3-none-any.whl", hash = "sha256:4d01903fca9c42f7ce2b366ea5503d0701a27b3c6fdf684276a72888eea57f50", size = 341699, upload-time = "2026-09-22T17:05:30.311Z" },
+    { url = "https://files.pythonhosted.org/packages/f3/c7/80a6ac01d970257979f8f18e34e5a1a4c1ad356ea8507425fe74ea9178bc/ansible_lint-26.10.1-py3-none-any.whl", hash = "sha256:cc26d405ee38c3390e80ec18c4137b5685c36d03ce7d4d8233b0470d9a0e21e9", size = 342245, upload-time = "2026-10-13T12:45:04.243Z" },
 ]
 
 [[package]]
@@ -281,7 +281,7 @@ wheels = [
 
 [[package]]
 name = "antsibull-changelog"
-version = "0.35.1"
+version = "0.35.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-types" },
@@ -294,9 +294,9 @@ dependencies = [
     { name = "rstcheck" },
     { name = "semantic-version" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1d/12/56f23723ac30af83b56e47f993067af5c7dee0a1f89559694bb7c47f8d4f/antsibull_changelog-0.35.1.tar.gz", hash = "sha256:79359ed45ef1d542ea3bf31b09a3ad8389678a2b584254e7c15d6f140a53b33b", size = 143413, upload-time = "2026-05-18T19:53:09.259Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/58/72/98cb4306ca5abee477da7ec945f41d1c3e32a6b4b3fd9817a9c8646b3022/antsibull_changelog-0.35.2.tar.gz", hash = "sha256:b43693067d3f8f52b24509152844faba8f8e96109f01753996e663dd70cf2dbc", size = 144131, upload-time = "2026-10-18T15:15:28.163Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/72/4c42f5076df37fc6957bbce7d4711c477c4a0a80cd3a804bc2292e68de8d/antsibull_changelog-0.35.1-py3-none-any.whl", hash = "sha256:638042a8517e4f0453a308128d37b013b1e433a3e36cca374205decce6498b2a", size = 74201, upload-time = "2026-05-18T19:53:07.298Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/b7/7c676a470ea98a5ef162ffe519fa7ba3cb0892f1cdec13503f49c5d13199/antsibull_changelog-0.35.2-py3-none-any.whl", hash = "sha256:0bbfb043b48501f1671a2d6728922a0d6e8a816cb8aa1a030765119adbd967c5", size = 74284, upload-time = "2026-10-18T15:15:26.327Z" },
 ]
 
 [[package]]
@@ -321,7 +321,7 @@ wheels = [
 
 [[package]]
 name = "antsibull-docs"
-version = "2.27.0"
+version = "2.28.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -342,9 +342,9 @@ dependencies = [
     { name = "semantic-version" },
     { name = "sphinx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9c/8e/844eceb5ef4b1d10468be2c0f555c6f0d03fbceb9dc8e39ff3c88f0a80c6/antsibull_docs-2.27.0.tar.gz", hash = "sha256:ed89776c5bfd9c779ee20965dc29e84aacb5efb7e21e3c72b2ed9a81378afa96", size = 1602777, upload-time = "2026-09-10T20:14:39.269Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/99/0f/98e6b0821023096226c4c988c72cf67ca579a18da97d1c8bea142da03984/antsibull_docs-2.28.0.tar.gz", hash = "sha256:6e1cde199ccbe172fbf47e53cbda448223501a7d8b4f06d1b633d3fc8a5949fc", size = 1601688, upload-time = "2026-10-16T09:34:06.569Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8b/a2/053f3a36ce18dd538966f73cfa498c86ad4a14bf6be0965ef01ea5260c75/antsibull_docs-2.27.0-py3-none-any.whl", hash = "sha256:e68cb05494eaa2dcb834d464ae09f5249d64fbb58574dffe397314c8b07be99c", size = 304395, upload-time = "2026-09-10T20:14:36.912Z" },
+    { url = "https://files.pythonhosted.org/packages/db/bb/1bc882bac5d01918debcb39aa12dbce090987f03c8864746eb2e5b6073e8/antsibull_docs-2.28.0-py3-none-any.whl", hash = "sha256:e71ef8c52f517eeec5c0f672b4952cd4f8df55461b9b842b4f2544932ab3ba58", size = 302724, upload-time = "2026-10-16T09:34:00.903Z" },
 ]
 
 [[package]]
@@ -936,7 +936,7 @@ wheels = [
 
 [[package]]
 name = "molecule"
-version = "26.9.0"
+version = "26.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "ansible-compat" },
@@ -952,21 +952,21 @@ dependencies = [
     { name = "rich" },
     { name = "wcmatch" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/87/eb/ef1f1a0eba6e2fac4e59001c539109bc65c4dcd1b8a9d2b93c9097241d71/molecule-26.9.0.tar.gz", hash = "sha256:1c44254eb173d0a3a48217b874d19bfa436614fb0c6faa75d9b192a843360188", size = 4757309, upload-time = "2026-09-22T17:07:07.35Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ea/86/6f3b9af840bea4296746db9ebfe6809f7848bb68e0dac7ac639879b72d6a/molecule-26.10.0.tar.gz", hash = "sha256:32533aaba78c29eed80bcaab5d03ff63fe48b8f43071cf77953f391e0732d439", size = 4753214, upload-time = "2026-10-12T09:11:19.381Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4e/b7/4041d1b53467e12a4fd72ae7e0bb8ccc2909e126e2bb0cf2babcae82cc41/molecule-26.9.0-py3-none-any.whl", hash = "sha256:ad8f468c01f35a27cd12858e24c86ad27344dc1076845f03d78fdb563fb69f82", size = 163709, upload-time = "2026-09-22T17:07:05.163Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/da/7bef0163484b9dc1bdce6883eb4898aebaf8e559cbea0df7db065e308e9f/molecule-26.10.0-py3-none-any.whl", hash = "sha256:deb351b11f1b329ae3b3c856d5b1c1d9a9d8f8d40ba717c77e54b1778b4557d2", size = 163735, upload-time = "2026-10-12T09:11:17.85Z" },
 ]
 
 [[package]]
 name = "molecule-plugins"
-version = "26.7.15"
+version = "26.10.12"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "molecule" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8a/ca/2967c71978f725772b701b23bd47f9694a9428587a26aa8911ceed2d8549/molecule_plugins-26.7.15.tar.gz", hash = "sha256:df4cab8d9e13ed448fc33d72af1fbae54883e9255a42c021ae7e875dfd3374c1", size = 216679, upload-time = "2026-07-15T16:31:18.145Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/a9/0e69e39a9e65a673b0d5f4fc1ea810a2f6fab671162b21b157a0cf124f71/molecule_plugins-26.10.12.tar.gz", hash = "sha256:03f79df9f7d6d6107ad9507f6c58724bbd18c21afb6f020fc532361b343ea333", size = 276741, upload-time = "2026-10-12T21:47:46.334Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b2/03/678571fb5d41e3769c578f131aff4bd5dfd8a402be2767d7374c79dc5cf6/molecule_plugins-26.7.15-py3-none-any.whl", hash = "sha256:191dfa7fd965c637e3b61d0929f2fb741f0df1181a250df62eca3657b1182794", size = 86394, upload-time = "2026-07-15T16:31:16.558Z" },
+    { url = "https://files.pythonhosted.org/packages/07/79/192c2de4e0d25472182d45ca84bbe4eb9c646396f212c616554c71aec51d/molecule_plugins-26.10.12-py3-none-any.whl", hash = "sha256:a618b60016eac397d8e279eeb5c494a9cee6d33103dbe5222891df81657759f1", size = 88940, upload-time = "2026-10-12T21:47:44.832Z" },
 ]
 
 [package.optional-dependencies]
