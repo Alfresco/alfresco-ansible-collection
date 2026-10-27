@@ -1,0 +1,57 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    classpath_dir: /etc/opt/alfresco/content-services/classpath
+    properties_path: "{{ classpath_dir }}/alfresco/extension/subsystems/Authentication/ldap-ad/ldap1/ldap-ad-authentication.properties"
+    expected_ldap_properties:
+      - ldap.authentication.active=false
+      - ldap.authentication.java.naming.provider.url=ldap://ad.example.com:389
+      - ldap.synchronization.active=true
+      - ldap.synchronization.java.naming.security.authentication=simple
+      - 'ldap.synchronization.java.naming.security.principal=EXAMPLE\\svc-alfresco'
+      - 'ldap.synchronization.java.naming.security.credentials=not\\a-secret' # pragma: allowlist secret
+      - ldap.synchronization.userSearchBase=ou=Users,dc=example,dc=com
+      - ldap.synchronization.groupSearchBase=ou=Groups,dc=example,dc=com
+      - ldap.synchronization.queryBatchSize=500
+    expected_global_properties: |
+      deployment.method=ANSIBLE
+      authentication.chain=identity-service1:identity-service,alfrescoNtlm1:alfrescoNtlm
+  tasks:
+    - name: Read the LDAP-AD properties attributes
+      ansible.builtin.stat:
+        path: "{{ properties_path }}"
+      register: repository_ldap_properties_file
+
+    - name: Check the LDAP-AD properties are private to the repository user
+      ansible.builtin.assert:
+        that:
+          - repository_ldap_properties_file.stat.exists
+          - repository_ldap_properties_file.stat.mode == '0640'
+          - repository_ldap_properties_file.stat.pw_name == 'alfresco'
+        quiet: true
+
+    - name: Read the LDAP-AD properties and the global properties
+      ansible.builtin.slurp:
+        src: "{{ item }}"
+      register: repository_generated
+      loop:
+        - "{{ properties_path }}"
+        - "{{ classpath_dir }}/alfresco-global.properties"
+
+    - name: Check LDAP-AD is configured for synchronization only
+      vars:
+        ldap_properties: "{{ repository_generated.results[0].content | b64decode | split('\n') }}"
+      ansible.builtin.assert:
+        that: item in ldap_properties
+        quiet: true
+      loop: "{{ expected_ldap_properties }}"
+      loop_control:
+        label: "{{ item.split('=')[0] }}"
+
+    - name: Check the authentication chain was left untouched
+      ansible.builtin.assert:
+        that: repository_generated.results[1].content | b64decode == expected_global_properties
+        quiet: true

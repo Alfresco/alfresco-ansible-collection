@@ -1,0 +1,6 @@
+---
+major_changes:
+  - >-
+    add repository role configuring Kerberos authentication (``kerberos`` entrypoint)
+    and LDAP-AD user synchronization (``ldap_sync`` entrypoint) on an installed
+    Alfresco Content Services repository

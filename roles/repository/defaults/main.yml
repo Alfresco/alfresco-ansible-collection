@@ -1,0 +1,29 @@
+---
+repository_username: alfresco
+repository_group: alfresco
+repository_settings_dir: /etc/opt/alfresco/content-services
+repository_classpath_dir: "{{ repository_settings_dir }}/classpath"
+
+repository_kerberos_instance_name: kerberos1
+repository_kerberos_admin_server: ""
+repository_kerberos_domains:
+  - "{{ repository_kerberos_realm | lower }}"
+  - ".{{ repository_kerberos_realm | lower }}"
+repository_kerberos_enctypes:
+  - aes256-cts-hmac-sha1-96
+  - aes128-cts-hmac-sha1-96
+repository_kerberos_keytab_src: ""
+repository_kerberos_keytab_path: "{{ repository_settings_dir }}/alfresco.keytab"
+repository_kerberos_krb5_conf_path: /etc/krb5.conf
+repository_kerberos_jaas_config_path: "{{ repository_settings_dir }}/java.login.config"
+repository_kerberos_sso_enabled: true
+repository_kerberos_sso_fallback_enabled: true
+repository_kerberos_strip_username_suffix: true
+repository_kerberos_default_administrator_usernames: []
+repository_authentication_chain:
+  - "{{ repository_kerberos_instance_name }}:kerberos"
+  - alfrescoNtlm1:alfrescoNtlm
+
+repository_ldap_sync_instance_name: ldap1
+repository_ldap_sync_bind_authentication: simple
+repository_ldap_sync_extra_properties: {}

@@ -1,0 +1,95 @@
+---
+- name: Initialize the restart flag without resetting it
+  ansible.builtin.set_fact:
+    repository_needs_restart: "{{ repository_needs_restart | default(false) | bool }}"
+
+- name: Check the authentication chain contains the Kerberos instance
+  ansible.builtin.assert:
+    that: (repository_kerberos_instance_name ~ ':kerberos') in repository_authentication_chain
+    fail_msg: >-
+      repository_authentication_chain must contain
+      {{ repository_kerberos_instance_name }}:kerberos
+    quiet: true
+
+- name: Write the Kerberos client configuration
+  become: true
+  ansible.builtin.template:
+    src: krb5.conf.j2
+    dest: "{{ repository_kerberos_krb5_conf_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: repository-needs-restart
+
+- name: Copy the Kerberos keytab
+  when: repository_kerberos_keytab_src | length > 0
+  become: true
+  no_log: true
+  ansible.builtin.copy:
+    src: "{{ repository_kerberos_keytab_src }}"
+    dest: "{{ repository_kerberos_keytab_path }}"
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0600"
+  notify: repository-needs-restart
+
+- name: Restrict access to the Kerberos keytab
+  become: true
+  ansible.builtin.file:
+    path: "{{ repository_kerberos_keytab_path }}"
+    state: file
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0600"
+
+- name: Write the JAAS login configuration
+  become: true
+  ansible.builtin.template:
+    src: java.login.config.j2
+    dest: "{{ repository_kerberos_jaas_config_path }}"
+    owner: root
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Create the Kerberos authentication subsystem directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ repository_subsystems_dir }}/kerberos/{{ repository_kerberos_instance_name }}"
+    state: directory
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0750"
+
+- name: Write the Kerberos authentication subsystem properties
+  become: true
+  ansible.builtin.template:
+    src: kerberos-authentication.properties.j2
+    dest: >-
+      {{ repository_subsystems_dir }}/kerberos/{{ repository_kerberos_instance_name }}/kerberos-authentication.properties
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Set the repository authentication chain
+  become: true
+  diff: false
+  ansible.builtin.lineinfile:
+    path: "{{ repository_classpath_dir }}/alfresco-global.properties"
+    regexp: '^\s*authentication\.chain\s*='
+    line: authentication.chain={{ repository_authentication_chain | join(',') }}
+    create: true
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Expose the JVM options the repository needs for Kerberos
+  ansible.builtin.set_fact:
+    repository_kerberos_java_opts:
+      - -Djava.security.auth.login.config={{ repository_kerberos_jaas_config_path }}
+      - -Djava.security.krb5.conf={{ repository_kerberos_krb5_conf_path }}
+
+- name: Force all notified handlers to run
+  ansible.builtin.meta: flush_handlers

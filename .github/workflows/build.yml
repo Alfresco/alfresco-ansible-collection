@@ -100,6 +100,7 @@ jobs:
           - role_name: cic_connector
           - role_name: audit_storage
           - role_name: search_community
+          - role_name: repository
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -126,4 +127,4 @@ jobs:
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         working-directory: roles/${{ matrix.roles.role_name }}
         run: |
-          uv run molecule test
+          uv run molecule test --all

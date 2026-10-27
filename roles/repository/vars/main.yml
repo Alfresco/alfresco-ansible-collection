@@ -1,0 +1,2 @@
+---
+repository_subsystems_dir: "{{ repository_classpath_dir }}/alfresco/extension/subsystems/Authentication"

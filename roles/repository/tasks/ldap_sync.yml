@@ -1,0 +1,29 @@
+---
+- name: Initialize the restart flag without resetting it
+  ansible.builtin.set_fact:
+    repository_needs_restart: "{{ repository_needs_restart | default(false) | bool }}"
+
+- name: Create the LDAP-AD subsystem directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ repository_subsystems_dir }}/ldap-ad/{{ repository_ldap_sync_instance_name }}"
+    state: directory
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0750"
+
+- name: Write the LDAP-AD synchronization properties
+  become: true
+  no_log: true
+  diff: false
+  ansible.builtin.template:
+    src: ldap-ad-authentication.properties.j2
+    dest: >-
+      {{ repository_subsystems_dir }}/ldap-ad/{{ repository_ldap_sync_instance_name }}/ldap-ad-authentication.properties
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Force all notified handlers to run
+  ansible.builtin.meta: flush_handlers
