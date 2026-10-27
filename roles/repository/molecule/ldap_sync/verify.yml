@@ -12,10 +12,11 @@
       - ldap.synchronization.active=true
       - ldap.synchronization.java.naming.security.authentication=simple
       - 'ldap.synchronization.java.naming.security.principal=EXAMPLE\\svc-alfresco'
-      - 'ldap.synchronization.java.naming.security.credentials=not\\a-secret' # pragma: allowlist secret
+      - 'ldap.synchronization.java.naming.security.credentials=\ not\\a-secret' # pragma: allowlist secret
       - ldap.synchronization.userSearchBase=ou=Users,dc=example,dc=com
       - ldap.synchronization.groupSearchBase=ou=Groups,dc=example,dc=com
       - ldap.synchronization.queryBatchSize=500
+      - 'ldap.synchronization.groupDisplayNameAttributeName=first\nsecond'
     expected_global_properties: |
       deployment.method=ANSIBLE
       authentication.chain=identity-service1:identity-service,alfrescoNtlm1:alfrescoNtlm

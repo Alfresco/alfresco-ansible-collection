@@ -1,5 +1,5 @@
 {%- macro escape(value) -%}
-{{ value | string | replace('\\', '\\\\') }}
+{{ value | string | replace('\\', '\\\\') | replace('\n', '\\n') | replace('\r', '\\r') | regex_replace('^([ \t\f])', '\\\\\\1') }}
 {%- endmacro -%}
 # {{ ansible_managed }}
 ldap.authentication.active=false
