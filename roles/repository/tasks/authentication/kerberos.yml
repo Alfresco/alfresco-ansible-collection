@@ -29,6 +29,7 @@
   notify: repository-needs-restart
 
 - name: Restrict access to the Kerberos keytab
+  when: repository_kerberos.keytab_src | length == 0
   become: true
   ansible.builtin.file:
     path: "{{ repository_kerberos.keytab_path }}"
