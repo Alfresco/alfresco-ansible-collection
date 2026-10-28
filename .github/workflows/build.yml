@@ -88,19 +88,35 @@ jobs:
           testing-type: sanity
           coverage: never # codecov integration required
 
+  molecule-matrix:
+    runs-on: ubuntu-latest
+    name: Build roles/scenario matrix
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Find the molecule scenarios of every role
+        id: set-matrix
+        run: |
+          MATRIX=$(find roles -mindepth 4 -maxdepth 4 -path 'roles/*/molecule/*/molecule.yml' | sort \
+            | jq -Rnc '[inputs | split("/") | {role: .[1], scenario: .[3]}]')
+          if [ "$MATRIX" = "[]" ]; then
+            echo "::error::No molecule scenario found in roles/*/molecule/*/molecule.yml"
+            exit 1
+          fi
+          echo "Computed matrix: $MATRIX"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+
   molecule:
     runs-on: ubuntu-latest
-    name: Molecule against ${{ matrix.roles.role_name }} role
+    name: Molecule against ${{ matrix.role }} role (${{ matrix.scenario }})
+    needs: molecule-matrix
     strategy:
       fail-fast: false
       matrix:
-        roles:
-          - role_name: java
-          - role_name: systemd_service
-          - role_name: cic_connector
-          - role_name: audit_storage
-          - role_name: search_community
-          - role_name: repository
+        include: ${{ fromJSON(needs.molecule-matrix.outputs.matrix) }}
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -125,6 +141,7 @@ jobs:
           ANSIBLE_DIFF_ALWAYS: "true"
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-        working-directory: roles/${{ matrix.roles.role_name }}
+          MOLECULE_SCENARIO: ${{ matrix.scenario }}
+        working-directory: roles/${{ matrix.role }}
         run: |
-          uv run molecule test --all
+          uv run molecule test -s "$MOLECULE_SCENARIO"

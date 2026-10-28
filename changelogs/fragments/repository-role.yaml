@@ -1,5 +1,5 @@
 ---
-major_changes:
+minor_changes:
   - >-
     add repository role configuring authentication subsystems, starting with
     Kerberos (``authentication`` entrypoint), and user synchronization
