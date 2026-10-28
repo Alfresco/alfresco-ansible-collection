@@ -1,0 +1,23 @@
+---
+- name: Check an authentication subsystem is configured
+  ansible.builtin.assert:
+    that: repository_authentication_kerberos | default(none) is mapping
+    fail_msg: >-
+      No authentication subsystem to configure: set
+      repository_authentication_kerberos.
+    quiet: true
+
+- name: Initialize the restart flag without resetting it
+  ansible.builtin.set_fact:
+    repository_needs_restart: "{{ repository_needs_restart | default(false) | bool }}"
+
+- name: Initialize the JVM options needed by the authentication subsystems
+  ansible.builtin.set_fact:
+    repository_authentication_java_opts: []
+
+- name: Configure the Kerberos authentication subsystem
+  when: repository_authentication_kerberos is defined
+  ansible.builtin.include_tasks: authentication/kerberos.yml
+
+- name: Force all notified handlers to run
+  ansible.builtin.meta: flush_handlers

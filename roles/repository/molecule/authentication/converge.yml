@@ -1,0 +1,26 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Include repository role authentication tasks
+      ansible.builtin.include_role:
+        name: alfresco.platform.repository
+        tasks_from: authentication
+      vars:
+        repository_authentication_kerberos:
+          realm: EXAMPLE.COM
+          kdcs:
+            - kdc.example.com
+          admin_server: kdc.example.com
+          principal: HTTP/alfresco.example.com
+          keytab_src: test.keytab
+
+    - name: Check the JVM options and the restart flag are exposed
+      ansible.builtin.assert:
+        that:
+          - repository_needs_restart is boolean
+          - >-
+            '-Djava.security.auth.login.config=/etc/opt/alfresco/content-services/java.login.config'
+            in repository_authentication_java_opts
+          - "'-Djava.security.krb5.conf=/etc/krb5.conf' in repository_authentication_java_opts"
+        quiet: true

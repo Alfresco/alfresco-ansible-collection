@@ -1,15 +1,16 @@
 ---
 argument_specs:
-  kerberos:
-    short_description: Kerberos authentication entrypoint for the repository role
+  authentication:
+    short_description: Authentication entrypoint for the repository role
     description: |
-      Configures an already installed Alfresco Content Services repository to
-      authenticate users with Kerberos (SPNEGO SSO). It writes the Kerberos
-      client configuration, installs the keytab, writes the JAAS login
-      configuration and the Kerberos authentication subsystem properties, and
-      sets the repository authentication chain.
+      Configures the authentication subsystems of an already installed
+      Alfresco Content Services repository. Each supported subsystem has its
+      own option and is configured only when that option is set. Fails when
+      no subsystem option is set.
+      It does not change the authentication chain: the calling playbook must
+      add the configured subsystem instances to C(authentication.chain).
       The JVM running the repository must be started with the options exposed
-      in the C(repository_kerberos_java_opts) fact.
+      in the C(repository_authentication_java_opts) fact.
       It does not provision any KDC or Active Directory resources.
     options:
       repository_username:
@@ -27,101 +28,97 @@ argument_specs:
       repository_classpath_dir:
         type: str
         description: |
-          Repository classpath directory holding C(alfresco-global.properties)
-          and the C(alfresco/extension) tree.
+          Repository classpath directory holding the C(alfresco/extension) tree.
         default: "{{ repository_settings_dir }}/classpath"
-      repository_kerberos_realm:
-        type: str
-        required: true
-        description: Kerberos realm, usually the DNS domain in uppercase (for example C(EXAMPLE.COM)).
-      repository_kerberos_kdcs:
-        type: list
-        elements: str
-        required: true
-        description: Kerberos KDC hosts, optionally with a port (for example C(kdc.example.com:88)).
-      repository_kerberos_admin_server:
-        type: str
-        description: Kerberos admin server. Omitted from C(krb5.conf) when empty.
-        default: ""
-      repository_kerberos_domains:
-        type: list
-        elements: str
-        description: DNS domains mapped to the realm in the C([domain_realm]) section.
-        default:
-          - "{{ repository_kerberos_realm | lower }}"
-          - ".{{ repository_kerberos_realm | lower }}"
-      repository_kerberos_enctypes:
-        type: list
-        elements: str
-        description: Encryption types allowed for tickets.
-        default:
-          - aes256-cts-hmac-sha1-96
-          - aes128-cts-hmac-sha1-96
-      repository_kerberos_principal:
-        type: str
-        required: true
+      repository_authentication_kerberos:
+        type: dict
         description: |
-          Service principal held in the keytab, in the form C(HTTP/<host>.<domain>).
-          The host must be the name users browse to (the load balancer name when
-          the repository is behind a proxy).
-      repository_kerberos_keytab_src:
-        type: str
-        description: |
-          Path of the keytab on the Ansible controller. When empty, the keytab must
-          already exist on the target host at C(repository_kerberos_keytab_path).
-        default: ""
-      repository_kerberos_keytab_path:
-        type: str
-        description: Path of the keytab on the target host.
-        default: "{{ repository_settings_dir }}/alfresco.keytab"
-      repository_kerberos_krb5_conf_path:
-        type: str
-        description: Path of the Kerberos client configuration file on the target host.
-        default: /etc/krb5.conf
-      repository_kerberos_jaas_config_path:
-        type: str
-        description: Path of the JAAS login configuration file on the target host.
-        default: "{{ repository_settings_dir }}/java.login.config"
-      repository_kerberos_instance_name:
-        type: str
-        description: Name of the Kerberos authentication subsystem instance.
-        default: kerberos1
-      repository_kerberos_sso_enabled:
-        type: bool
-        description: Enable SPNEGO/Kerberos single sign-on.
-        default: true
-      repository_kerberos_sso_fallback_enabled:
-        type: bool
-        description: Fall back to another authentication mechanism when SSO fails.
-        default: true
-      repository_kerberos_strip_username_suffix:
-        type: bool
-        description: Strip the C(@domain) suffix from Kerberos authenticated usernames.
-        default: true
-      repository_kerberos_default_administrator_usernames:
-        type: list
-        elements: str
-        description: Users granted administrator rights by the Kerberos subsystem.
-        default: []
-      repository_authentication_chain:
-        type: list
-        elements: str
-        description: |
-          Ordered authentication chain, as C(<instance>:<type>) entries. It must
-          contain the Kerberos instance. To synchronize users from Active
-          Directory, add the instance configured by the C(ldap_sync) entrypoint
-          (for example C(ldap1:ldap-ad)) before C(alfrescoNtlm1:alfrescoNtlm).
-        default:
-          - "{{ repository_kerberos_instance_name }}:kerberos"
-          - alfrescoNtlm1:alfrescoNtlm
-  ldap_sync:
-    short_description: LDAP-AD user synchronization entrypoint for the repository role
+          Kerberos (SPNEGO SSO) authentication subsystem. When set, writes the
+          Kerberos client configuration, installs the keytab, writes the JAAS
+          login configuration and the subsystem properties.
+        options:
+          realm:
+            type: str
+            required: true
+            description: Kerberos realm, usually the DNS domain in uppercase (for example C(EXAMPLE.COM)).
+          kdcs:
+            type: list
+            elements: str
+            required: true
+            description: Kerberos KDC hosts, optionally with a port (for example C(kdc.example.com:88)).
+          admin_server:
+            type: str
+            description: Kerberos admin server. Omitted from C(krb5.conf) when empty.
+            default: ""
+          domains:
+            type: list
+            elements: str
+            description: |
+              DNS domains mapped to the realm in the C([domain_realm]) section.
+              Defaults to the realm in lowercase, with and without a leading dot.
+          enctypes:
+            type: list
+            elements: str
+            description: Encryption types allowed for tickets.
+            default:
+              - aes256-cts-hmac-sha1-96
+              - aes128-cts-hmac-sha1-96
+          principal:
+            type: str
+            required: true
+            description: |
+              Service principal held in the keytab, in the form C(HTTP/<host>.<domain>).
+              The host must be the name users browse to (the load balancer name when
+              the repository is behind a proxy).
+          keytab_src:
+            type: str
+            description: |
+              Path of the keytab on the Ansible controller. When empty, the keytab must
+              already exist on the target host at C(keytab_path).
+            default: ""
+          keytab_path:
+            type: str
+            description: Path of the keytab on the target host.
+            default: "{{ repository_settings_dir }}/alfresco.keytab"
+          krb5_conf_path:
+            type: str
+            description: Path of the Kerberos client configuration file on the target host.
+            default: /etc/krb5.conf
+          jaas_config_path:
+            type: str
+            description: Path of the JAAS login configuration file on the target host.
+            default: "{{ repository_settings_dir }}/java.login.config"
+          instance_name:
+            type: str
+            description: Name of the Kerberos authentication subsystem instance.
+            default: kerberos1
+          sso_enabled:
+            type: bool
+            description: Enable SPNEGO/Kerberos single sign-on.
+            default: true
+          sso_fallback_enabled:
+            type: bool
+            description: Fall back to another authentication mechanism when SSO fails.
+            default: true
+          strip_username_suffix:
+            type: bool
+            description: Strip the C(@domain) suffix from Kerberos authenticated usernames.
+            default: true
+          default_administrator_usernames:
+            type: list
+            elements: str
+            description: Users granted administrator rights by the Kerberos subsystem.
+            default: []
+  user_sync:
+    short_description: User synchronization entrypoint for the repository role
     description: |
-      Configures an LDAP-AD authentication subsystem instance used only to
-      synchronize users and groups from Active Directory. LDAP authentication
-      is disabled on that instance and the authentication chain is left
-      untouched: the instance must be added to the chain by the C(kerberos)
-      entrypoint (or by other means) for the synchronization to run.
+      Configures the user and group synchronization subsystems of an already
+      installed Alfresco Content Services repository. Each supported
+      subsystem has its own option and is configured only when that option
+      is set. Fails when no subsystem option is set.
+      It does not change the authentication chain: the calling playbook must
+      add the configured subsystem instances to C(authentication.chain) for
+      the synchronization to run.
       It does not provision any Active Directory resources.
     options:
       repository_username:
@@ -140,38 +137,44 @@ argument_specs:
         type: str
         description: Repository classpath directory holding the C(alfresco/extension) tree.
         default: "{{ repository_settings_dir }}/classpath"
-      repository_ldap_sync_instance_name:
-        type: str
-        description: Name of the LDAP-AD authentication subsystem instance.
-        default: ldap1
-      repository_ldap_sync_url:
-        type: str
-        required: true
-        description: LDAP server URL (for example C(ldap://ad.example.com:389)).
-      repository_ldap_sync_bind_authentication:
-        type: str
-        description: Bind mechanism used for synchronization (C(none), C(simple) or C(DIGEST-MD5)).
-        default: simple
-      repository_ldap_sync_bind_principal:
-        type: str
-        required: true
-        description: Account used to bind to the directory for synchronization.
-      repository_ldap_sync_bind_password:
-        type: str
-        required: true
-        no_log: true
-        description: Password of the bind account.
-      repository_ldap_sync_user_search_base:
-        type: str
-        required: true
-        description: DN under which users are searched.
-      repository_ldap_sync_group_search_base:
-        type: str
-        required: true
-        description: DN under which groups are searched.
-      repository_ldap_sync_extra_properties:
+      repository_user_sync_ldap_ad:
         type: dict
         description: |
-          Additional LDAP-AD subsystem properties written as-is (for example
-          C(ldap.synchronization.personQuery)).
-        default: {}
+          LDAP-AD subsystem used only to synchronize users and groups from
+          Active Directory. LDAP authentication is disabled on that instance.
+        options:
+          instance_name:
+            type: str
+            description: Name of the LDAP-AD authentication subsystem instance.
+            default: ldap1
+          url:
+            type: str
+            required: true
+            description: LDAP server URL (for example C(ldap://ad.example.com:389)).
+          bind_authentication:
+            type: str
+            description: Bind mechanism used for synchronization (C(none), C(simple) or C(DIGEST-MD5)).
+            default: simple
+          bind_principal:
+            type: str
+            required: true
+            description: Account used to bind to the directory for synchronization.
+          bind_password:
+            type: str
+            required: true
+            no_log: true
+            description: Password of the bind account.
+          user_search_base:
+            type: str
+            required: true
+            description: DN under which users are searched.
+          group_search_base:
+            type: str
+            required: true
+            description: DN under which groups are searched.
+          extra_properties:
+            type: dict
+            description: |
+              Additional LDAP-AD subsystem properties written as-is (for example
+              C(ldap.synchronization.personQuery)).
+            default: {}

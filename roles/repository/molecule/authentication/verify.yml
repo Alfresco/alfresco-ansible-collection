@@ -6,6 +6,9 @@
   vars:
     settings_dir: /etc/opt/alfresco/content-services
     subsystem_dir: "{{ settings_dir }}/classpath/alfresco/extension/subsystems/Authentication/kerberos/kerberos1"
+    expected_global_properties: |
+      deployment.method=ANSIBLE
+      authentication.chain=identity-service1:identity-service,alfrescoNtlm1:alfrescoNtlm
   tasks:
     - name: Read the generated files
       ansible.builtin.slurp:
@@ -22,7 +25,7 @@
         krb5_conf: "{{ repository_generated.results[0].content | b64decode }}"
         jaas_config: "{{ repository_generated.results[1].content | b64decode }}"
         kerberos_properties: "{{ repository_generated.results[2].content | b64decode | split('\n') }}"
-        global_properties: "{{ repository_generated.results[3].content | b64decode | split('\n') }}"
+        global_properties: "{{ repository_generated.results[3].content | b64decode }}"
       ansible.builtin.assert:
         that:
           - "'default_realm = EXAMPLE.COM' in krb5_conf"
@@ -35,9 +38,7 @@
           - "'kerberos.authentication.realm=EXAMPLE.COM' in kerberos_properties"
           - "'kerberos.authentication.sso.enabled=true' in kerberos_properties"
           - "'kerberos.authentication.http.configEntryName=AlfrescoHTTP' in kerberos_properties"
-          - "'authentication.chain=kerberos1:kerberos,ldap1:ldap-ad,alfrescoNtlm1:alfrescoNtlm' in global_properties"
-          - global_properties | select('match', 'authentication\\.chain') | list | length == 1
-          - "'deployment.method=ANSIBLE' in global_properties"
+          - global_properties == expected_global_properties
         quiet: true
 
     - name: Read the keytab attributes

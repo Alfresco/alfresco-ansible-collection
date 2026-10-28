@@ -3,13 +3,13 @@
 {%- endmacro -%}
 # {{ ansible_managed }}
 ldap.authentication.active=false
-ldap.authentication.java.naming.provider.url={{ escape(repository_ldap_sync_url) }}
+ldap.authentication.java.naming.provider.url={{ escape(repository_ldap_ad.url) }}
 ldap.synchronization.active=true
-ldap.synchronization.java.naming.security.authentication={{ escape(repository_ldap_sync_bind_authentication) }}
-ldap.synchronization.java.naming.security.principal={{ escape(repository_ldap_sync_bind_principal) }}
-ldap.synchronization.java.naming.security.credentials={{ escape(repository_ldap_sync_bind_password) }}
-ldap.synchronization.userSearchBase={{ escape(repository_ldap_sync_user_search_base) }}
-ldap.synchronization.groupSearchBase={{ escape(repository_ldap_sync_group_search_base) }}
-{% for key, value in repository_ldap_sync_extra_properties | dictsort %}
+ldap.synchronization.java.naming.security.authentication={{ escape(repository_ldap_ad.bind_authentication) }}
+ldap.synchronization.java.naming.security.principal={{ escape(repository_ldap_ad.bind_principal) }}
+ldap.synchronization.java.naming.security.credentials={{ escape(repository_ldap_ad.bind_password) }}
+ldap.synchronization.userSearchBase={{ escape(repository_ldap_ad.user_search_base) }}
+ldap.synchronization.groupSearchBase={{ escape(repository_ldap_ad.group_search_base) }}
+{% for key, value in repository_ldap_ad.extra_properties | dictsort %}
 {{ key }}={{ escape(value) }}
 {% endfor %}

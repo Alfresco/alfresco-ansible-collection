@@ -8,8 +8,8 @@ AlfrescoHTTP {
    storeKey=true
    useKeyTab=true
    doNotPrompt=true
-   keyTab="{{ repository_kerberos_keytab_path }}"
-   principal="{{ repository_kerberos_principal }}";
+   keyTab="{{ repository_kerberos.keytab_path }}"
+   principal="{{ repository_kerberos.principal }}";
 };
 
 com.sun.net.ssl.client {

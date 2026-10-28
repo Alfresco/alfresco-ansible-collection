@@ -1,0 +1,75 @@
+---
+- name: Merge the Kerberos settings with their defaults
+  ansible.builtin.set_fact:
+    repository_kerberos: >-
+      {{ repository_kerberos_defaults
+      | ansible.builtin.combine(repository_authentication_kerberos
+      | dict2items | rejectattr('value', 'none') | items2dict) }}
+
+- name: Write the Kerberos client configuration
+  become: true
+  ansible.builtin.template:
+    src: krb5.conf.j2
+    dest: "{{ repository_kerberos.krb5_conf_path }}"
+    owner: root
+    group: root
+    mode: "0644"
+  notify: repository-needs-restart
+
+- name: Copy the Kerberos keytab
+  when: repository_kerberos.keytab_src | length > 0
+  become: true
+  no_log: true
+  ansible.builtin.copy:
+    src: "{{ repository_kerberos.keytab_src }}"
+    dest: "{{ repository_kerberos.keytab_path }}"
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0600"
+  notify: repository-needs-restart
+
+- name: Restrict access to the Kerberos keytab
+  become: true
+  ansible.builtin.file:
+    path: "{{ repository_kerberos.keytab_path }}"
+    state: file
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0600"
+
+- name: Write the JAAS login configuration
+  become: true
+  ansible.builtin.template:
+    src: java.login.config.j2
+    dest: "{{ repository_kerberos.jaas_config_path }}"
+    owner: root
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Create the Kerberos authentication subsystem directory
+  become: true
+  ansible.builtin.file:
+    path: "{{ repository_subsystems_dir }}/kerberos/{{ repository_kerberos.instance_name }}"
+    state: directory
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0750"
+
+- name: Write the Kerberos authentication subsystem properties
+  become: true
+  ansible.builtin.template:
+    src: kerberos-authentication.properties.j2
+    dest: >-
+      {{ repository_subsystems_dir }}/kerberos/{{ repository_kerberos.instance_name }}/kerberos-authentication.properties
+    owner: "{{ repository_username }}"
+    group: "{{ repository_group }}"
+    mode: "0640"
+  notify: repository-needs-restart
+
+- name: Add the JVM options the repository needs for Kerberos
+  ansible.builtin.set_fact:
+    repository_authentication_java_opts: >-
+      {{ repository_authentication_java_opts + [
+      '-Djava.security.auth.login.config=' ~ repository_kerberos.jaas_config_path,
+      '-Djava.security.krb5.conf=' ~ repository_kerberos.krb5_conf_path] }}
