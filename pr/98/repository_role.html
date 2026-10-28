@@ -78,12 +78,12 @@
 <li class="toctree-l1"><a class="reference internal" href="cic_connector_role.html">alfresco.platform.cic_connector role – Install the Content Intelligence Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.repository role</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#entry-point-kerberos-kerberos-authentication-entrypoint-for-the-repository-role">Entry point <code class="docutils literal notranslate"><span class="pre">kerberos</span></code> – Kerberos authentication entrypoint for the repository role</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-authentication-authentication-entrypoint-for-the-repository-role">Entry point <code class="docutils literal notranslate"><span class="pre">authentication</span></code> – Authentication entrypoint for the repository role</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#entry-point-ldap-sync-ldap-ad-user-synchronization-entrypoint-for-the-repository-role">Entry point <code class="docutils literal notranslate"><span class="pre">ldap_sync</span></code> – LDAP-AD user synchronization entrypoint for the repository role</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#entry-point-user-sync-user-synchronization-entrypoint-for-the-repository-role">Entry point <code class="docutils literal notranslate"><span class="pre">user_sync</span></code> – User synchronization entrypoint for the repository role</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Synopsis</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#collection-links">Collection links</a></li>
@@ -135,13 +135,13 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </div>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#entry-point-kerberos-kerberos-authentication-entrypoint-for-the-repository-role" id="id3">Entry point <code class="docutils literal notranslate"><span class="pre">kerberos</span></code> – Kerberos authentication entrypoint for the repository role</a></p>
+<li><p><a class="reference internal" href="#entry-point-authentication-authentication-entrypoint-for-the-repository-role" id="id3">Entry point <code class="docutils literal notranslate"><span class="pre">authentication</span></code> – Authentication entrypoint for the repository role</a></p>
 <ul>
 <li><p><a class="reference internal" href="#synopsis" id="id4">Synopsis</a></p></li>
 <li><p><a class="reference internal" href="#parameters" id="id5">Parameters</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#entry-point-ldap-sync-ldap-ad-user-synchronization-entrypoint-for-the-repository-role" id="id6">Entry point <code class="docutils literal notranslate"><span class="pre">ldap_sync</span></code> – LDAP-AD user synchronization entrypoint for the repository role</a></p>
+<li><p><a class="reference internal" href="#entry-point-user-sync-user-synchronization-entrypoint-for-the-repository-role" id="id6">Entry point <code class="docutils literal notranslate"><span class="pre">user_sync</span></code> – User synchronization entrypoint for the repository role</a></p>
 <ul>
 <li><p><a class="reference internal" href="#id1" id="id7">Synopsis</a></p></li>
 <li><p><a class="reference internal" href="#id2" id="id8">Parameters</a></p></li>
@@ -149,18 +149,19 @@ To check whether it is installed, run <code class="code docutils literal notrans
 </li>
 </ul>
 </nav>
-<span class="target" id="ansible-collections-alfresco-platform-repository-role-entrypoint-kerberos"></span><section id="entry-point-kerberos-kerberos-authentication-entrypoint-for-the-repository-role">
-<h2><a class="toc-backref" href="#id3" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">kerberos</span></code> – Kerberos authentication entrypoint for the repository role</a><a class="headerlink" href="#entry-point-kerberos-kerberos-authentication-entrypoint-for-the-repository-role" title="Link to this heading"></a></h2>
+<span class="target" id="ansible-collections-alfresco-platform-repository-role-entrypoint-authentication"></span><section id="entry-point-authentication-authentication-entrypoint-for-the-repository-role">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">authentication</span></code> – Authentication entrypoint for the repository role</a><a class="headerlink" href="#entry-point-authentication-authentication-entrypoint-for-the-repository-role" title="Link to this heading"></a></h2>
 <section id="synopsis">
 <h3><a class="toc-backref" href="#id4" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>Configures an already installed Alfresco Content Services repository to
-authenticate users with Kerberos (SPNEGO SSO). It writes the Kerberos
-client configuration, installs the keytab, writes the JAAS login
-configuration and the Kerberos authentication subsystem properties, and
-sets the repository authentication chain.
+<li><p>Configures the authentication subsystems of an already installed
+Alfresco Content Services repository. Each supported subsystem has its
+own option and is configured only when that option is set. Fails when
+no subsystem option is set.
+It does not change the authentication chain: the calling playbook must
+add the configured subsystem instances to <code class="docutils literal notranslate"><span class="pre">authentication.chain</span></code>.
 The JVM running the repository must be started with the options exposed
-in the <code class="docutils literal notranslate"><span class="pre">repository_kerberos_java_opts</span></code> fact.
+in the <code class="docutils literal notranslate"><span class="pre">repository_authentication_java_opts</span></code> fact.
 It does not provision any KDC or Active Directory resources.</p></li>
 </ul>
 </section>
@@ -174,176 +175,173 @@ It does not provision any KDC or Active Directory resources.</p></li>
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_authentication_chain"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-authentication-chain"><strong>repository_authentication_chain</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_authentication_chain" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos"><strong>repository_authentication_kerberos</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Ordered authentication chain, as <code class="docutils literal notranslate"><span class="pre">&lt;instance&gt;:&lt;type&gt;</span></code> entries. It must
-contain the Kerberos instance. To synchronize users from Active
-Directory, add the instance configured by the <code class="docutils literal notranslate"><span class="pre">ldap_sync</span></code> entrypoint
-(for example <code class="docutils literal notranslate"><span class="pre">ldap1:ldap-ad</span></code>) before <code class="docutils literal notranslate"><span class="pre">alfrescoNtlm1:alfrescoNtlm</span></code>.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[&quot;{{</span> <span class="pre">repository_kerberos_instance_name</span> <span class="pre">}}:kerberos&quot;,</span> <span class="pre">&quot;alfrescoNtlm1:alfrescoNtlm&quot;]</span></code></p>
+<td><div class="ansible-option-cell"><p>Kerberos (SPNEGO SSO) authentication subsystem. When set, writes the
+Kerberos client configuration, installs the keytab, writes the JAAS
+login configuration and the subsystem properties.</p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_classpath_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-classpath-dir"><strong>repository_classpath_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_classpath_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/admin_server"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-admin-server"><strong>admin_server</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/admin_server" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
-<td><div class="ansible-option-cell"><p>Repository classpath directory holding <code class="docutils literal notranslate"><span class="pre">alfresco-global.properties</span></code>
-and the <code class="docutils literal notranslate"><span class="pre">alfresco/extension</span></code> tree.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/classpath&quot;</span></code></p>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Kerberos admin server. Omitted from <code class="docutils literal notranslate"><span class="pre">krb5.conf</span></code> when empty.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/default_administrator_usernames"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-default-administrator-usernames"><strong>default_administrator_usernames</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/default_administrator_usernames" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Users granted administrator rights by the Kerberos subsystem.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/domains"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-domains"><strong>domains</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/domains" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>DNS domains mapped to the realm in the <code class="docutils literal notranslate"><span class="pre">[domain_realm]</span></code> section.
+Defaults to the realm in lowercase, with and without a leading dot.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/enctypes"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-enctypes"><strong>enctypes</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/enctypes" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Encryption types allowed for tickets.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[&quot;aes256-cts-hmac-sha1-96&quot;,</span> <span class="pre">&quot;aes128-cts-hmac-sha1-96&quot;]</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/instance_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-instance-name"><strong>instance_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/instance_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the Kerberos authentication subsystem instance.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;kerberos1&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/jaas_config_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-jaas-config-path"><strong>jaas_config_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/jaas_config_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Path of the JAAS login configuration file on the target host.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/java.login.config&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/kdcs"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-kdcs"><strong>kdcs</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/kdcs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Kerberos KDC hosts, optionally with a port (for example <code class="docutils literal notranslate"><span class="pre">kdc.example.com:88</span></code>).</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/keytab_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-keytab-path"><strong>keytab_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/keytab_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Path of the keytab on the target host.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/alfresco.keytab&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/keytab_src"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-keytab-src"><strong>keytab_src</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/keytab_src" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Path of the keytab on the Ansible controller. When empty, the keytab must
+already exist on the target host at <code class="docutils literal notranslate"><span class="pre">keytab_path</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/krb5_conf_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-krb5-conf-path"><strong>krb5_conf_path</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/krb5_conf_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Path of the Kerberos client configuration file on the target host.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/etc/krb5.conf&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/principal"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-principal"><strong>principal</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/principal" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Service principal held in the keytab, in the form <code class="docutils literal notranslate"><span class="pre">HTTP/&lt;host&gt;.&lt;domain&gt;</span></code>.
+The host must be the name users browse to (the load balancer name when
+the repository is behind a proxy).</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/realm"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-realm"><strong>realm</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/realm" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Kerberos realm, usually the DNS domain in uppercase (for example <code class="docutils literal notranslate"><span class="pre">EXAMPLE.COM</span></code>).</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/sso_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-sso-enabled"><strong>sso_enabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/sso_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Enable SPNEGO/Kerberos single sign-on.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/sso_fallback_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-sso-fallback-enabled"><strong>sso_fallback_enabled</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/sso_fallback_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Fall back to another authentication mechanism when SSO fails.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_authentication_kerberos/strip_username_suffix"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-authentication-kerberos-strip-username-suffix"><strong>strip_username_suffix</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_authentication_kerberos/strip_username_suffix" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Strip the <code class="docutils literal notranslate"><span class="pre">&#64;domain</span></code> suffix from Kerberos authenticated usernames.</p>
+<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
+<ul class="simple">
+<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
+<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
+</ul>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-group"><strong>repository_group</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_classpath_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-classpath-dir"><strong>repository_classpath_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_classpath_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Repository classpath directory holding the <code class="docutils literal notranslate"><span class="pre">alfresco/extension</span></code> tree.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/classpath&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-group"><strong>repository_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Group owning the repository configuration files.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
 </div></td>
 </tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_admin_server"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-admin-server"><strong>repository_kerberos_admin_server</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_admin_server" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Kerberos admin server. Omitted from <code class="docutils literal notranslate"><span class="pre">krb5.conf</span></code> when empty.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
-</div></td>
-</tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_default_administrator_usernames"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-default-administrator-usernames"><strong>repository_kerberos_default_administrator_usernames</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_default_administrator_usernames" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Users granted administrator rights by the Kerberos subsystem.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[]</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_domains"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-domains"><strong>repository_kerberos_domains</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_domains" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>DNS domains mapped to the realm in the <code class="docutils literal notranslate"><span class="pre">[domain_realm]</span></code> section.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[&quot;{{</span> <span class="pre">repository_kerberos_realm</span> <span class="pre">|</span> <span class="pre">lower</span> <span class="pre">}}&quot;,</span> <span class="pre">&quot;.{{</span> <span class="pre">repository_kerberos_realm</span> <span class="pre">|</span> <span class="pre">lower</span> <span class="pre">}}&quot;]</span></code></p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_enctypes"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-enctypes"><strong>repository_kerberos_enctypes</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_enctypes" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Encryption types allowed for tickets.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">[&quot;aes256-cts-hmac-sha1-96&quot;,</span> <span class="pre">&quot;aes128-cts-hmac-sha1-96&quot;]</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_instance_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-instance-name"><strong>repository_kerberos_instance_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_instance_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Name of the Kerberos authentication subsystem instance.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;kerberos1&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_jaas_config_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-jaas-config-path"><strong>repository_kerberos_jaas_config_path</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_jaas_config_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Path of the JAAS login configuration file on the target host.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/java.login.config&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_kdcs"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-kdcs"><strong>repository_kerberos_kdcs</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_kdcs" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">list</span> / <span class="ansible-option-elements">elements=string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Kerberos KDC hosts, optionally with a port (for example <code class="docutils literal notranslate"><span class="pre">kdc.example.com:88</span></code>).</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_keytab_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-keytab-path"><strong>repository_kerberos_keytab_path</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_keytab_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Path of the keytab on the target host.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/alfresco.keytab&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_keytab_src"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-keytab-src"><strong>repository_kerberos_keytab_src</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_keytab_src" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Path of the keytab on the Ansible controller. When empty, the keytab must
-already exist on the target host at <code class="docutils literal notranslate"><span class="pre">repository_kerberos_keytab_path</span></code>.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_krb5_conf_path"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-krb5-conf-path"><strong>repository_kerberos_krb5_conf_path</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_krb5_conf_path" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Path of the Kerberos client configuration file on the target host.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/etc/krb5.conf&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_principal"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-principal"><strong>repository_kerberos_principal</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_principal" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Service principal held in the keytab, in the form <code class="docutils literal notranslate"><span class="pre">HTTP/&lt;host&gt;.&lt;domain&gt;</span></code>.
-The host must be the name users browse to (the load balancer name when
-the repository is behind a proxy).</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_realm"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-realm"><strong>repository_kerberos_realm</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_realm" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Kerberos realm, usually the DNS domain in uppercase (for example <code class="docutils literal notranslate"><span class="pre">EXAMPLE.COM</span></code>).</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_sso_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-sso-enabled"><strong>repository_kerberos_sso_enabled</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_sso_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Enable SPNEGO/Kerberos single sign-on.</p>
-<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
-<ul class="simple">
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
-<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
-</ul>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_sso_fallback_enabled"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-sso-fallback-enabled"><strong>repository_kerberos_sso_fallback_enabled</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_sso_fallback_enabled" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Fall back to another authentication mechanism when SSO fails.</p>
-<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
-<ul class="simple">
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
-<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
-</ul>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_kerberos_strip_username_suffix"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-kerberos-strip-username-suffix"><strong>repository_kerberos_strip_username_suffix</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_kerberos_strip_username_suffix" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">boolean</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Strip the <code class="docutils literal notranslate"><span class="pre">&#64;domain</span></code> suffix from Kerberos authenticated usernames.</p>
-<p class="ansible-option-line"><strong class="ansible-option-choices">Choices:</strong></p>
-<ul class="simple">
-<li><p><code class="ansible-option-choices-entry docutils literal notranslate"><span class="pre">false</span></code></p></li>
-<li><p><code class="ansible-option-default-bold docutils literal notranslate"><strong><span class="pre">true</span></strong></code> <span class="ansible-option-choices-default-mark">← (default)</span></p></li>
-</ul>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_settings_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-settings-dir"><strong>repository_settings_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_settings_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_settings_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-settings-dir"><strong>repository_settings_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_settings_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository settings directory on the target host.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/etc/opt/alfresco/content-services&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-kerberos--repository_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-kerberos-repository-username"><strong>repository_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-kerberos--repository_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-authentication--repository_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-authentication-repository-username"><strong>repository_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-authentication--repository_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>User owning the repository configuration files.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
@@ -351,18 +349,20 @@ the repository is behind a proxy).</p>
 </tr>
 </tbody>
 </table>
-<span class="target" id="ansible-collections-alfresco-platform-repository-role-entrypoint-ldap-sync"></span></section>
+<span class="target" id="ansible-collections-alfresco-platform-repository-role-entrypoint-user-sync"></span></section>
 </section>
-<section id="entry-point-ldap-sync-ldap-ad-user-synchronization-entrypoint-for-the-repository-role">
-<h2><a class="toc-backref" href="#id6" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">ldap_sync</span></code> – LDAP-AD user synchronization entrypoint for the repository role</a><a class="headerlink" href="#entry-point-ldap-sync-ldap-ad-user-synchronization-entrypoint-for-the-repository-role" title="Link to this heading"></a></h2>
+<section id="entry-point-user-sync-user-synchronization-entrypoint-for-the-repository-role">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Entry point <code class="docutils literal notranslate"><span class="pre">user_sync</span></code> – User synchronization entrypoint for the repository role</a><a class="headerlink" href="#entry-point-user-sync-user-synchronization-entrypoint-for-the-repository-role" title="Link to this heading"></a></h2>
 <section id="id1">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Synopsis</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>Configures an LDAP-AD authentication subsystem instance used only to
-synchronize users and groups from Active Directory. LDAP authentication
-is disabled on that instance and the authentication chain is left
-untouched: the instance must be added to the chain by the <code class="docutils literal notranslate"><span class="pre">kerberos</span></code>
-entrypoint (or by other means) for the synchronization to run.
+<li><p>Configures the user and group synchronization subsystems of an already
+installed Alfresco Content Services repository. Each supported
+subsystem has its own option and is configured only when that option
+is set. Fails when no subsystem option is set.
+It does not change the authentication chain: the calling playbook must
+add the configured subsystem instances to <code class="docutils literal notranslate"><span class="pre">authentication.chain</span></code> for
+the synchronization to run.
 It does not provision any Active Directory resources.</p></li>
 </ul>
 </section>
@@ -376,92 +376,100 @@ It does not provision any Active Directory resources.</p></li>
 </thead>
 <tbody>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_classpath_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-classpath-dir"><strong>repository_classpath_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_classpath_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_classpath_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-classpath-dir"><strong>repository_classpath_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_classpath_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository classpath directory holding the <code class="docutils literal notranslate"><span class="pre">alfresco/extension</span></code> tree.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;{{</span> <span class="pre">repository_settings_dir</span> <span class="pre">}}/classpath&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-group"><strong>repository_group</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_group"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-group"><strong>repository_group</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_group" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Group owning the repository configuration files.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_bind_authentication"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-bind-authentication"><strong>repository_ldap_sync_bind_authentication</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_bind_authentication" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Bind mechanism used for synchronization (<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">simple</span></code> or <code class="docutils literal notranslate"><span class="pre">DIGEST-MD5</span></code>).</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;simple&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_bind_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-bind-password"><strong>repository_ldap_sync_bind_password</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_bind_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Password of the bind account.</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_bind_principal"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-bind-principal"><strong>repository_ldap_sync_bind_principal</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_bind_principal" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Account used to bind to the directory for synchronization.</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_extra_properties"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-extra-properties"><strong>repository_ldap_sync_extra_properties</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_extra_properties" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Additional LDAP-AD subsystem properties written as-is (for example
-<code class="docutils literal notranslate"><span class="pre">ldap.synchronization.personQuery</span></code>).</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">{}</span></code></p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_group_search_base"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-group-search-base"><strong>repository_ldap_sync_group_search_base</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_group_search_base" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>DN under which groups are searched.</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_instance_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-instance-name"><strong>repository_ldap_sync_instance_name</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_instance_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>Name of the LDAP-AD authentication subsystem instance.</p>
-<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;ldap1&quot;</span></code></p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-url"><strong>repository_ldap_sync_url</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>LDAP server URL (for example <code class="docutils literal notranslate"><span class="pre">ldap://ad.example.com:389</span></code>).</p>
-</div></td>
-</tr>
-<tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_ldap_sync_user_search_base"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-ldap-sync-user-search-base"><strong>repository_ldap_sync_user_search_base</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_ldap_sync_user_search_base" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
-</div></td>
-<td><div class="ansible-option-cell"><p>DN under which users are searched.</p>
-</div></td>
-</tr>
-<tr class="row-even"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_settings_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-settings-dir"><strong>repository_settings_dir</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_settings_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_settings_dir"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-settings-dir"><strong>repository_settings_dir</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_settings_dir" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>Repository settings directory on the target host.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;/etc/opt/alfresco/content-services&quot;</span></code></p>
 </div></td>
 </tr>
 <tr class="row-odd"><td><div class="ansible-option-cell">
-<div class="ansibleOptionAnchor" id="parameter-ldap_sync--repository_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-ldap-sync-repository-username"><strong>repository_username</strong></p>
-<a class="ansibleOptionLink" href="#parameter-ldap_sync--repository_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad"><strong>repository_user_sync_ldap_ad</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>LDAP-AD subsystem used only to synchronize users and groups from
+Active Directory. LDAP authentication is disabled on that instance.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/bind_authentication"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-bind-authentication"><strong>bind_authentication</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/bind_authentication" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Bind mechanism used for synchronization (<code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">simple</span></code> or <code class="docutils literal notranslate"><span class="pre">DIGEST-MD5</span></code>).</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;simple&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/bind_password"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-bind-password"><strong>bind_password</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/bind_password" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Password of the bind account.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/bind_principal"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-bind-principal"><strong>bind_principal</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/bind_principal" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Account used to bind to the directory for synchronization.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/extra_properties"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-extra-properties"><strong>extra_properties</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/extra_properties" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Additional LDAP-AD subsystem properties written as-is (for example
+<code class="docutils literal notranslate"><span class="pre">ldap.synchronization.personQuery</span></code>).</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">{}</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/group_search_base"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-group-search-base"><strong>group_search_base</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/group_search_base" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>DN under which groups are searched.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/instance_name"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-instance-name"><strong>instance_name</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/instance_name" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Name of the LDAP-AD authentication subsystem instance.</p>
+<p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;ldap1&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-url"><strong>url</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/url" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>LDAP server URL (for example <code class="docutils literal notranslate"><span class="pre">ldap://ad.example.com:389</span></code>).</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_user_sync_ldap_ad/user_search_base"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-user-sync-ldap-ad-user-search-base"><strong>user_search_base</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_user_sync_ldap_ad/user_search_base" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>DN under which users are searched.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-user_sync--repository_username"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-repository-role-parameter-user-sync-repository-username"><strong>repository_username</strong></p>
+<a class="ansibleOptionLink" href="#parameter-user_sync--repository_username" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
 </div></td>
 <td><div class="ansible-option-cell"><p>User owning the repository configuration files.</p>
 <p class="ansible-option-line"><strong class="ansible-option-default-bold">Default:</strong> <code class="ansible-option-default docutils literal notranslate"><span class="pre">&quot;alfresco&quot;</span></code></p>
