@@ -1,0 +1,21 @@
+# {{ ansible_managed }}
+[libdefaults]
+  default_realm = {{ repository_kerberos.realm }}
+  default_tkt_enctypes = {{ repository_kerberos.enctypes | join(' ') }}
+  default_tgs_enctypes = {{ repository_kerberos.enctypes | join(' ') }}
+  permitted_enctypes = {{ repository_kerberos.enctypes | join(' ') }}
+
+[realms]
+  {{ repository_kerberos.realm }} = {
+{% for kdc in repository_kerberos.kdcs %}
+    kdc = {{ kdc }}
+{% endfor %}
+{% if repository_kerberos.admin_server | length > 0 %}
+    admin_server = {{ repository_kerberos.admin_server }}
+{% endif %}
+  }
+
+[domain_realm]
+{% for domain in repository_kerberos.domains %}
+  {{ domain }} = {{ repository_kerberos.realm }}
+{% endfor %}

@@ -1,0 +1,6 @@
+---
+- name: Require an explicit entrypoint
+  ansible.builtin.fail:
+    msg: >-
+      The repository role has no default entrypoint. Use
+      tasks_from: authentication or tasks_from: user_sync.

@@ -1,0 +1,5 @@
+---
+- name: Set fact to notify that the repository needs to be restarted
+  ansible.builtin.set_fact:
+    repository_needs_restart: true
+  listen: repository-needs-restart

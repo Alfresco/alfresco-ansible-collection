@@ -1,0 +1,34 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+  tasks:
+    - name: Create the repository group
+      ansible.builtin.group:
+        name: alfresco
+        system: true
+
+    - name: Create the repository user
+      ansible.builtin.user:
+        name: alfresco
+        group: alfresco
+        system: true
+        create_home: false
+
+    - name: Create the repository classpath directory
+      ansible.builtin.file:
+        path: /etc/opt/alfresco/content-services/classpath
+        state: directory
+        owner: alfresco
+        group: alfresco
+        mode: "0750"
+
+    - name: Stand in for the alfresco-global.properties of an installed repository
+      ansible.builtin.copy:
+        dest: /etc/opt/alfresco/content-services/classpath/alfresco-global.properties
+        content: |
+          deployment.method=ANSIBLE
+          authentication.chain=identity-service1:identity-service,alfrescoNtlm1:alfrescoNtlm
+        owner: alfresco
+        group: alfresco
+        mode: "0640"

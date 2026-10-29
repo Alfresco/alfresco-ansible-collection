@@ -1,0 +1,23 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Include repository role user_sync tasks
+      ansible.builtin.include_role:
+        name: alfresco.platform.repository
+        tasks_from: user_sync
+      vars:
+        repository_user_sync_ldap_ad:
+          url: ldap://ad.example.com:389
+          bind_principal: 'EXAMPLE\svc-alfresco'
+          bind_password: ' not\a-secret' # pragma: allowlist secret
+          user_search_base: ou=Users,dc=example,dc=com
+          group_search_base: ou=Groups,dc=example,dc=com
+          extra_properties:
+            ldap.synchronization.queryBatchSize: 500
+            ldap.synchronization.groupDisplayNameAttributeName: "first\nsecond"
+
+    - name: Check the restart flag is exposed
+      ansible.builtin.assert:
+        that: repository_needs_restart is boolean
+        quiet: true

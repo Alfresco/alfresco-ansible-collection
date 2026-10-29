@@ -1,0 +1,57 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: false
+  vars:
+    settings_dir: /etc/opt/alfresco/content-services
+    subsystem_dir: "{{ settings_dir }}/classpath/alfresco/extension/subsystems/Authentication/kerberos/kerberos1"
+    expected_global_properties: |
+      deployment.method=ANSIBLE
+      authentication.chain=identity-service1:identity-service,alfrescoNtlm1:alfrescoNtlm
+  tasks:
+    - name: Read the generated files
+      ansible.builtin.slurp:
+        src: "{{ item }}"
+      register: repository_generated
+      loop:
+        - /etc/krb5.conf
+        - "{{ settings_dir }}/java.login.config"
+        - "{{ subsystem_dir }}/kerberos-authentication.properties"
+        - "{{ settings_dir }}/classpath/alfresco-global.properties"
+
+    - name: Check the generated files content
+      vars:
+        krb5_conf: "{{ repository_generated.results[0].content | b64decode }}"
+        jaas_config: "{{ repository_generated.results[1].content | b64decode }}"
+        kerberos_properties: "{{ repository_generated.results[2].content | b64decode | split('\n') }}"
+        global_properties: "{{ repository_generated.results[3].content | b64decode }}"
+      ansible.builtin.assert:
+        that:
+          - "'default_realm = EXAMPLE.COM' in krb5_conf"
+          - "'kdc = kdc.example.com' in krb5_conf"
+          - "'admin_server = kdc.example.com' in krb5_conf"
+          - "'.example.com = EXAMPLE.COM' in krb5_conf"
+          - "'rc4-hmac' not in krb5_conf"
+          - "'keyTab=\"' ~ settings_dir ~ '/alfresco.keytab\"' in jaas_config"
+          - "'principal=\"HTTP/alfresco.example.com\";' in jaas_config"
+          - "'kerberos.authentication.realm=EXAMPLE.COM' in kerberos_properties"
+          - "'kerberos.authentication.sso.enabled=true' in kerberos_properties"
+          - "'kerberos.authentication.http.configEntryName=AlfrescoHTTP' in kerberos_properties"
+          - global_properties == expected_global_properties
+        quiet: true
+
+    - name: Read the keytab attributes
+      ansible.builtin.stat:
+        path: "{{ settings_dir }}/alfresco.keytab"
+        checksum_algorithm: sha1
+      register: repository_keytab
+
+    - name: Check the keytab is installed and private to the repository user
+      ansible.builtin.assert:
+        that:
+          - repository_keytab.stat.exists
+          - repository_keytab.stat.mode == '0600'
+          - repository_keytab.stat.pw_name == 'alfresco'
+          - repository_keytab.stat.checksum == lookup('ansible.builtin.file', 'test.keytab', rstrip=false) | ansible.builtin.hash('sha1')
+        quiet: true

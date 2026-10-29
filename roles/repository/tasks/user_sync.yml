@@ -1,0 +1,19 @@
+---
+- name: Check a user synchronization subsystem is configured
+  ansible.builtin.assert:
+    that: repository_user_sync_ldap_ad | default(none) is mapping
+    fail_msg: >-
+      No user synchronization subsystem to configure: set
+      repository_user_sync_ldap_ad.
+    quiet: true
+
+- name: Initialize the restart flag without resetting it
+  ansible.builtin.set_fact:
+    repository_needs_restart: "{{ repository_needs_restart | default(false) | bool }}"
+
+- name: Configure the LDAP-AD user synchronization
+  when: repository_user_sync_ldap_ad is defined
+  ansible.builtin.include_tasks: user_sync/ldap_ad.yml
+
+- name: Force all notified handlers to run
+  ansible.builtin.meta: flush_handlers

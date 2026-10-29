@@ -1,0 +1,21 @@
+// {{ ansible_managed }}
+Alfresco {
+   com.sun.security.auth.module.Krb5LoginModule sufficient;
+};
+
+AlfrescoHTTP {
+   com.sun.security.auth.module.Krb5LoginModule required
+   storeKey=true
+   useKeyTab=true
+   doNotPrompt=true
+   keyTab="{{ repository_kerberos.keytab_path }}"
+   principal="{{ repository_kerberos.principal }}";
+};
+
+com.sun.net.ssl.client {
+   com.sun.security.auth.module.Krb5LoginModule sufficient;
+};
+
+other {
+   com.sun.security.auth.module.Krb5LoginModule sufficient;
+};

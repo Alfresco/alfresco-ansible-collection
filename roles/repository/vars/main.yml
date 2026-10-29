@@ -1,0 +1,25 @@
+---
+repository_subsystems_dir: "{{ repository_classpath_dir }}/alfresco/extension/subsystems/Authentication"
+
+repository_kerberos_defaults:
+  instance_name: kerberos1
+  admin_server: ""
+  domains:
+    - "{{ repository_authentication_kerberos.realm | lower }}"
+    - ".{{ repository_authentication_kerberos.realm | lower }}"
+  enctypes:
+    - aes256-cts-hmac-sha1-96
+    - aes128-cts-hmac-sha1-96
+  keytab_src: ""
+  keytab_path: "{{ repository_settings_dir }}/alfresco.keytab"
+  krb5_conf_path: /etc/krb5.conf
+  jaas_config_path: "{{ repository_settings_dir }}/java.login.config"
+  sso_enabled: true
+  sso_fallback_enabled: true
+  strip_username_suffix: true
+  default_administrator_usernames: []
+
+repository_ldap_ad_defaults:
+  instance_name: ldap1
+  bind_authentication: simple
+  extra_properties: {}

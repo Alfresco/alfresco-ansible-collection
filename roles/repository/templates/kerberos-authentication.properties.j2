@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+kerberos.authentication.realm={{ repository_kerberos.realm }}
+kerberos.authentication.sso.enabled={{ repository_kerberos.sso_enabled | bool | lower }}
+kerberos.authentication.sso.fallback.enabled={{ repository_kerberos.sso_fallback_enabled | bool | lower }}
+kerberos.authentication.user.configEntryName=Alfresco
+kerberos.authentication.http.configEntryName=AlfrescoHTTP
+kerberos.authentication.stripUsernameSuffix={{ repository_kerberos.strip_username_suffix | bool | lower }}
+{% if repository_kerberos.default_administrator_usernames | length > 0 %}
+kerberos.authentication.defaultAdministratorUserNames={{ repository_kerberos.default_administrator_usernames | join(',') }}
+{% endif %}

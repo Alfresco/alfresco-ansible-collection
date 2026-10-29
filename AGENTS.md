@@ -26,14 +26,14 @@ uv run ansible-lint --profile production
 # Pre-commit (yaml/json/xml checks, jinja lint via djlint, markdown lint, ansible-lint)
 uv run pre-commit run --all-files
 
-# Molecule test for a single role (must run from the role directory)
-cd roles/<role_name> && uv run molecule test
+# Molecule test for a single role, all its scenarios (must run from the role directory)
+cd roles/<role_name> && uv run molecule test --all
 
 # Build the collection tarball
 uv run ansible-galaxy collection build
 ```
 
-There is no single "test everything" command — CI runs sanity tests (via `ansible-test`, matrixed across ansible-core stable-2.16/2.17/2.18) and molecule separately per role. To exercise one role end-to-end, use the molecule command above; molecule scenarios spin up Docker containers (a systemd-enabled target instance plus any backing services like Elasticsearch/Postgres) defined in that role's `molecule/default/molecule.yml`.
+There is no single "test everything" command — CI runs sanity tests (via `ansible-test`, matrixed across ansible-core stable-2.16/2.17/2.18) and molecule separately per role and scenario. To exercise one role end-to-end, use the molecule command above; molecule scenarios spin up Docker containers (a systemd-enabled target instance plus any backing services like Elasticsearch/Postgres) defined in that role's `molecule/<scenario>/molecule.yml` (most roles only have a `default` scenario).
 
 ## Releasing
 
@@ -50,7 +50,7 @@ The release itself is a separate PR:
 
 ### Role layout
 
-Each role under `roles/<name>/` follows the standard Ansible role structure: `defaults/main.yml` (public, overridable vars, all prefixed `<role_name>_...`), `vars/main.yml` (internal/derived vars), `tasks/main.yml`, `meta/main.yml` (galaxy_info + role `dependencies`), `meta/argument_specs.yml` (typed/validated role interface — keep in sync with `defaults`), and a per-role `README.md` documenting requirements, dependencies, and example playbook usage. Roles that install a long-running process ship their own `molecule/default/` scenario.
+Each role under `roles/<name>/` follows the standard Ansible role structure: `defaults/main.yml` (public, overridable vars, all prefixed `<role_name>_...`), `vars/main.yml` (internal/derived vars), `tasks/main.yml`, `meta/main.yml` (galaxy_info + role `dependencies`), `meta/argument_specs.yml` (typed/validated role interface — keep in sync with `defaults`), and a per-role `README.md` documenting requirements, dependencies, and example playbook usage. Roles that install a long-running process ship their own `molecule/default/` scenario; roles with several entrypoints may instead ship one scenario per entrypoint (e.g. `repository`).
 
 ### Role composition
 
@@ -64,7 +64,7 @@ Roles that fetch a distribution artifact (e.g. `search_community`) download from
 
 ### CI (`.github/workflows/build.yml`)
 
-`pre-commit`, `sanity` (ansible-test across 3 ansible-core versions), and `molecule` (one matrix entry per role with a molecule scenario) all gate the `build` job. When adding a role with a molecule scenario, add it to the `molecule` job's matrix in `build.yml` or it won't run in CI. Third-party GitHub Actions are SHA-pinned with the version as a trailing comment.
+`pre-commit`, `sanity` (ansible-test across 3 ansible-core versions), and `molecule` (one parallel job per role and molecule scenario) all gate the `build` job. The `molecule-matrix` job discovers the scenarios from `roles/*/molecule/*/molecule.yml`, so a new role or scenario runs in CI without editing `build.yml`. Third-party GitHub Actions are SHA-pinned with the version as a trailing comment.
 
 ### Docs
 

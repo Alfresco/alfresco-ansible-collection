@@ -1,0 +1,5 @@
+---
+repository_username: alfresco
+repository_group: alfresco
+repository_settings_dir: /etc/opt/alfresco/content-services
+repository_classpath_dir: "{{ repository_settings_dir }}/classpath"
