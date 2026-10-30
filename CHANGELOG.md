@@ -2,37 +2,47 @@
 
 **Topics**
 
-- <a href="#v0-6-0">v0\.6\.0</a>
+- <a href="#v0-7-0">v0\.7\.0</a>
     - <a href="#minor-changes">Minor Changes</a>
+- <a href="#v0-6-0">v0\.6\.0</a>
+    - <a href="#minor-changes-1">Minor Changes</a>
     - <a href="#deprecated-features">Deprecated Features</a>
 - <a href="#v0-5-0">v0\.5\.0</a>
     - <a href="#major-changes">Major Changes</a>
 - <a href="#v0-4-1">v0\.4\.1</a>
-    - <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#minor-changes-2">Minor Changes</a>
 - <a href="#v0-4-0">v0\.4\.0</a>
     - <a href="#major-changes-1">Major Changes</a>
     - <a href="#security-fixes">Security Fixes</a>
 - <a href="#v0-3-0">v0\.3\.0</a>
-    - <a href="#minor-changes-2">Minor Changes</a>
+    - <a href="#minor-changes-3">Minor Changes</a>
 - <a href="#v0-2-3">v0\.2\.3</a>
     - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v0-2-2">v0\.2\.2</a>
     - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v0-2-1">v0\.2\.1</a>
-    - <a href="#minor-changes-3">Minor Changes</a>
+    - <a href="#minor-changes-4">Minor Changes</a>
 - <a href="#v0-2-0">v0\.2\.0</a>
     - <a href="#major-changes-2">Major Changes</a>
-    - <a href="#minor-changes-4">Minor Changes</a>
-- <a href="#v0-1-1">v0\.1\.1</a>
     - <a href="#minor-changes-5">Minor Changes</a>
+- <a href="#v0-1-1">v0\.1\.1</a>
+    - <a href="#minor-changes-6">Minor Changes</a>
     - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
     - <a href="#major-changes-3">Major Changes</a>
 
+<a id="v0-7-0"></a>
+## v0\.7\.0
+
+<a id="minor-changes"></a>
+### Minor Changes
+
+* add repository role configuring authentication subsystems\, starting with Kerberos \(<code>authentication</code> entrypoint\)\, and user synchronization subsystems\, starting with LDAP\-AD \(<code>user\_sync</code> entrypoint\)\, on an installed Alfresco Content Services repository
+
 <a id="v0-6-0"></a>
 ## v0\.6\.0
 
-<a id="minor-changes"></a>
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
 * audit\_storage\, search\_community\, cic\_connector \- default the Nexus artifact host to <code>artifacts\.alfresco\.com</code>\, matching every other role\'s production URL\, and add <code>audit\_storage\_repository\_url</code> so downstream playbooks can override just the repository base instead of the full <code>audit\_storage\_zip\_url</code>\.
@@ -56,7 +66,7 @@
 <a id="v0-4-1"></a>
 ## v0\.4\.1
 
-<a id="minor-changes-1"></a>
+<a id="minor-changes-2"></a>
 ### Minor Changes
 
 * search\_community \- add <code>search\_community\_transform\_enabled</code> to toggle the accepted content media types cache via the <code>ALFRESCO\_ACCEPTEDCONTENTMEDIATYPESCACHE\_ENABLED</code> environment variable\.
@@ -79,7 +89,7 @@
 <a id="v0-3-0"></a>
 ## v0\.3\.0
 
-<a id="minor-changes-2"></a>
+<a id="minor-changes-3"></a>
 ### Minor Changes
 
 * Bump Java to 17\.0\.18
@@ -103,7 +113,7 @@
 <a id="v0-2-1"></a>
 ## v0\.2\.1
 
-<a id="minor-changes-3"></a>
+<a id="minor-changes-4"></a>
 ### Minor Changes
 
 * Allow usage of community\.general v11
@@ -116,7 +126,7 @@
 
 * Add audit\_storage service role
 
-<a id="minor-changes-4"></a>
+<a id="minor-changes-5"></a>
 ### Minor Changes
 
 * Use common java home argument across roles and rely on default java version coming from role defaults
@@ -124,7 +134,7 @@
 <a id="v0-1-1"></a>
 ## v0\.1\.1
 
-<a id="minor-changes-5"></a>
+<a id="minor-changes-6"></a>
 ### Minor Changes
 
 * Allow using an existing handler to trigger the restart of the Alfresco service after installing the repository extension to prevent unwanted restarts\.

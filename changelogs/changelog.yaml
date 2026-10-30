@@ -131,3 +131,13 @@ releases:
     fragments:
       - nexus-artifacts-host-alignment.yaml
     release_date: '2026-08-25'
+  0.7.0:
+    changes:
+      minor_changes:
+        - add repository role configuring authentication subsystems, starting with
+          Kerberos (``authentication`` entrypoint), and user synchronization subsystems,
+          starting with LDAP-AD (``user_sync`` entrypoint), on an installed Alfresco
+          Content Services repository
+    fragments:
+      - repository-role.yaml
+    release_date: '2026-10-30'
