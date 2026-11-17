@@ -11,7 +11,7 @@ DOCUMENTATION = r"""
   options:
     version:
       description: The version string (e.g., "7.3.0", "7.4.0-SNAPSHOT")
-      type: string
+      type: str
       required: true
     archive_bounds:
       description:
@@ -56,7 +56,7 @@ EXAMPLES = r"""
 RETURN = r"""
   _value:
     description: The name of the artifact server
-    type: string
+    type: str
     returned: always
     sample: "archive"
 """

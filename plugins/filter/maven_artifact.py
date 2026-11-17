@@ -12,15 +12,15 @@ DOCUMENTATION = r"""
   options:
     version:
       description: Version string (e.g., "7.3.0", "7.4.0-SNAPSHOT")
-      type: string
+      type: str
       required: true
     group_id:
       description: Maven group ID (e.g., "org.alfresco")
-      type: string
+      type: str
       required: true
     artifact_id:
       description: Maven artifact ID (e.g., "alfresco-platform")
-      type: string
+      type: str
       required: true
     archive_bounds:
       description:
@@ -37,7 +37,7 @@ DOCUMENTATION = r"""
       required: true
     ext:
       description: File extension (default "jar")
-      type: string
+      type: str
       default: jar
 """
 
@@ -92,23 +92,23 @@ RETURN = r"""
     contains:
       server:
         description: The artifact server name
-        type: string
+        type: str
         sample: "archive"
       maturity:
         description: Version maturity level
-        type: string
+        type: str
         sample: "release"
       repo_url:
         description: Base repository URL
-        type: string
+        type: str
         sample: "https://artifacts.alfresco.com/nexus/release"
       url:
         description: Full artifact URL
-        type: string
+        type: str
         sample: "https://artifacts.alfresco.com/nexus/release/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar"
       checksum_url:
         description: Checksum URL (artifact URL with .sha1 appended)
-        type: string
+        type: str
         sample: "https://artifacts.alfresco.com/nexus/release/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar.sha1"
 """
 
