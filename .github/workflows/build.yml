@@ -90,7 +90,7 @@ jobs:
           coverage: never # codecov integration required
 
   pytest:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     name: Unit tests
     steps:
       - name: Checkout

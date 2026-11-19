@@ -6,282 +6,131 @@ from ansible.errors import AnsibleFilterError
 from ansible_collections.alfresco.platform.plugins.filter.artifact_server import (
     artifact_server,
 )
-from ansible_collections.alfresco.platform.plugins.filter.maven_artifact import (
-    maven_artifact,
+from ansible_collections.alfresco.platform.plugins.filter.artifact_url import (
+    artifact_url,
 )
+
+BOUNDS = ["6.2.1", "7.3.9"]
 
 
 class TestArtifactServer:
-    """Test artifact_server filter."""
+    @pytest.mark.parametrize(
+        "version, expected",
+        [
+            ("7.3.9", "archive"),
+            ("7.3.5", "archive"),
+            ("7.4.0", "cloudsmith"),
+            ("6.2.0", "archive"),
+            ("6.3.0", "cloudsmith"),
+            ("8.0.0", "cloudsmith"),
+        ],
+    )
+    def test_release_versions(self, version, expected):
+        assert artifact_server(version, BOUNDS) == expected
 
-    def test_version_at_bound(self):
-        """Test version exactly at the bound."""
-        assert artifact_server("7.3.9", {7: "7.3.9"}) == "archive"
+    @pytest.mark.parametrize("bounds", [[], None])
+    def test_no_bounds(self, bounds):
+        assert artifact_server("7.3.0", bounds) == "cloudsmith"
 
-    def test_version_below_bound(self):
-        """Test version below the bound."""
-        assert artifact_server("7.3.5", {7: "7.3.9"}) == "archive"
+    @pytest.mark.parametrize(
+        "version, expected",
+        [
+            ("7.3.9-RC1", "archive"),
+            ("7.3.9-SNAPSHOT", "archive"),
+            ("7.3.0-A1", "archive"),
+            ("7.4.0-RC1", "cloudsmith"),
+            ("7.4.0-SNAPSHOT", "cloudsmith"),
+        ],
+    )
+    def test_pre_release_follows_base_version(self, version, expected):
+        assert artifact_server(version, BOUNDS) == expected
 
-    def test_version_above_bound(self):
-        """Test version above the bound."""
-        assert artifact_server("7.4.0", {7: "7.3.9"}) == "cloudsmith"
+    def test_float_version(self):
+        assert artifact_server(7.3, BOUNDS) == "archive"
 
-    def test_unknown_major_version(self):
-        """Test unknown major version goes to cloudsmith."""
-        assert artifact_server("8.0.0", {7: "7.3.9"}) == "cloudsmith"
+    def test_float_bound(self):
+        assert artifact_server("7.2.0", [7.3]) == "archive"
+        assert artifact_server("7.4.0", [7.3]) == "cloudsmith"
 
-    def test_empty_bounds(self):
-        """Test empty bounds defaults to cloudsmith."""
-        assert artifact_server("7.3.0", {}) == "cloudsmith"
+    def test_uncomparable_bound_raises(self):
+        with pytest.raises(AnsibleFilterError, match="7.x"):
+            artifact_server("7.3.0", ["7.x"])
 
-    def test_none_bounds(self):
-        """Test None bounds defaults to cloudsmith."""
-        assert artifact_server("7.3.0", None) == "cloudsmith"
-
-    def test_snapshot_version_at_bound(self):
-        """Test SNAPSHOT version at bound is treated as above bound."""
-        assert artifact_server("7.3.9-SNAPSHOT", {7: "7.3.9"}) == "cloudsmith"
-
-    def test_snapshot_version_below_bound(self):
-        """Test SNAPSHOT version below bound."""
-        assert artifact_server("7.3.0-SNAPSHOT", {7: "7.3.9"}) == "archive"
-
-    def test_staging_version_at_bound(self):
-        """Test staging version at bound is treated as above bound."""
-        assert artifact_server("7.3.9-RC1", {7: "7.3.9"}) == "cloudsmith"
-
-    def test_staging_version_below_bound(self):
-        """Test staging version below bound."""
-        assert artifact_server("7.3.0-RC1", {7: "7.3.9"}) == "archive"
-
-    def test_multiple_majors_in_bounds(self):
-        """Test bounds with multiple major versions."""
-        bounds = {6: "6.2.1", 7: "7.3.9"}
-        assert artifact_server("6.2.0", bounds) == "archive"
-        assert artifact_server("6.3.0", bounds) == "cloudsmith"
-        assert artifact_server("7.3.0", bounds) == "archive"
-        assert artifact_server("7.4.0", bounds) == "cloudsmith"
-        assert artifact_server("8.0.0", bounds) == "cloudsmith"
-
-    def test_string_bounds_keys(self):
-        """Test bounds with string keys (from JSON or extra-vars)."""
-        # String keys should be normalized to integers
-        bounds_str = {"7": "7.3.9", "6": "6.2.1"}
-        assert artifact_server("7.3.0", bounds_str) == "archive"
-        assert artifact_server("7.4.0", bounds_str) == "cloudsmith"
-        assert artifact_server("6.2.0", bounds_str) == "archive"
-        assert artifact_server("6.3.0", bounds_str) == "cloudsmith"
+    def test_dict_bounds_raises(self):
+        with pytest.raises(AnsibleFilterError, match="list"):
+            artifact_server("7.3.0", {7: "7.3.9"})
 
 
-class TestMavenArtifact:
-    """Test maven_artifact filter."""
-
+class TestArtifactUrl:
     @pytest.fixture
     def repos(self):
-        """Fixture for repos structure."""
         return {
             "archive": {
-                "release": "https://artifacts.alfresco.com/nexus/release",
-                "staging": "https://artifacts.alfresco.com/nexus/staging",
-                "snapshot": "https://artifacts.alfresco.com/nexus/snapshot",
+                "release": "https://nexus.example/releases",
+                "staging": "https://nexus.example/staging",
             },
             "cloudsmith": {
-                "release": "https://dl.cloudsmith.io/release",
-                "staging": "https://dl.cloudsmith.io/staging",
-                "snapshot": "https://dl.cloudsmith.io/snapshot",
+                "release": "https://cloudsmith.example/private/maven",
+                "staging": "https://cloudsmith.example/internal/maven",
             },
         }
 
-    def test_release_version_archive(self, repos):
-        """Test release version on archive server."""
-        result = maven_artifact(
-            "7.3.0",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos,
-        )
-        assert result["server"] == "archive"
-        assert result["maturity"] == "release"
-        assert result["repo_url"] == "https://artifacts.alfresco.com/nexus/release"
-        assert (
-            result["url"]
-            == "https://artifacts.alfresco.com/nexus/release/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar"
-        )
-        assert result["checksum_url"] == result["url"] + ".sha1"
+    def test_release_on_archive(self, repos):
+        result = artifact_url("7.3.0", "org.alfresco", "alfresco-platform", BOUNDS, repos)
+        url = "https://nexus.example/releases/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar"
+        assert result == {
+            "server": "archive",
+            "maturity": "release",
+            "repo_url": "https://nexus.example/releases",
+            "url": url,
+            "checksum_url": url + ".sha1",
+        }
 
-    def test_release_version_cloudsmith(self, repos):
-        """Test release version on cloudsmith server."""
-        result = maven_artifact(
-            "7.4.0",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos,
-        )
+    def test_release_on_cloudsmith(self, repos):
+        result = artifact_url("7.4.0", "org.alfresco", "alfresco-platform", BOUNDS, repos)
         assert result["server"] == "cloudsmith"
         assert result["maturity"] == "release"
-        assert result["repo_url"] == "https://dl.cloudsmith.io/release"
-        assert (
-            result["url"]
-            == "https://dl.cloudsmith.io/release/org/alfresco/alfresco-platform/7.4.0/alfresco-platform-7.4.0.jar"
+        assert result["url"] == (
+            "https://cloudsmith.example/private/maven/org/alfresco/alfresco-platform/7.4.0/alfresco-platform-7.4.0.jar"
         )
 
-    def test_snapshot_version(self, repos):
-        """Test snapshot version."""
-        result = maven_artifact(
-            "7.3.0-SNAPSHOT",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos,
-        )
-        assert result["maturity"] == "snapshot"
-        assert result["server"] == "archive"
-        assert (
-            result["url"]
-            == "https://artifacts.alfresco.com/nexus/snapshot/org/alfresco/alfresco-platform/7.3.0-SNAPSHOT/alfresco-platform-7.3.0-SNAPSHOT.jar"
-        )
-
-    def test_staging_version(self, repos):
-        """Test staging version."""
-        result = maven_artifact(
-            "7.3.0-RC1",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos,
-        )
+    @pytest.mark.parametrize(
+        "version, server", [("7.3.9-RC1", "archive"), ("7.4.0-RC1", "cloudsmith")]
+    )
+    def test_pre_release_uses_staging(self, repos, version, server):
+        result = artifact_url(version, "org.alfresco", "alfresco-platform", BOUNDS, repos)
+        assert result["server"] == server
         assert result["maturity"] == "staging"
-        assert result["server"] == "archive"
+        assert result["repo_url"] == repos[server]["staging"]
 
-    def test_dotted_group_id(self, repos):
-        """Test dotted group ID conversion to path."""
-        result = maven_artifact(
-            "7.3.0",
-            "com.example.org.alfresco",
-            "my-artifact",
-            {7: "7.3.9"},
-            repos,
-        )
-        assert (
-            result["url"]
-            == "https://artifacts.alfresco.com/nexus/release/com/example/org/alfresco/my-artifact/7.3.0/my-artifact-7.3.0.jar"
-        )
+    def test_snapshot_raises(self, repos):
+        with pytest.raises(AnsibleFilterError, match="SNAPSHOT"):
+            artifact_url("7.4.0-SNAPSHOT", "org.alfresco", "alfresco-platform", BOUNDS, repos)
 
-    def test_custom_extension(self, repos):
-        """Test custom file extension."""
-        result = maven_artifact(
-            "7.3.0",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos,
-            ext="zip",
+    def test_float_version(self, repos):
+        result = artifact_url(24.4, "com.activiti", "activiti-app", ["24.4.1"], repos, ext="war")
+        assert result["url"].endswith("/com/activiti/activiti-app/24.4/activiti-app-24.4.war")
+
+    def test_dotted_group_id_and_ext(self, repos):
+        result = artifact_url(
+            "7.3.0", "com.example.org", "my-artifact", BOUNDS, repos, ext="zip"
         )
-        assert result["url"].endswith(".zip")
+        assert result["url"] == (
+            "https://nexus.example/releases/com/example/org/my-artifact/7.3.0/my-artifact-7.3.0.zip"
+        )
         assert result["checksum_url"].endswith(".zip.sha1")
 
-    def test_missing_server_key(self, repos):
-        """Test missing server in repos raises error."""
-        incomplete_repos = {
-            "archive": {
-                "release": "https://artifacts.alfresco.com/nexus/release",
-                "staging": "https://artifacts.alfresco.com/nexus/staging",
-                "snapshot": "https://artifacts.alfresco.com/nexus/snapshot",
-            }
-        }
-        with pytest.raises(AnsibleFilterError, match="repos missing key"):
-            maven_artifact(
-                "7.4.0",
-                "org.alfresco",
-                "alfresco-platform",
-                {7: "7.3.9"},
-                incomplete_repos,
-            )
+    def test_trailing_slash_stripped(self, repos):
+        repos["archive"]["release"] += "/"
+        result = artifact_url("7.3.0", "org.alfresco", "alfresco-platform", BOUNDS, repos)
+        assert result["url"].startswith("https://nexus.example/releases/org/")
 
-    def test_missing_maturity_key(self, repos):
-        """Test missing maturity in repos raises error."""
-        incomplete_repos = {
-            "archive": {
-                "release": "https://artifacts.alfresco.com/nexus/release",
-                "staging": "https://artifacts.alfresco.com/nexus/staging",
-            },
-            "cloudsmith": {
-                "release": "https://dl.cloudsmith.io/release",
-                "staging": "https://dl.cloudsmith.io/staging",
-                "snapshot": "https://dl.cloudsmith.io/snapshot",
-            },
-        }
-        with pytest.raises(AnsibleFilterError, match="repos missing key"):
-            maven_artifact(
-                "7.3.0-SNAPSHOT",
-                "org.alfresco",
-                "alfresco-platform",
-                {7: "7.3.9"},
-                incomplete_repos,
-            )
+    def test_missing_server_raises(self, repos):
+        del repos["cloudsmith"]
+        with pytest.raises(AnsibleFilterError, match="cloudsmith"):
+            artifact_url("7.4.0", "org.alfresco", "alfresco-platform", BOUNDS, repos)
 
-    def test_all_maturity_types_on_both_servers(self, repos):
-        """Test all maturity types work on both servers."""
-        archive_bounds = {7: "7.3.9"}
-
-        # Archive server - all maturities
-        for version, expected_maturity in [
-            ("7.3.0", "release"),
-            ("7.3.0-RC1", "staging"),
-            ("7.3.0-SNAPSHOT", "snapshot"),
-        ]:
-            result = maven_artifact(
-                version,
-                "org.alfresco",
-                "alfresco-platform",
-                archive_bounds,
-                repos,
-            )
-            assert result["server"] == "archive"
-            assert result["maturity"] == expected_maturity
-
-        # Cloudsmith server - all maturities
-        for version, expected_maturity in [
-            ("7.4.0", "release"),
-            ("7.4.0-RC1", "staging"),
-            ("7.4.0-SNAPSHOT", "snapshot"),
-        ]:
-            result = maven_artifact(
-                version,
-                "org.alfresco",
-                "alfresco-platform",
-                archive_bounds,
-                repos,
-            )
-            assert result["server"] == "cloudsmith"
-            assert result["maturity"] == expected_maturity
-
-    def test_repo_url_trailing_slash_stripped(self, repos):
-        """Test that trailing slashes in repo_url are stripped."""
-        repos_with_slash = {
-            "archive": {
-                "release": "https://artifacts.alfresco.com/nexus/release/",
-                "staging": "https://artifacts.alfresco.com/nexus/staging/",
-                "snapshot": "https://artifacts.alfresco.com/nexus/snapshot/",
-            },
-            "cloudsmith": {
-                "release": "https://dl.cloudsmith.io/release/",
-                "staging": "https://dl.cloudsmith.io/staging/",
-                "snapshot": "https://dl.cloudsmith.io/snapshot/",
-            },
-        }
-        result = maven_artifact(
-            "7.3.0",
-            "org.alfresco",
-            "alfresco-platform",
-            {7: "7.3.9"},
-            repos_with_slash,
-        )
-        # Should not have double slashes
-        assert "//" not in result["url"].replace("https://", "")
-        assert (
-            result["url"]
-            == "https://artifacts.alfresco.com/nexus/release/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar"
-        )
+    def test_missing_maturity_raises(self, repos):
+        del repos["archive"]["staging"]
+        with pytest.raises(AnsibleFilterError, match="staging"):
+            artifact_url("7.3.0-RC1", "org.alfresco", "alfresco-platform", BOUNDS, repos)

@@ -4,39 +4,27 @@ This directory contains plugins for the alfresco.platform collection.
 
 ## Filters
 
-This collection provides the following filters:
+- **`artifact_server`** returns `archive` (Nexus) or `cloudsmith` for an artifact version, based on the last version published on Nexus for each major version.
+- **`artifact_url`** builds the download and checksum URLs of a Maven artifact on the server `artifact_server` picks. It returns the selected `server` too, so the caller can pick matching credentials. `-SNAPSHOT` versions are not supported.
 
-- **`artifact_server`** - Determine which server (archive or cloudsmith) should host an artifact based on version and bounds.
-- **`maven_artifact`** - Build a Maven artifact descriptor with server, URL, and checksum URL information.
-
-For detailed documentation, parameter information, and additional examples, please refer to the [generated collection documentation](https://alfresco.github.io/alfresco-ansible-collection/).
-
-### Quick Examples
-
-**artifact_server filter:**
+See the [collection documentation](https://alfresco.github.io/alfresco-ansible-collection/) for all options.
 
 ```yaml
-- name: Set artifact server
+- name: Pick the server hosting the requested version
   ansible.builtin.set_fact:
-    server: "{{ acs_version | alfresco.platform.artifact_server({7: '7.3.9'}) }}"
-```
+    server: "{{ acs_version | alfresco.platform.artifact_server(['7.3.9', '23.4.2']) }}"
 
-**maven_artifact filter:**
-
-```yaml
-- name: Get artifact descriptor
+- name: Build the APS war URL
   ansible.builtin.set_fact:
-    artifact: "{{ acs_version | alfresco.platform.maven_artifact('org.alfresco', 'alfresco-platform', {7: '7.3.9'}, repos) }}"
+    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', ['2.4.8', '24.4.1'], repos, ext='war') }}"
   vars:
     repos:
       archive:
-        release: "https://artifacts.alfresco.com/nexus/release"
-        staging: "https://artifacts.alfresco.com/nexus/staging"
-        snapshot: "https://artifacts.alfresco.com/nexus/snapshot"
+        release: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases
+        staging: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-staging
       cloudsmith:
-        release: "https://dl.cloudsmith.io/release"
-        staging: "https://dl.cloudsmith.io/staging"
-        snapshot: "https://dl.cloudsmith.io/snapshot"
+        release: https://artifacts.hyland.dev/basic/alfresco-private/maven
+        staging: https://artifacts.hyland.dev/basic/alfresco-internal/maven
 ```
 
 ## Standard Plugin Directory Structure
