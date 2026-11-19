@@ -19,7 +19,7 @@ DOCUMENTATION = r"""
     component:
       description:
         - Component name, for example C(repository), C(search_enterprise) or C(aps_app).
-          Its last archive versions come from C(plugins/plugin_utils/archive_versions.py). An unknown name fails.
+          Its last archive versions come from C(plugins/plugin_utils/components.py). An unknown name fails.
         - Can also be an explicit list of last archive versions, one per major version, for example C(['7.3.9', '23.4.2']).
       type: raw
       required: true

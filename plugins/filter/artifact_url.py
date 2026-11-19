@@ -11,52 +11,51 @@ DOCUMENTATION = r"""
     - A version with a C(-) suffix (for example C(7.4.0-RC1)) uses the C(staging) repository, any other the C(release) one.
     - C(-SNAPSHOT) versions are rejected, since their file names are timestamped and need C(maven-metadata.xml) to resolve.
     - Returns the selected C(server) too, so the caller can pick matching credentials.
+    - For components that ship their Maven coordinates and repositories (for example C(aps_app) and C(aps_admin)),
+      the component name is enough. Any option passed overrides the shipped value, for example C(repos) to use a mirror.
   options:
     _input:
       description: Artifact version, for example C(7.3.0) or C(7.4.0-RC1).
       type: str
       required: true
-    group_id:
-      description: Maven group ID, for example C(org.alfresco).
-      type: str
-      required: true
-    artifact_id:
-      description: Maven artifact ID, for example C(alfresco-platform).
-      type: str
-      required: true
     component:
-      description: Component name or explicit list of last archive versions, as in the artifact_server filter.
+      description:
+        - Component name from C(plugins/plugin_utils/components.py), or an explicit list of last archive versions as in the artifact_server filter.
+        - With a list, or a component that doesn't ship them, C(repos), C(group_id) and C(artifact_id) are required.
       type: raw
       required: true
     repos:
       description:
-        - Base repository URLs, keyed by server and then maturity.
+        - Base repository URLs, keyed by server and then maturity. Defaults to the component's shipped repositories.
         - 'Structure: C({"archive": {"release": url, "staging": url}, "cloudsmith": {"release": url, "staging": url}}).'
       type: dict
-      required: true
-    ext:
-      description: File extension.
+    group_id:
+      description: Maven group ID, for example C(com.activiti). Defaults to the component's shipped value.
       type: str
-      default: jar
+    artifact_id:
+      description: Maven artifact ID, for example C(activiti-app). Defaults to the component's shipped value.
+      type: str
+    ext:
+      description: File extension. Defaults to the component's shipped value, or C(jar).
+      type: str
 """
 
 EXAMPLES = r"""
 - name: Download the APS war from the server that hosts the requested version
   vars:
-    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', 'aps_app', repos, ext='war') }}"
-    repos:
-      archive:
-        release: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases
-        staging: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-staging
-      cloudsmith:
-        release: https://artifacts.hyland.dev/basic/alfresco-private/maven
-        staging: https://artifacts.hyland.dev/basic/alfresco-internal/maven
+    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('aps_app') }}"
   ansible.builtin.get_url:
     url: "{{ aps_artifact.url }}"
     checksum: "sha1:{{ aps_artifact.checksum_url }}"
     dest: /tmp/activiti-app.war
     url_username: "{{ credentials[aps_artifact.server].username }}"
     url_password: "{{ credentials[aps_artifact.server].password }}"
+
+- name: Build the URL of an artifact the collection doesn't describe
+  ansible.builtin.set_fact:
+    my_artifact: >-
+      {{ my_version | alfresco.platform.artifact_url(['1.4.2'], repos=my_repos,
+         group_id='org.example', artifact_id='my-app', ext='zip') }}
 """
 
 RETURN = r"""
@@ -90,11 +89,21 @@ from ansible.errors import AnsibleFilterError
 
 from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import (
     get_artifact_server,
+    get_component,
 )
 
 
-def artifact_url(version, group_id, artifact_id, component, repos, ext="jar"):
+def artifact_url(version, component, repos=None, group_id=None, artifact_id=None, ext=None):
     """Return the server, maturity, repo, download and checksum URLs of a Maven artifact."""
+    shipped = get_component(component) if isinstance(component, str) else {}
+    repos = repos or shipped.get("repos")
+    group_id = group_id or shipped.get("group_id")
+    artifact_id = artifact_id or shipped.get("artifact_id")
+    ext = ext or shipped.get("ext", "jar")
+    missing = [k for k, v in (("repos", repos), ("group_id", group_id), ("artifact_id", artifact_id)) if not v]
+    if missing:
+        raise AnsibleFilterError("%s: pass %s, the collection doesn't ship them" % (component, ", ".join(missing)))
+
     version = str(version)
     if version.endswith("-SNAPSHOT"):
         raise AnsibleFilterError(

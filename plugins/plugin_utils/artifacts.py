@@ -7,24 +7,28 @@ __metaclass__ = type
 from ansible.errors import AnsibleFilterError
 from ansible.module_utils.compat.version import LooseVersion
 
-from ansible_collections.alfresco.platform.plugins.plugin_utils.archive_versions import (
-    ARCHIVE_LAST_VERSIONS,
+from ansible_collections.alfresco.platform.plugins.plugin_utils.components import (
+    COMPONENTS,
 )
+
+
+def get_component(name):
+    """Return the shipped metadata of a component."""
+    if name not in COMPONENTS:
+        raise AnsibleFilterError(
+            "unknown component %s, expected one of: %s" % (name, ", ".join(sorted(COMPONENTS)))
+        )
+    return COMPONENTS[name]
 
 
 def get_artifact_server(version, component):
     """Return "archive" if version is at or below the bound of its major, else "cloudsmith".
 
-    component is a name from ARCHIVE_LAST_VERSIONS, or an explicit list of bounds.
+    component is a name from COMPONENTS, or an explicit list of bounds.
     """
     archive_bounds = component
     if isinstance(component, str):
-        if component not in ARCHIVE_LAST_VERSIONS:
-            raise AnsibleFilterError(
-                "unknown component %s, expected one of: %s"
-                % (component, ", ".join(sorted(ARCHIVE_LAST_VERSIONS)))
-            )
-        archive_bounds = ARCHIVE_LAST_VERSIONS[component]
+        archive_bounds = get_component(component)["archive_last_versions"]
     if not archive_bounds:
         return "cloudsmith"
     if not isinstance(archive_bounds, list):

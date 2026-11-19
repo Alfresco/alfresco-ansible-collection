@@ -72,9 +72,12 @@ def repos():
     }
 
 
+COORDS = {"group_id": "org.alfresco", "artifact_id": "alfresco-platform"}
+
+
 def test_artifact_url(repos):
     url = "https://nexus.example/releases/org/alfresco/alfresco-platform/7.3.0/alfresco-platform-7.3.0.jar"
-    assert artifact_url("7.3.0", "org.alfresco", "alfresco-platform", BOUNDS, repos) == {
+    assert artifact_url("7.3.0", BOUNDS, repos=repos, **COORDS) == {
         "server": "archive",
         "maturity": "release",
         "repo_url": "https://nexus.example/releases",
@@ -92,20 +95,65 @@ def test_artifact_url(repos):
     ],
 )
 def test_artifact_url_repo_selection(repos, version, server, maturity):
-    result = artifact_url(version, "org.alfresco", "alfresco-platform", BOUNDS, repos)
+    result = artifact_url(version, BOUNDS, repos=repos, **COORDS)
     assert (result["server"], result["maturity"]) == (server, maturity)
     assert result["repo_url"] == repos[server][maturity]
 
 
 def test_artifact_url_layout(repos):
     repos["archive"]["release"] += "/"
-    result = artifact_url(24.4, "com.example.org", "my-artifact", ["24.4.1"], repos, ext="war")
+    result = artifact_url(24.4, ["24.4.1"], repos=repos, group_id="com.example.org", artifact_id="my-artifact", ext="war")
     assert result["url"] == "https://nexus.example/releases/com/example/org/my-artifact/24.4/my-artifact-24.4.war"
 
 
-def test_artifact_url_snapshot_raises(repos):
+@pytest.mark.parametrize(
+    "version, url",
+    [
+        pytest.param(
+            "24.6.0",
+            "https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases"
+            "/com/activiti/activiti-app/24.6.0/activiti-app-24.6.0.war",
+            id="nexus-release",
+        ),
+        pytest.param(
+            "26.1.0",
+            "https://artifacts.hyland.dev/basic/alfresco-private/maven"
+            "/com/activiti/activiti-app/26.1.0/activiti-app-26.1.0.war",
+            id="cloudsmith-release",
+        ),
+        pytest.param(
+            "26.1.0-RC1",
+            "https://artifacts.hyland.dev/basic/alfresco-internal/maven"
+            "/com/activiti/activiti-app/26.1.0-RC1/activiti-app-26.1.0-RC1.war",
+            id="cloudsmith-staging",
+        ),
+    ],
+)
+def test_artifact_url_shipped_component(version, url):
+    assert artifact_url(version, "aps_app")["url"] == url
+
+
+def test_artifact_url_overrides_shipped_values(repos):
+    result = artifact_url("24.6.0", "aps_admin", repos=repos, ext="zip")
+    assert result["url"] == "https://nexus.example/releases/com/activiti/activiti-admin/24.6.0/activiti-admin-24.6.0.zip"
+
+
+@pytest.mark.parametrize(
+    "component, match",
+    [
+        pytest.param("repository", "group_id", id="shipped-without-coordinates"),
+        pytest.param(BOUNDS, "repos", id="explicit-bounds-without-repos"),
+        pytest.param("aps_ap", "aps_ap", id="unknown-component"),
+    ],
+)
+def test_artifact_url_missing_metadata_raises(component, match):
+    with pytest.raises(AnsibleFilterError, match=match):
+        artifact_url("7.4.0", component)
+
+
+def test_artifact_url_snapshot_raises():
     with pytest.raises(AnsibleFilterError, match="SNAPSHOT"):
-        artifact_url("7.4.0-SNAPSHOT", "org.alfresco", "alfresco-platform", BOUNDS, repos)
+        artifact_url("26.1.0-SNAPSHOT", "aps_app")
 
 
 @pytest.mark.parametrize(
@@ -118,4 +166,4 @@ def test_artifact_url_missing_repo_raises(repos, server, maturity, version):
     else:
         del repos[server]
     with pytest.raises(AnsibleFilterError, match=maturity or server):
-        artifact_url(version, "org.alfresco", "alfresco-platform", BOUNDS, repos)
+        artifact_url(version, BOUNDS, repos=repos, **COORDS)
