@@ -18,11 +18,11 @@ def get_artifact_server(version, archive_bounds):
         )
 
     # Pre-releases precede their base version, so they ship from the same server.
-    base = str(version).split("-")[0]
-    major = base.split(".")[0]
+    base = str(version).partition("-")[0]
+    major = base.partition(".")[0]
     for bound in archive_bounds:
         bound = str(bound)
-        if bound.split(".")[0] != major:
+        if bound.partition(".")[0] != major:
             continue
         try:
             return "archive" if LooseVersion(base) <= LooseVersion(bound) else "cloudsmith"
