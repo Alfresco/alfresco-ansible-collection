@@ -4,7 +4,7 @@ This directory contains plugins for the alfresco.platform collection.
 
 ## Filters
 
-- **`artifact_server`** returns `archive` (Nexus) or `cloudsmith` for an artifact version, based on the last version published on Nexus for each major version.
+- **`artifact_server`** returns `archive` (Nexus) or `cloudsmith` for an artifact version, based on the last version published on Nexus for each major version. The collection ships those versions for each component in [`plugin_utils/archive_versions.py`](plugin_utils/archive_versions.py), so callers pass a component name. An explicit list of versions also works.
 - **`artifact_url`** builds the download and checksum URLs of a Maven artifact on the server `artifact_server` picks. It returns the selected `server` too, so the caller can pick matching credentials. `-SNAPSHOT` versions are not supported.
 
 See the [collection documentation](https://alfresco.github.io/alfresco-ansible-collection/) for all options.
@@ -12,11 +12,11 @@ See the [collection documentation](https://alfresco.github.io/alfresco-ansible-c
 ```yaml
 - name: Pick the server hosting the requested version
   ansible.builtin.set_fact:
-    server: "{{ acs_version | alfresco.platform.artifact_server(['7.3.9', '23.4.2']) }}"
+    server: "{{ acs_version | alfresco.platform.artifact_server('repository') }}"
 
 - name: Build the APS war URL
   ansible.builtin.set_fact:
-    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', ['2.4.8', '24.4.1'], repos, ext='war') }}"
+    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', 'aps_app', repos, ext='war') }}"
   vars:
     repos:
       archive:

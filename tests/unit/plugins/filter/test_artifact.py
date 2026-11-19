@@ -60,6 +60,30 @@ class TestArtifactServer:
         with pytest.raises(AnsibleFilterError, match="list"):
             artifact_server("7.3.0", {7: "7.3.9"})
 
+    @pytest.mark.parametrize(
+        "version, expected",
+        [("1.3.0-86", "archive"), ("1.3.0-90", "cloudsmith"), ("1.2.0", "archive")],
+    )
+    def test_suffixed_bound_compares_full_version(self, version, expected):
+        assert artifact_server(version, ["1.3.0-86"]) == expected
+
+    @pytest.mark.parametrize(
+        "version, component, expected",
+        [
+            ("7.4.2.6", "repository", "archive"),
+            ("7.4.3", "repository", "cloudsmith"),
+            ("23.4.1", "community_repository", "archive"),
+            ("1.3.0-86", "transformers_pdf", "archive"),
+            ("27.1.0", "repository", "cloudsmith"),
+        ],
+    )
+    def test_shipped_component_bounds(self, version, component, expected):
+        assert artifact_server(version, component) == expected
+
+    def test_unknown_component_raises(self):
+        with pytest.raises(AnsibleFilterError, match="repositroy"):
+            artifact_server("7.4.0", "repositroy")
+
 
 class TestArtifactUrl:
     @pytest.fixture
@@ -124,6 +148,10 @@ class TestArtifactUrl:
         repos["archive"]["release"] += "/"
         result = artifact_url("7.3.0", "org.alfresco", "alfresco-platform", BOUNDS, repos)
         assert result["url"].startswith("https://nexus.example/releases/org/")
+
+    def test_shipped_component_bounds(self, repos):
+        result = artifact_url("7.4.2.6", "org.alfresco", "alfresco-content-services-distribution", "repository", repos, ext="zip")
+        assert result["server"] == "archive"
 
     def test_missing_server_raises(self, repos):
         del repos["cloudsmith"]

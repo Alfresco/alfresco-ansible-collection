@@ -24,10 +24,9 @@ DOCUMENTATION = r"""
       description: Maven artifact ID, for example C(alfresco-platform).
       type: str
       required: true
-    archive_bounds:
-      description: Last version published on the archive server for each major version, as in the artifact_server filter.
-      type: list
-      elements: str
+    component:
+      description: Component name or explicit list of last archive versions, as in the artifact_server filter.
+      type: raw
       required: true
     repos:
       description:
@@ -44,7 +43,7 @@ DOCUMENTATION = r"""
 EXAMPLES = r"""
 - name: Download the APS war from the server that hosts the requested version
   vars:
-    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', ['2.4.8', '24.4.1'], repos, ext='war') }}"
+    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', 'aps_app', repos, ext='war') }}"
     repos:
       archive:
         release: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases
@@ -95,11 +94,11 @@ from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import
 )
 
 
-def artifact_url(version, group_id, artifact_id, archive_bounds, repos, ext="jar"):
+def artifact_url(version, group_id, artifact_id, component, repos, ext="jar"):
     """Return the server, maturity, repo, download and checksum URLs of a Maven artifact."""
     version = str(version)
     maturity = get_artifact_maturity(version)
-    server = get_artifact_server(version, archive_bounds)
+    server = get_artifact_server(version, component)
 
     try:
         repo_url = repos[server][maturity].rstrip("/")
