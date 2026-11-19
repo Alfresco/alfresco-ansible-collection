@@ -27,6 +27,6 @@ ARCHIVE_LAST_VERSIONS = {
     "audit_storage": ["0.0.11", "1.3.5"],
     "cic_connector": ["1.0.3"],
     # TODO: placeholders from the alfresco-devops-ansible molecule pins, replace with the last Nexus versions.
-    "aps_app": ["2.4.8", "24.6.0", "25.3.0"],
-    "aps_admin": ["2.4.8", "24.6.0", "25.3.0"],
+    "aps_app": ["2.4.8", "24.6.0", "25.5.0"],
+    "aps_admin": ["2.4.8", "24.6.0", "25.5.0"],
 }

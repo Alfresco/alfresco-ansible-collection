@@ -49,11 +49,6 @@ from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import
 )
 
 
-def artifact_server(version, component):
-    """Return "archive" or "cloudsmith" for the given version."""
-    return get_artifact_server(version, component)
-
-
 class FilterModule:
     def filters(self):
-        return {"artifact_server": artifact_server}
+        return {"artifact_server": get_artifact_server}

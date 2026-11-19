@@ -89,7 +89,6 @@ RETURN = r"""
 from ansible.errors import AnsibleFilterError
 
 from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import (
-    get_artifact_maturity,
     get_artifact_server,
 )
 
@@ -97,7 +96,11 @@ from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import
 def artifact_url(version, group_id, artifact_id, component, repos, ext="jar"):
     """Return the server, maturity, repo, download and checksum URLs of a Maven artifact."""
     version = str(version)
-    maturity = get_artifact_maturity(version)
+    if version.endswith("-SNAPSHOT"):
+        raise AnsibleFilterError(
+            "%s: SNAPSHOT versions are not supported, their file names are timestamped" % version
+        )
+    maturity = "staging" if "-" in version else "release"
     server = get_artifact_server(version, component)
 
     try:

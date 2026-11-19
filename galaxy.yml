@@ -40,6 +40,7 @@ build_ignore:
   - .github
   - .ansible
   - tests
+  - conftest.py
   - pyproject.toml
   - uv.lock
   - pre-commit-config.yaml

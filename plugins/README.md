@@ -9,24 +9,6 @@ This directory contains plugins for the alfresco.platform collection.
 
 See the [collection documentation](https://alfresco.github.io/alfresco-ansible-collection/) for all options.
 
-```yaml
-- name: Pick the server hosting the requested version
-  ansible.builtin.set_fact:
-    server: "{{ acs_version | alfresco.platform.artifact_server('repository') }}"
-
-- name: Build the APS war URL
-  ansible.builtin.set_fact:
-    aps_artifact: "{{ aps_version | alfresco.platform.artifact_url('com.activiti', 'activiti-app', 'aps_app', repos, ext='war') }}"
-  vars:
-    repos:
-      archive:
-        release: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases
-        staging: https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-staging
-      cloudsmith:
-        release: https://artifacts.hyland.dev/basic/alfresco-private/maven
-        staging: https://artifacts.hyland.dev/basic/alfresco-internal/maven
-```
-
 ## Standard Plugin Directory Structure
 
 This directory can contain various plugin types. Here is the standard directory layout:

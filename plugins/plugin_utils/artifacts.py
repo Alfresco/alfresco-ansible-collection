@@ -47,13 +47,3 @@ def get_artifact_server(version, component):
                 "cannot compare version %s with archive bound %s: %s" % (version, bound, e)
             )
     return "cloudsmith"
-
-
-def get_artifact_maturity(version):
-    """Return "staging" for a suffixed version, "release" otherwise. Snapshots are rejected."""
-    version = str(version)
-    if version.endswith("-SNAPSHOT"):
-        raise AnsibleFilterError(
-            "%s: SNAPSHOT versions are not supported, their file names are timestamped" % version
-        )
-    return "staging" if "-" in version else "release"
