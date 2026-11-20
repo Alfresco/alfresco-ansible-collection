@@ -1,10 +1,17 @@
 # Collections Plugins Directory
 
-This directory can be used to ship various plugins inside an Ansible collection. Each plugin is placed in a folder that
-is named after the type of plugin it is in. It can also include the `module_utils` and `modules` directory that
-would contain module utils and modules respectively.
+This directory contains plugins for the alfresco.platform collection.
 
-Here is an example directory of the majority of plugins currently supported by Ansible:
+## Filters
+
+- **`artifact_server`** returns `archive` (Nexus) or `cloudsmith` for an artifact version, based on the last version published on Nexus for each major version. The collection ships those versions for each component in [`plugin_utils/components.py`](plugin_utils/components.py), so callers pass a component name. An explicit list of versions also works.
+- **`artifact_url`** builds the download and checksum URLs of a Maven artifact on the server `artifact_server` picks. It returns the selected `server` too, so the caller can pick matching credentials. For components that ship their Maven coordinates and repositories (APS so far), the component name is enough: `aps_version | alfresco.platform.artifact_url('aps_app')`. Callers can override any shipped value, for example `repos` to use a mirror. `-SNAPSHOT` versions are not supported.
+
+See the [collection documentation](https://alfresco.github.io/alfresco-ansible-collection/) for all options.
+
+## Standard Plugin Directory Structure
+
+This directory can contain various plugin types. Here is the standard directory layout:
 
 ```sh
 └── plugins
