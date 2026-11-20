@@ -32,7 +32,7 @@ def _version_key(version, separator):
     """Order key where a pre-release precedes the GA version of the same base."""
     if not separator or separator not in version:
         return (LooseVersion(version), 1, LooseVersion("0"))
-    base, _, suffix = version.partition(separator)
+    base, _sep, suffix = version.partition(separator)
     return (LooseVersion(base), 0, LooseVersion(suffix))
 
 
