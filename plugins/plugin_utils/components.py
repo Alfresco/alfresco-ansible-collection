@@ -19,6 +19,7 @@ APS_REPOS = {
 }
 
 # archive_last_versions: last version of each release line on Nexus. Nexus gets no new releases, so they are final.
+# prerelease_separator: what starts a pre-release suffix, "-" by default; None when "-" only carries release build numbers.
 # Components without coordinates and repos only support artifact_server for now.
 COMPONENTS = {
     "repository": {"archive_last_versions": ["6.2.2.25", "7.4.2.6", "23.7.3", "25.5.2", "26.2.4"]},
@@ -30,7 +31,7 @@ COMPONENTS = {
     "amp_device_sync": {"archive_last_versions": ["2.2.3", "3.11.3", "4.0.1", "5.3.7"]},
     "amp_aos_module": {"archive_last_versions": ["1.6.3", "2.0.1", "3.4.3"]},
     "transformers_aio": {"archive_last_versions": ["2.6.0", "3.1.2", "4.0.1", "5.4.5"]},
-    "transformers_pdf": {"archive_last_versions": ["0.10", "1.3.0-86"]},
+    "transformers_pdf": {"archive_last_versions": ["0.10", "1.3.0-86"], "prerelease_separator": None},
     "trouter": {"archive_last_versions": ["0.5.2", "1.5.3", "2.1.2", "3.0.1", "4.4.5"]},
     "sfs": {"archive_last_versions": ["0.16.1", "1.5.3", "2.1.2", "3.0.1", "4.4.5"]},
     "search": {"archive_last_versions": ["1.4.3.4", "2.0.23"]},
@@ -41,19 +42,18 @@ COMPONENTS = {
     "sync": {"archive_last_versions": ["3.11.3", "4.0.1", "5.3.7"]},
     "audit_storage": {"archive_last_versions": ["0.0.11", "1.3.5"]},
     "cic_connector": {"archive_last_versions": ["1.0.3"]},
-    # TODO: placeholder archive versions, replace with the last Nexus versions.
     "aps_app": {
         "group_id": "com.activiti",
         "artifact_id": "activiti-app",
         "ext": "war",
         "repos": APS_REPOS,
-        "archive_last_versions": ["2.4.8", "24.6.0", "25.5.0"],
+        "archive_last_versions": ["24.7.1", "25.5.0", "26.3.0-M1"],
     },
     "aps_admin": {
         "group_id": "com.activiti",
         "artifact_id": "activiti-admin",
         "ext": "war",
         "repos": APS_REPOS,
-        "archive_last_versions": ["2.4.8", "24.6.0", "25.5.0"],
+        "archive_last_versions": ["24.7.1", "25.5.0", "26.3.0-M1"],
     },
 }

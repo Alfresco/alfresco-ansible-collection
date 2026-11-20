@@ -9,7 +9,8 @@ DOCUMENTATION = r"""
     - Returns C(archive) when the version is at or below the last archive version of its major version, C(cloudsmith) otherwise.
     - The collection ships the last archive versions of each Alfresco component, selected by name.
     - A major version with no bound, or no bounds at all, returns C(cloudsmith).
-    - Pre-release suffixes are ignored, so C(7.3.9-RC1) follows C(7.3.9), unless the bound has a suffix too (build numbers such as C(1.3.0-86)).
+    - A pre-release precedes the GA version of the same base, so C(7.3.9-RC1) is at or below a C(7.3.9) bound and C(26.3.0) is above a C(26.3.0-M1) one.
+    - Components whose metadata sets C(prerelease_separator) to C(None), such as C(transformers_pdf), compare the whole version, since C(1.3.0-86) is a build number.
     - Fails when a bound can't be compared with the version, instead of silently returning C(cloudsmith).
   options:
     _input:

@@ -39,6 +39,10 @@ BOUNDS = ["6.2.1", "7.3.9"]
         pytest.param("23.4.1", "community_repository", "archive", id="shipped-other-component"),
         pytest.param("1.3.0-86", "transformers_pdf", "archive", id="shipped-build-number"),
         pytest.param("27.1.0", "repository", "cloudsmith", id="shipped-unknown-major"),
+        pytest.param("26.3.0-M1", "aps_app", "archive", id="shipped-aps-last-milestone"),
+        pytest.param("26.3.0", "aps_app", "cloudsmith", id="shipped-aps-after-last-milestone"),
+        pytest.param("26.3.0-M2", "aps_app", "cloudsmith", id="shipped-aps-later-milestone"),
+        pytest.param("1.3.0-90", "transformers_pdf", "cloudsmith", id="shipped-build-number-above"),
     ],
 )
 def test_artifact_server(version, component, expected):
@@ -50,6 +54,7 @@ def test_artifact_server(version, component, expected):
     [
         pytest.param(["7.x"], "7.x", id="uncomparable-bound"),
         pytest.param({7: "7.3.9"}, "list", id="dict-bounds"),
+        pytest.param({}, "list", id="empty-dict-bounds"),
         pytest.param("repositroy", "repositroy", id="unknown-component"),
     ],
 )
@@ -100,6 +105,12 @@ def test_artifact_url_repo_selection(repos, version, server, maturity):
     assert result["repo_url"] == repos[server][maturity]
 
 
+def test_artifact_url_release_build_number(repos):
+    result = artifact_url("1.3.0-86", "transformers_pdf", repos=repos, **COORDS)
+    assert (result["server"], result["maturity"]) == ("archive", "release")
+    assert result["repo_url"] == repos["archive"]["release"]
+
+
 def test_artifact_url_layout(repos):
     repos["archive"]["release"] += "/"
     result = artifact_url(24.4, ["24.4.1"], repos=repos, group_id="com.example.org", artifact_id="my-artifact", ext="war")
@@ -116,15 +127,15 @@ def test_artifact_url_layout(repos):
             id="nexus-release",
         ),
         pytest.param(
-            "26.1.0",
+            "26.4.0",
             "https://artifacts.hyland.dev/basic/alfresco-private/maven"
-            "/com/activiti/activiti-app/26.1.0/activiti-app-26.1.0.war",
+            "/com/activiti/activiti-app/26.4.0/activiti-app-26.4.0.war",
             id="cloudsmith-release",
         ),
         pytest.param(
-            "26.1.0-RC1",
+            "26.4.0-RC1",
             "https://artifacts.hyland.dev/basic/alfresco-internal/maven"
-            "/com/activiti/activiti-app/26.1.0-RC1/activiti-app-26.1.0-RC1.war",
+            "/com/activiti/activiti-app/26.4.0-RC1/activiti-app-26.4.0-RC1.war",
             id="cloudsmith-staging",
         ),
     ],

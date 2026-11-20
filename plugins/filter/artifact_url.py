@@ -8,7 +8,9 @@ DOCUMENTATION = r"""
   description:
     - Builds the download and checksum URLs of a Maven artifact, picking the server with the
       R(artifact_server filter,ansible_collections.alfresco.platform.artifact_server_filter) logic.
-    - A version with a C(-) suffix (for example C(7.4.0-RC1)) uses the C(staging) repository, any other the C(release) one.
+    - A version with a pre-release suffix (for example C(7.4.0-RC1)) uses the C(staging) repository, any other the C(release) one.
+    - The suffix starts at C(-), unless the component sets C(prerelease_separator) to C(None) in its metadata
+      because it has no pre-releases and uses C(-) for release build numbers (C(transformers_pdf) C(1.3.0-86)).
     - C(-SNAPSHOT) versions are rejected, since their file names are timestamped and need C(maven-metadata.xml) to resolve.
     - Returns the selected C(server) too, so the caller can pick matching credentials.
     - For components that ship their Maven coordinates and repositories (for example C(aps_app) and C(aps_admin)),
@@ -90,6 +92,7 @@ from ansible.errors import AnsibleFilterError
 from ansible_collections.alfresco.platform.plugins.plugin_utils.artifacts import (
     get_artifact_server,
     get_component,
+    get_prerelease_separator,
 )
 
 
@@ -109,7 +112,8 @@ def artifact_url(version, component, repos=None, group_id=None, artifact_id=None
         raise AnsibleFilterError(
             "%s: SNAPSHOT versions are not supported, their file names are timestamped" % version
         )
-    maturity = "staging" if "-" in version else "release"
+    separator = get_prerelease_separator(component)
+    maturity = "staging" if separator and separator in version else "release"
     server = get_artifact_server(version, component)
 
     try:
