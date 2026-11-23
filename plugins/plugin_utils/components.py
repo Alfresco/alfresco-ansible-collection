@@ -13,8 +13,8 @@ APS_REPOS = {
         "staging": NEXUS + "/activiti-enterprise-staging",
     },
     "cloudsmith": {
-        "release": CLOUDSMITH + "/alfresco-private/maven",
-        "staging": CLOUDSMITH + "/alfresco-internal/maven",
+        "release": CLOUDSMITH + "/activiti-enterprise-releases/maven",
+        "staging": CLOUDSMITH + "/activiti-enterprise-staging/maven",
     },
 }
 

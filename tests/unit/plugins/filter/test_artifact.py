@@ -128,13 +128,13 @@ def test_artifact_url_layout(repos):
         ),
         pytest.param(
             "26.4.0",
-            "https://artifacts.hyland.dev/basic/alfresco-private/maven"
+            "https://artifacts.hyland.dev/basic/activiti-enterprise-releases/maven"
             "/com/activiti/activiti-app/26.4.0/activiti-app-26.4.0.war",
             id="cloudsmith-release",
         ),
         pytest.param(
             "26.4.0-RC1",
-            "https://artifacts.hyland.dev/basic/alfresco-internal/maven"
+            "https://artifacts.hyland.dev/basic/activiti-enterprise-staging/maven"
             "/com/activiti/activiti-app/26.4.0-RC1/activiti-app-26.4.0-RC1.war",
             id="cloudsmith-staging",
         ),

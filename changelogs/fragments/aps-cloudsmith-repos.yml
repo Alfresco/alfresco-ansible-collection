@@ -1,0 +1,3 @@
+---
+bugfixes:
+  - artifact_url - download APS from the activiti-enterprise-releases and activiti-enterprise-staging Cloudsmith repositories, where APS is published.
