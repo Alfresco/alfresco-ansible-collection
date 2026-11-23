@@ -47,13 +47,13 @@ COMPONENTS = {
         "artifact_id": "activiti-app",
         "ext": "war",
         "repos": APS_REPOS,
-        "archive_last_versions": ["24.7.1", "25.5.0", "26.3.0-M1"],
+        "archive_last_versions": ["2.4.8", "24.7.1", "25.5.0", "26.3.0-M1"],
     },
     "aps_admin": {
         "group_id": "com.activiti",
         "artifact_id": "activiti-admin",
         "ext": "war",
         "repos": APS_REPOS,
-        "archive_last_versions": ["24.7.1", "25.5.0", "26.3.0-M1"],
+        "archive_last_versions": ["2.4.8", "24.7.1", "25.5.0", "26.3.0-M1"],
     },
 }

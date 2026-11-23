@@ -127,6 +127,12 @@ def test_artifact_url_layout(repos):
             id="nexus-release",
         ),
         pytest.param(
+            "2.4.8",
+            "https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases"
+            "/com/activiti/activiti-app/2.4.8/activiti-app-2.4.8.war",
+            id="nexus-release-aps2",
+        ),
+        pytest.param(
             "26.4.0",
             "https://artifacts.hyland.dev/basic/activiti-enterprise-releases/maven"
             "/com/activiti/activiti-app/26.4.0/activiti-app-26.4.0.war",
