@@ -2,6 +2,8 @@
 
 **Topics**
 
+- <a href="#v0-8-1">v0\.8\.1</a>
+    - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v0-8-0">v0\.8\.0</a>
     - <a href="#new-plugins">New Plugins</a>
         - <a href="#filter">Filter</a>
@@ -20,9 +22,9 @@
 - <a href="#v0-3-0">v0\.3\.0</a>
     - <a href="#minor-changes-3">Minor Changes</a>
 - <a href="#v0-2-3">v0\.2\.3</a>
-    - <a href="#bugfixes">Bugfixes</a>
-- <a href="#v0-2-2">v0\.2\.2</a>
     - <a href="#bugfixes-1">Bugfixes</a>
+- <a href="#v0-2-2">v0\.2\.2</a>
+    - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v0-2-1">v0\.2\.1</a>
     - <a href="#minor-changes-4">Minor Changes</a>
 - <a href="#v0-2-0">v0\.2\.0</a>
@@ -30,9 +32,18 @@
     - <a href="#minor-changes-5">Minor Changes</a>
 - <a href="#v0-1-1">v0\.1\.1</a>
     - <a href="#minor-changes-6">Minor Changes</a>
-    - <a href="#bugfixes-2">Bugfixes</a>
+    - <a href="#bugfixes-3">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
     - <a href="#major-changes-3">Major Changes</a>
+
+<a id="v0-8-1"></a>
+## v0\.8\.1
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+* artifact\_server\, artifact\_url \- resolve APS 2\.x versions to Nexus\, where they are published\.
+* artifact\_url \- download APS from the activiti\-enterprise\-releases and activiti\-enterprise\-staging Cloudsmith repositories\, where APS is published\.
 
 <a id="v0-8-0"></a>
 ## v0\.8\.0
@@ -112,7 +123,7 @@
 <a id="v0-2-3"></a>
 ## v0\.2\.3
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
 * Revert ActiveMQ username key for audit storage\. Add SPRING\_PROFILES\_ACTIVE variable to enable audit picking default ingestion URI\.
@@ -120,7 +131,7 @@
 <a id="v0-2-2"></a>
 ## v0\.2\.2
 
-<a id="bugfixes-1"></a>
+<a id="bugfixes-2"></a>
 ### Bugfixes
 
 * Fix startup issue in audit storage by not overriding eventIngestion uri and fixing username key
@@ -154,7 +165,7 @@
 
 * Allow using an existing handler to trigger the restart of the Alfresco service after installing the repository extension to prevent unwanted restarts\.
 
-<a id="bugfixes-2"></a>
+<a id="bugfixes-3"></a>
 ### Bugfixes
 
 * Fix idempotency issue in hxi extension entrypoint
