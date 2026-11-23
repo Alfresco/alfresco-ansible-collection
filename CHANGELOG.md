@@ -2,6 +2,9 @@
 
 **Topics**
 
+- <a href="#v0-8-0">v0\.8\.0</a>
+    - <a href="#new-plugins">New Plugins</a>
+        - <a href="#filter">Filter</a>
 - <a href="#v0-7-0">v0\.7\.0</a>
     - <a href="#minor-changes">Minor Changes</a>
 - <a href="#v0-6-0">v0\.6\.0</a>
@@ -30,6 +33,18 @@
     - <a href="#bugfixes-2">Bugfixes</a>
 - <a href="#v0-1-0">v0\.1\.0</a>
     - <a href="#major-changes-3">Major Changes</a>
+
+<a id="v0-8-0"></a>
+## v0\.8\.0
+
+<a id="new-plugins"></a>
+### New Plugins
+
+<a id="filter"></a>
+#### Filter
+
+* alfresco\.platform\.artifact\_server \- Pick the archive \(Nexus\) or Cloudsmith server for an artifact version\.
+* alfresco\.platform\.artifact\_url \- Build the download URL of a Maven artifact on the archive or Cloudsmith server\.
 
 <a id="v0-7-0"></a>
 ## v0\.7\.0

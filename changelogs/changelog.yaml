@@ -1,3 +1,4 @@
+---
 ancestor: null
 releases:
   0.1.0:
@@ -141,3 +142,18 @@ releases:
     fragments:
       - repository-role.yaml
     release_date: '2026-10-30'
+  0.8.0:
+    changes: {}
+    fragments:
+      - artifact-filters.yml
+    plugins:
+      filter:
+        - description: Pick the archive (Nexus) or Cloudsmith server for an artifact
+            version.
+          name: artifact_server
+          namespace: null
+        - description: Build the download URL of a Maven artifact on the archive or
+            Cloudsmith server.
+          name: artifact_url
+          namespace: null
+    release_date: '2026-11-23'

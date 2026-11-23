@@ -1,5 +1,0 @@
-add plugin.filter:
-  - name: artifact_server
-    description: Pick the archive (Nexus) or Cloudsmith server for an artifact version
-  - name: artifact_url
-    description: Build the download URL of a Maven artifact on the archive or Cloudsmith server
