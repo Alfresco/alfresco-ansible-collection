@@ -39,6 +39,8 @@ There is no single "test everything" command — CI runs sanity tests (via `ansi
 
 Every PR that changes a role must add a changelog fragment in `changelogs/fragments/` (see [antsibull-changelog fragment categories](https://ansible.readthedocs.io/projects/antsibull-changelog/changelogs/#changelog-fragment-categories)) — this is called out in the PR template.
 
+New plugins (filters, modules, ...) don't need a fragment entry. On release, antsibull-changelog lists every plugin whose `version_added` falls in the new release under "New Plugins", using its `short_description`. Set `version_added` to the version the plugin will ship in, and keep it in sync if that version changes. An `add plugin.*` fragment block for such a plugin is ignored with an `Ignore adding ... plugin` warning.
+
 The release itself is a separate PR:
 
 1. `uv run antsibull-changelog release --version X.Y.Z` to merge all pending fragments into `CHANGELOG.md`.
