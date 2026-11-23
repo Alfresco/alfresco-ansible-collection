@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content="2.28.0" name="antsibull-docs" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>alfresco.platform.artifact_url filter – Build the download URL of a Maven artifact on the archive or Cloudsmith server &mdash; Alfresco.Platform Collection  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="_static/antsibull-minimal.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7f41d439"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="alfresco.platform.audit_storage role – Install a Alfresco Audit Storage" href="audit_storage_role.html" />
+    <link rel="prev" title="alfresco.platform.artifact_server filter – Pick the archive (Nexus) or Cloudsmith server for an artifact version" href="artifact_server_filter.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="https://Alfresco.github.io/alfresco-ansible-collection/branch/main/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Alfresco.Platform Collection Docs</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Alfresco.Platform Collection
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="artifact_server_filter.html">alfresco.platform.artifact_server filter – Pick the archive (Nexus) or Cloudsmith server for an artifact version</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">alfresco.platform.artifact_url filter – Build the download URL of a Maven artifact on the archive or Cloudsmith server</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#keyword-parameters">Keyword parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#return-value">Return Value</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authors">Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collection-links">Collection links</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="audit_storage_role.html">alfresco.platform.audit_storage role – Install a Alfresco Audit Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cic_connector_role.html">alfresco.platform.cic_connector role – Install the Content Intelligence Connector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="java_role.html">alfresco.platform.java role – Main entrypoint for the java role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_role.html">alfresco.platform.repository role</a></li>
+<li class="toctree-l1"><a class="reference internal" href="search_community_role.html">alfresco.platform.search_community role – Install Alfresco Elasticsearch Batch Indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="systemd_service_role.html">alfresco.platform.systemd_service role – Install a systemd service unit</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Alfresco.Platform Collection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">alfresco.platform.artifact_url filter – Build the download URL of a Maven artifact on the archive or Cloudsmith server</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <span class="target" id="ansible-collections-alfresco-platform-artifact-url-filter"></span><section id="alfresco-platform-artifact-url-filter-build-the-download-url-of-a-maven-artifact-on-the-archive-or-cloudsmith-server">
+<h1>alfresco.platform.artifact_url filter – Build the download URL of a Maven artifact on the archive or Cloudsmith server<a class="headerlink" href="#alfresco-platform-artifact-url-filter-build-the-download-url-of-a-maven-artifact-on-the-archive-or-cloudsmith-server" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This filter plugin is part of the <a class="reference external" href="https://galaxy.ansible.com/ui/repo/published/alfresco/platform/">alfresco.platform collection</a> (version 0.8.0).</p>
+<p>It is not included in <code class="docutils literal notranslate"><span class="pre">ansible-core</span></code>.
+To check whether it is installed, run <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">list</span></code>.</p>
+<p>To install it, use: <code class="code docutils literal notranslate"><span class="pre">ansible-galaxy</span> <span class="pre">collection</span> <span class="pre">install</span> <span class="pre">alfresco.platform</span></code>.</p>
+<p>To use it in a playbook, specify: <code class="code docutils literal notranslate"><span class="pre">alfresco.platform.artifact_url</span></code>.</p>
+</div>
+<p class="ansible-version-added">New in alfresco.platform 0.8.0</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#input" id="id2">Input</a></p></li>
+<li><p><a class="reference internal" href="#keyword-parameters" id="id3">Keyword parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-value" id="id5">Return Value</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Builds the download and checksum URLs of a Maven artifact, picking the server with the <a class="reference internal" href="artifact_server_filter.html#ansible-collections-alfresco-platform-artifact-server-filter"><span class="std std-ref">artifact_server filter</span></a> logic.</p></li>
+<li><p>A version with a pre-release suffix (for example <code class="docutils literal notranslate"><span class="pre">7.4.0-RC1</span></code>) uses the <code class="docutils literal notranslate"><span class="pre">staging</span></code> repository, any other the <code class="docutils literal notranslate"><span class="pre">release</span></code> one.</p></li>
+<li><p>The suffix starts at <code class="docutils literal notranslate"><span class="pre">-</span></code>, unless the component sets <code class="docutils literal notranslate"><span class="pre">prerelease_separator</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> in its metadata because it has no pre-releases and uses <code class="docutils literal notranslate"><span class="pre">-</span></code> for release build numbers (<code class="docutils literal notranslate"><span class="pre">transformers_pdf</span></code> <code class="docutils literal notranslate"><span class="pre">1.3.0-86</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-SNAPSHOT</span></code> versions are rejected, since their file names are timestamped and need <code class="docutils literal notranslate"><span class="pre">maven-metadata.xml</span></code> to resolve.</p></li>
+<li><p>Returns the selected <code class="docutils literal notranslate"><span class="pre">server</span></code> too, so the caller can pick matching credentials.</p></li>
+<li><p>For components that ship their Maven coordinates and repositories (for example <code class="docutils literal notranslate"><span class="pre">aps_app</span></code> and <code class="docutils literal notranslate"><span class="pre">aps_admin</span></code>), the component name is enough. Any option passed overrides the shipped value, for example <code class="docutils literal notranslate"><span class="pre">repos</span></code> to use a mirror.</p></li>
+</ul>
+</section>
+<section id="input">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Input</a><a class="headerlink" href="#input" title="Link to this heading"></a></h2>
+<p>This describes the input of the filter, the value before <code class="docutils literal notranslate"><span class="pre">|</span> <span class="pre">alfresco.platform.artifact_url</span></code>.</p>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-_input"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-input"><strong>Input</strong></p>
+<a class="ansibleOptionLink" href="#parameter-_input" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Artifact version, for example <code class="docutils literal notranslate"><span class="pre">7.3.0</span></code> or <code class="docutils literal notranslate"><span class="pre">7.4.0-RC1</span></code>.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="keyword-parameters">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Keyword parameters</a><a class="headerlink" href="#keyword-parameters" title="Link to this heading"></a></h2>
+<p>This describes keyword parameters of the filter. These are the values <code class="docutils literal notranslate"><span class="pre">key1=value1</span></code>, <code class="docutils literal notranslate"><span class="pre">key2=value2</span></code> and so on in the following
+example: <code class="docutils literal notranslate"><span class="pre">input</span> <span class="pre">|</span> <span class="pre">alfresco.platform.artifact_url(key1=value1,</span> <span class="pre">key2=value2,</span> <span class="pre">...)</span></code></p>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Comments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-artifact_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-artifact-id"><strong>artifact_id</strong></p>
+<a class="ansibleOptionLink" href="#parameter-artifact_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Maven artifact ID, for example <code class="docutils literal notranslate"><span class="pre">activiti-app</span></code>. Defaults to the component’s shipped value.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-component"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-component"><strong>component</strong></p>
+<a class="ansibleOptionLink" href="#parameter-component" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">any</span> / <span class="ansible-option-required">required</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Component name from <code class="docutils literal notranslate"><span class="pre">plugins/plugin_utils/components.py</span></code>, or an explicit list of last archive versions as in the artifact_server filter.</p>
+<p>With a list, or a component that doesn’t ship them, <code class="docutils literal notranslate"><span class="pre">repos</span></code>, <code class="docutils literal notranslate"><span class="pre">group_id</span></code> and <code class="docutils literal notranslate"><span class="pre">artifact_id</span></code> are required.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-ext"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-ext"><strong>ext</strong></p>
+<a class="ansibleOptionLink" href="#parameter-ext" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>File extension. Defaults to the component’s shipped value, or <code class="docutils literal notranslate"><span class="pre">jar</span></code>.</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-group_id"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-group-id"><strong>group_id</strong></p>
+<a class="ansibleOptionLink" href="#parameter-group_id" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Maven group ID, for example <code class="docutils literal notranslate"><span class="pre">com.activiti</span></code>. Defaults to the component’s shipped value.</p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="parameter-repos"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-parameter-repos"><strong>repos</strong></p>
+<a class="ansibleOptionLink" href="#parameter-repos" title="Permalink to this option"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Base repository URLs, keyed by server and then maturity. Defaults to the component’s shipped repositories.</p>
+<p>Structure: <code class="docutils literal notranslate"><span class="pre">{&quot;archive&quot;:</span> <span class="pre">{&quot;release&quot;:</span> <span class="pre">url,</span> <span class="pre">&quot;staging&quot;:</span> <span class="pre">url},</span> <span class="pre">&quot;cloudsmith&quot;:</span> <span class="pre">{&quot;release&quot;:</span> <span class="pre">url,</span> <span class="pre">&quot;staging&quot;:</span> <span class="pre">url}}</span></code>.</p>
+</div></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Download the APS war from the server that hosts the requested version</span>
+<span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">aps_artifact</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">aps_version</span> <span class="o">|</span> <span class="nf">alfresco</span><span class="nv">.platform.artifact_url</span><span class="o">(</span><span class="s1">'aps_app'</span><span class="o">)</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">  </span><span class="nt">ansible.builtin.get_url</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">aps_artifact.url</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">checksum</span><span class="p">:</span><span class="w"> </span><span class="s">"sha1:</span><span class="cp">{{</span> <span class="nv">aps_artifact.checksum_url</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp/activiti-app.war</span>
+<span class="w">    </span><span class="nt">url_username</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">credentials</span><span class="o">[</span><span class="nv">aps_artifact.server</span><span class="o">]</span><span class="nv">.username</span> <span class="cp">}}</span><span class="s">"</span>
+<span class="w">    </span><span class="nt">url_password</span><span class="p">:</span><span class="w"> </span><span class="s">"</span><span class="cp">{{</span> <span class="nv">credentials</span><span class="o">[</span><span class="nv">aps_artifact.server</span><span class="o">]</span><span class="nv">.password</span> <span class="cp">}}</span><span class="s">"</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build the URL of an artifact the collection doesn't describe</span>
+<span class="w">  </span><span class="nt">ansible.builtin.set_fact</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">my_artifact</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">      </span><span class="cp">{{</span> <span class="nv">my_version</span> <span class="o">|</span> <span class="nf">alfresco</span><span class="nv">.platform.artifact_url</span><span class="o">([</span><span class="s1">'1.4.2'</span><span class="o">],</span> <span class="nv">repos</span><span class="o">=</span><span class="nv">my_repos</span><span class="o">,</span>
+         <span class="nv">group_id</span><span class="o">=</span><span class="s1">'org.example'</span><span class="o">,</span> <span class="nv">artifact_id</span><span class="o">=</span><span class="s1">'my-app'</span><span class="o">,</span> <span class="nv">ext</span><span class="o">=</span><span class="s1">'zip'</span><span class="o">)</span> <span class="cp">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="return-value">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Return Value</a><a class="headerlink" href="#return-value" title="Link to this heading"></a></h2>
+<table class="longtable ansible-option-table docutils align-default" style="width: 100%">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value"><strong>Return value</strong></p>
+<a class="ansibleOptionLink" href="#return-_value" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">dictionary</span></p>
+</div></td>
+<td><div class="ansible-option-cell"><p>Artifact descriptor.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value/checksum_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value-checksum-url"><strong>checksum_url</strong></p>
+<a class="ansibleOptionLink" href="#return-_value/checksum_url" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>SHA-1 checksum URL of the artifact.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases/com/activiti/activiti-app/24.4.1/activiti-app-24.4.1.war.sha1&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value/maturity"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value-maturity"><strong>maturity</strong></p>
+<a class="ansibleOptionLink" href="#return-_value/maturity" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Repository maturity, <code class="docutils literal notranslate"><span class="pre">release</span></code> or <code class="docutils literal notranslate"><span class="pre">staging</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;release&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value/repo_url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value-repo-url"><strong>repo_url</strong></p>
+<a class="ansibleOptionLink" href="#return-_value/repo_url" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Base repository URL, without trailing slash.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-even"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value/server"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value-server"><strong>server</strong></p>
+<a class="ansibleOptionLink" href="#return-_value/server" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Server hosting the artifact, <code class="docutils literal notranslate"><span class="pre">archive</span></code> or <code class="docutils literal notranslate"><span class="pre">cloudsmith</span></code>.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;archive&quot;</span></code></p>
+</div></td>
+</tr>
+<tr class="row-odd"><td><div class="ansible-option-indent"></div><div class="ansible-option-cell">
+<div class="ansibleOptionAnchor" id="return-_value/url"></div><p class="ansible-option-title" id="ansible-collections-alfresco-platform-artifact-url-filter-return-value-url"><strong>url</strong></p>
+<a class="ansibleOptionLink" href="#return-_value/url" title="Permalink to this return value"></a><p class="ansible-option-type-line"><span class="ansible-option-type">string</span></p>
+</div></td>
+<td><div class="ansible-option-indent-desc"></div><div class="ansible-option-cell"><p>Artifact download URL.</p>
+<p class="ansible-option-line"><strong class="ansible-option-returned-bold">Returned:</strong> success</p>
+<p class="ansible-option-line ansible-option-sample"><strong class="ansible-option-sample-bold">Sample:</strong> <code class="ansible-option-sample docutils literal notranslate"><span class="pre">&quot;https://artifacts.alfresco.com/nexus/repository/activiti-enterprise-releases/com/activiti/activiti-app/24.4.1/activiti-app-24.4.1.war&quot;</span></code></p>
+</div></td>
+</tr>
+</tbody>
+</table>
+<section id="authors">
+<h3>Authors<a class="headerlink" href="#authors" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Alfresco</p></li>
+</ul>
+</section>
+<section id="collection-links">
+<h3>Collection links<a class="headerlink" href="#collection-links" title="Link to this heading"></a></h3>
+<ul class="ansible-links">
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection/issues" rel="noopener external" target="_blank">Issue Tracker</a></span></li>
+<li><span><a aria-role="button" class="ansible-link reference external" href="https://github.com/Alfresco/alfresco-ansible-collection" rel="noopener external" target="_blank">Repository (Sources)</a></span></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="artifact_server_filter.html" class="btn btn-neutral float-left" title="alfresco.platform.artifact_server filter – Pick the archive (Nexus) or Cloudsmith server for an artifact version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="audit_storage_role.html" class="btn btn-neutral float-right" title="alfresco.platform.audit_storage role – Install a Alfresco Audit Storage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Alfresco.Platform Contributors.</p>
+  </div>
+
+  
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>
