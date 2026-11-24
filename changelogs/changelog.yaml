@@ -143,7 +143,6 @@ releases:
       - repository-role.yaml
     release_date: '2026-10-30'
   0.8.0:
-    changes: {}
     fragments:
       - artifact-filters.yml
     plugins:
@@ -156,4 +155,14 @@ releases:
             Cloudsmith server.
           name: artifact_url
           namespace: null
+    release_date: '2026-11-23'
+  0.8.1:
+    changes:
+      bugfixes:
+        - artifact_server, artifact_url - resolve APS 2.x versions to Nexus, where
+          they are published.
+        - artifact_url - download APS from the activiti-enterprise-releases and activiti-enterprise-staging
+          Cloudsmith repositories, where APS is published.
+    fragments:
+      - aps-cloudsmith-repos.yml
     release_date: '2026-11-23'
