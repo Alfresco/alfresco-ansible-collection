@@ -232,11 +232,11 @@ dependencies = [
 requires-dist = [
     { name = "ansible-core", specifier = "==2.16.20" },
     { name = "ansible-lint", specifier = "==26.11.0" },
-    { name = "antsibull-changelog", specifier = "==0.37.0" },
+    { name = "antsibull-changelog", specifier = "==0.38.0" },
     { name = "antsibull-docs", specifier = "==2.28.0" },
     { name = "molecule", specifier = "==26.11.0" },
     { name = "molecule-plugins", extras = ["docker"], specifier = "==26.11.0" },
-    { name = "pytest", specifier = "==9.0.3" },
+    { name = "pytest", specifier = "==9.2.0" },
     { name = "sphinx-ansible-theme", specifier = "==0.10.4" },
 ]
 
@@ -325,10 +325,11 @@ wheels = [
 
 [[package]]
 name = "antsibull-changelog"
-version = "0.37.0"
+version = "0.38.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "annotated-types" },
+    { name = "antsibull-docs-loader" },
     { name = "antsibull-docs-parser" },
     { name = "antsibull-docutils", extra = ["unicode"] },
     { name = "antsibull-fileutils" },
@@ -338,9 +339,9 @@ dependencies = [
     { name = "rstcheck" },
     { name = "semantic-version" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/fe/cb/404b53665166994de2be129e8714cf82a947e70b45749db2780cd086740f/antsibull_changelog-0.37.0.tar.gz", hash = "sha256:649105fe6ccd4f035688c4e2e580573660712af1e46f8c0d3d8891352ffc7e2e", size = 158153, upload-time = "2026-11-08T13:43:31.204Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/01/62/4a9aeda694fab17d532dc2c832996008b88cae87f8d7686627ab9a2599fa/antsibull_changelog-0.38.0.tar.gz", hash = "sha256:674989862b8518ad14bb3ba2b149dc4d70f180666102e0f104864efa6f62ae21", size = 163823, upload-time = "2026-11-22T16:05:56.259Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ae/c0/f59b2a5730ae6eef8b383032a596af0806af534b3cdefd270849303d7ad1/antsibull_changelog-0.37.0-py3-none-any.whl", hash = "sha256:c9fb0e7625b208ae4ea6fe3633bc0dbeb029bcd2a79da36a8ef7f5a256beadc4", size = 77387, upload-time = "2026-11-08T13:43:32.623Z" },
+    { url = "https://files.pythonhosted.org/packages/ea/d3/0dfac6632ec0e2b092180c63685b39e3fa6cefa737f1a607ae38307a27c7/antsibull_changelog-0.38.0-py3-none-any.whl", hash = "sha256:a37d7cd00943e97ed076eb9426a7cd5cd675b247209300ea719948ceaddc9d63", size = 78918, upload-time = "2026-11-22T16:05:54.517Z" },
 ]
 
 [[package]]
@@ -389,6 +390,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/99/0f/98e6b0821023096226c4c988c72cf67ca579a18da97d1c8bea142da03984/antsibull_docs-2.28.0.tar.gz", hash = "sha256:6e1cde199ccbe172fbf47e53cbda448223501a7d8b4f06d1b633d3fc8a5949fc", size = 1601688, upload-time = "2026-10-16T09:34:06.569Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/db/bb/1bc882bac5d01918debcb39aa12dbce090987f03c8864746eb2e5b6073e8/antsibull_docs-2.28.0-py3-none-any.whl", hash = "sha256:e71ef8c52f517eeec5c0f672b4952cd4f8df55461b9b842b4f2544932ab3ba58", size = 302724, upload-time = "2026-10-16T09:34:00.903Z" },
+]
+
+[[package]]
+name = "antsibull-docs-loader"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyyaml", version = "6.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.14'" },
+    { name = "pyyaml", version = "6.0.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.14'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0e/dd/24d279796273c898bdcc0205884ed4c2a3be7999a0696d32c8b77ff12a56/antsibull_docs_loader-1.0.0.tar.gz", hash = "sha256:c1c08623c14d3fc02add4b927678690174f8a082543ea0a48fd61e3647dcd053", size = 58184, upload-time = "2026-11-22T15:24:10.265Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ea/fd/9a6e0f1c87781babc28ef4f8d0088aa4f5b2b7ba490f10d8018d6eafdb9c/antsibull_docs_loader-1.0.0-py3-none-any.whl", hash = "sha256:92ec1647c24e9006efe7bb7525f3087b9ac70c878da2f2a1b105e7485fd7b240", size = 37362, upload-time = "2026-11-22T15:24:11.257Z" },
 ]
 
 [[package]]
@@ -1167,11 +1181,11 @@ wheels = [
 
 [[package]]
 name = "pluggy"
-version = "1.5.0"
+version = "1.7.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/96/2d/02d4312c973c6050a18b314a5ad0b3210edb65a906f868e31c111dede4a6/pluggy-1.5.0.tar.gz", hash = "sha256:2cffa88e94fdc978c4c574f15f9e59b7f4201d439195c3715ca9e2486f1d0cf1", size = 67955, upload-time = "2024-04-20T21:34:42.531Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bf/db/7fc19e6f2dc92a966727031389fc2e08b558f0f25eb7403c1119ad4713cd/pluggy-1.7.0.tar.gz", hash = "sha256:d1eaa46ebb595891b860ab086b4d09c8588af65ebd4361b8e8f4bb8920b90ba8", size = 123304, upload-time = "2026-10-15T09:50:58.343Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/88/5f/e351af9a41f866ac3f1fac4ca0613908d9a41741cfcf2228f4ad853b697d/pluggy-1.5.0-py3-none-any.whl", hash = "sha256:44e1ad92c8ca002de6377e165f3e0f1be63266ab4d554740532335b9d75ea669", size = 20556, upload-time = "2024-04-20T21:34:40.434Z" },
+    { url = "https://files.pythonhosted.org/packages/40/9e/2b38731e0fc536806f16490e1a12d7f0dc2a1235aa8cc07bcc75416a7daa/pluggy-1.7.0-py3-none-any.whl", hash = "sha256:7dd7b0d8832ba3cb632c306926ded123429211b83641b35dc5c41ad2d34f9bec", size = 27082, upload-time = "2026-10-15T09:50:56.808Z" },
 ]
 
 [[package]]
@@ -1393,7 +1407,7 @@ wheels = [
 
 [[package]]
 name = "pytest"
-version = "9.0.3"
+version = "9.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
@@ -1402,9 +1416,9 @@ dependencies = [
     { name = "pluggy" },
     { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7d/0d/549bd94f1a0a402dc8cf64563a117c0f3765662e2e668477624baeec44d5/pytest-9.0.3.tar.gz", hash = "sha256:b86ada508af81d19edeb213c681b1d48246c1a91d304c6c81a427674c17eb91c", size = 1572165, upload-time = "2026-04-07T17:16:18.027Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/79/42/bb4641652e58dedeac2ec51abc1f8cae4fee4ec63899a0999016229a0f2a/pytest-9.2.0.tar.gz", hash = "sha256:97c4f3b1f3c7414aa36465e09b8220f1d03627993bd51b1282e193753c80557b", size = 1797555, upload-time = "2026-10-27T21:30:20.728Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d4/24/a372aaf5c9b7208e7112038812994107bc65a84cd00e0354a88c2c77a617/pytest-9.0.3-py3-none-any.whl", hash = "sha256:2c5efc453d45394fdd706ade797c0a81091eccd1d6e4bccfcd476e2b8e0ab5d9", size = 375249, upload-time = "2026-04-07T17:16:16.13Z" },
+    { url = "https://files.pythonhosted.org/packages/51/39/1f5d8c8877a0fa327db959c19341d4be61660de1ab6b7391f9eb805bcd67/pytest-9.2.0-py3-none-any.whl", hash = "sha256:07acdcf88ec174f907dc01af70bf52d49b014bbab03faeeade31c96b18c2e588", size = 411776, upload-time = "2026-10-27T21:30:19.131Z" },
 ]
 
 [[package]]
